@@ -7,17 +7,74 @@
 		<script type="text/javascript" src="../js/uni_p.js"></script>
 		<script type="text/javascript" src="../js/base.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
 	</head>
 	<body>
 		<div id="meetDetails">
 
 		</div>
-		<div id="participantBar" class="tabBar">
-			<div id="participantSingle" data-text="Individuals">
+		<div id="participantBar" class="tabBar container">
+			<div id="participantSingle" data-text="Individuals" class="content">
 				<h1>Participants</h1>
+				<table id="participantList" class="table">
+					<tr>
+						<th>Name</th>
+						<th>Year of birth (class)</th>
+						<th>Sex</th>
+						<th>Events</th>
+						<th>Actions</th>
+					</tr>
+					<tr id="participant-0">
+						<td>Test testson</td>
+						<td>2019</td>
+						<td>M</td>
+						<td>25m FR, 50m BR</td>
+						<td>-</td>
+					</tr>
+					<tr class="edit">
+						<td colspan="5">
+							<table class="table">
+								<tr>
+									<th>Will swim?</th>
+									<th>Event id</th>
+									<th>Event</th>
+									<th>Anticipated time</th>
+								</tr>
+								<tr>
+									<td><input type="checkbox" checked/></td>
+									<td>2</td>
+									<td>25m FR</td>
+									<td><span>00:20.06</span><div><input type="number" value="00"/>:<input type="number" value="20"/>.<input type="number" value="06"/></div></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" checked/></td>
+									<td>4</td>
+									<td>50m BR</td>
+									<td><span>00:57.06</span><div><input type="number" value="00"/>:<input type="number" value="57"/>.<input type="number" value="06"/></div></td>
+								</tr>
+<tr>
+									<td><input type="checkbox"/></td>
+									<td>6</td>
+									<td>1500m BR</td>
+									<td><span>00:57.06</span><div><input type="number" value="00"/>:<input type="number" value="57"/>.<input type="number" value="06"/></div></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+<tr id="participant-1">
+						<td>Geir testson</td>
+						<td>2019</td>
+						<td>M</td>
+						<td>-</td>
+						<td>-</td>
+					</tr>
+				</table>
 			</div>
 			<div id="participantTeam" data-text="Teams">
 				<h1>Teams</h1>
+			</div>
+			<div id="participantSummary" data-text="Summary">
+				<h1>Summary</h1>
 			</div>
 		</div>
 	</body>
