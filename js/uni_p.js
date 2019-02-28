@@ -20,13 +20,18 @@ function buildField(name, data, onChange) {
 			break;
 
 	}
-
+	if (field) field.addEventListener("DOMSubtreeModified", function() {
+		onChange(field);
+	});
+	if (field) field.addEventListener("change", function() {
+		onChange(field);
+	});
 	return field;
 }
 
 function makeParticipant(data) {
 	//Make elements
-	const data = data || {};
+	data = data || {};
 	const columns = {
 		name: {}, 
 		birthYear: {},
@@ -42,10 +47,20 @@ function makeParticipant(data) {
 		text.innerText = typeof data[i] != "object" ? (data[i] || "-") : "-";
 		columns[i].td.appendChild(text);
 		row.appendChild(columns[i].td);
-		const field = buildField(i, data, function (newData) {
-			text.innerText = newData;
+		const field = buildField(i, data, function (field) {
+			//text.innerText = newData;
+			console.log(field);
+			if (text.innerText == field.value) return;
+			text.innerText = field.value;
+			text.classList.remove("hidden");
+			if (field) field.classList.add("hidden");
+
 		});
 		if (field) columns[i].td.appendChild(field);
+		columns[i].td.addEventListener("click", function() {
+			text.classList.add("hidden");
+			if (field) field.classList.remove("hidden");
+		});
 	}
 
 	// Fill values
