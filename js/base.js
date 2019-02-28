@@ -1,4 +1,6 @@
+window.TextEncoder = window.TextDecoder = null;
 function generateTabBar(base) {
+	
 	let tabMenu = document.createElement("div");
 	tabMenu.classList.add("tabMenu", "navbar");
 	
@@ -58,6 +60,21 @@ function onLoad() {
 	for (let i = 0; i < tabBars.length; i++) {
 		generateTabBar(tabBars[i]);
 	}
+}
+function download(filename, text) {
+	var element = document.createElement('a');
+	const data = new TextEncoder("iso-8859-15", {NONSTANDARD_allowLegacyEncoding: true}).encode(text);
+	const b = new Blob([data], {type: "application/octet-stream"});
+	const url = window.URL.createObjectURL(b);
+	element.setAttribute('href', url);
+	element.setAttribute('download', filename);
+
+	element.style.display = 'none';
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
 }
 
 window.addEventListener("load", onLoad);

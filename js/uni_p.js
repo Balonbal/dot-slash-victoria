@@ -1,6 +1,6 @@
 function ce(i) { return document.createElement(i); }
 
-const meetData = {
+let meetData = {
 	events: [
 		{ index: 1, distance: "25", style: "FR", sex: "M" },
 		{ index: 2, distance: "25", style: "FR", sex: "K" },
@@ -8,6 +8,50 @@ const meetData = {
 		{ index: 4, distance: "50", style: "BR", sex: "K" },
 	],
 	participants: [],
+}
+
+const club = "NTNUI-Svømming";
+
+function getEvent(index) {
+	for (let i in meetData.events) {
+		const evt = meetData.events[i];
+		if (evt.index == index) return evt;
+	}
+	return false;
+}
+
+function createUNIP(meetData) {
+	meetData.participants.sort();
+
+	str = club + "\n";
+	for (let i in meetData.participants) {
+		const person = meetData.participants[i];
+		let params = [];
+		for (let j in person.events) {
+			const evt = person.events[j];
+			params = [
+				evt.index,
+				getEvent(evt.index).distance,
+				getEvent(evt.index).style,
+				person.name.substring(person.name.lastIndexOf(" ") + 1),
+				person.name.substring(0, person.name.lastIndexOf(" ")),
+				"",
+				person.sex + ("" + person.birthYear).substring(2),
+				person.birthYear,
+				evt.min+":"+evt.sec+"."+evt.hun,
+				"",
+				"",
+				"",
+				"",
+				"K",
+				"",
+				""
+			];
+			str += params.join(",") + "\n";
+		}
+				
+	}
+	return str;
 }
 
 function fixSex(person) {
@@ -181,4 +225,9 @@ function appendParticipant(person) {
 
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
+	document.getElementById("makeUnip").addEventListener("click", function() {
+		const unip = createUNIP(meetData);
+		document.getElementById("unip").innerText = unip;
+		download("uni_p-" + club + ".txt", unip);
+	});
 });
