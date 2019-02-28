@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>UNI_p.txt generator</title>
+		<script type="text/javascript" src="../js/uni_p.js"></script>
+		<script type="text/javascript" src="../js/base.js"></script>
+		<script type="text/javascript" src="../js/encoding-indexes.js"></script>
+		<script type="text/javascript" src="../js/encoding.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
+		<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+	</head>
+	<body>
+		<div id="meetDetails">
+
+		</div>
+		<div id="participantBar" class="tabBar container">
+			<div id="participantSingle" data-text="Individuals" class="content">
+				<h1>Participants</h1>
+				<table id="participantList" class="table">
+					<tr>
+						<th>Name</th>
+						<th>Year of birth (class)</th>
+						<th>Sex</th>
+						<th>Events</th>
+						<th>Actions</th>
+					</tr>
+
+					<tr>
+						<td colspan="5"><a href="#">Add more...</a></td>
+					</tr>
+				</table>
+			</div>
+			<div id="participantTeam" data-text="Teams">
+				<h1>Teams</h1>
+			</div>
+			<div id="participantSummary" data-text="Summary">
+				<h1>Summary</h1>
+				<button id="makeUnip">Lag uni_p.txt</button>
+				<textarea id="unip"></textarea>
+			</div>
+		</div>
+
+		<!-- Templates -->
+		<!-- Single participant -->
+		<template id="participantDummy">
+			<tr class="personRow">
+				<td class="personName"><input type="text"/></td>
+				<td class="age"><input type="number" min="1920" max="2020"/></td>
+				<td class="sex"><select><option value="M">M</option><option value="K">F</option></td>
+				<td class="events"></td>
+				<td>-</td>
+			</tr>
+			<tr class="edit hidden">
+				<td colspan="5">
+					<table class="table eventTable">
+						<tr>
+							<th>Will swim?</th>
+							<th>Event id</th>
+							<th>Event</th>
+							<th>Anticipated time</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</template>
+
+		<!-- Events editor -->
+		<template id="eventDummy">
+			<tr>
+				<td class="willSwim"><input type="checkBox"/></td>
+				<td class="eventId"></td>
+				<td class="eventName"></td>
+				<td class="eventTime"><input class="min" type="number"/><input type="number" class="sec"/><input type="number" class="hun"/></td>
+			</tr>
+		</template>
+	</body>
+</html>
