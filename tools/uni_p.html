@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="../js/uni_p.js"></script>
 		<script type="text/javascript" src="../js/base.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
+		<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
 	</head>
 	<body>
@@ -24,49 +25,9 @@
 						<th>Events</th>
 						<th>Actions</th>
 					</tr>
-					<tr id="participant-0">
-						<td>Test testson</td>
-						<td>2019</td>
-						<td>M</td>
-						<td>25m FR, 50m BR</td>
-						<td>-</td>
-					</tr>
-					<tr class="edit">
-						<td colspan="5">
-							<table class="table">
-								<tr>
-									<th>Will swim?</th>
-									<th>Event id</th>
-									<th>Event</th>
-									<th>Anticipated time</th>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked/></td>
-									<td>2</td>
-									<td>25m FR</td>
-									<td><span>00:20.06</span><div><input type="number" value="00"/>:<input type="number" value="20"/>.<input type="number" value="06"/></div></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" checked/></td>
-									<td>4</td>
-									<td>50m BR</td>
-									<td><span>00:57.06</span><div><input type="number" value="00"/>:<input type="number" value="57"/>.<input type="number" value="06"/></div></td>
-								</tr>
-<tr>
-									<td><input type="checkbox"/></td>
-									<td>6</td>
-									<td>1500m BR</td>
-									<td><span>00:57.06</span><div><input type="number" value="00"/>:<input type="number" value="57"/>.<input type="number" value="06"/></div></td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-<tr id="participant-1">
-						<td>Geir testson</td>
-						<td>2019</td>
-						<td>M</td>
-						<td>-</td>
-						<td>-</td>
+
+					<tr>
+						<td colspan="5"><a href="#">Add more...</a></td>
 					</tr>
 				</table>
 			</div>
@@ -77,5 +38,39 @@
 				<h1>Summary</h1>
 			</div>
 		</div>
+
+		<!-- Templates -->
+		<!-- Single participant -->
+		<template id="participantDummy">
+			<tr class="personRow">
+				<td class="personName"><input type="text"/></td>
+				<td class="age"><input type="number" min="1920" max="2020"/></td>
+				<td class="sex"><select><option value="M">M</option><option value="K">F</option></td>
+				<td class="events"></td>
+				<td>-</td>
+			</tr>
+			<tr class="edit hidden">
+				<td colspan="5">
+					<table class="table eventTable">
+						<tr>
+							<th>Will swim?</th>
+							<th>Event id</th>
+							<th>Event</th>
+							<th>Anticipated time</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</template>
+
+		<!-- Events editor -->
+		<template id="eventDummy">
+			<tr>
+				<td class="willSwim"><input type="checkBox"/></td>
+				<td class="eventId"></td>
+				<td class="eventName"></td>
+				<td class="eventTime"><input class="min" type="number"/><input type="number" class="sec"/><input type="number" class="hun"/></td>
+			</tr>
+		</template>
 	</body>
 </html>
