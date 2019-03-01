@@ -72,6 +72,11 @@ function onLoad() {
 	}
 }
 
+function getMedleyMeet(url, callback) {
+	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
+	fetch(dest).then((response) => response.text()).then((text) => callback(text));
+}
+
 function getMedleyList(callback) {
 	const d = new Date();
 	let url = medley_url;
@@ -82,10 +87,15 @@ function getMedleyList(callback) {
 		const result = [];
 		for (let i in meets) {
 			const m = meets[i];
+			const start = getNode(m, "fradato");
+			const end = getNode(m, "tildato");
 			const meet = {
 				name: getNode(m, "stevnenavn"),
 				organizer: getNode(m, "arrangor"),
 				url: getNode(m, "xmllink"),
+				startDate: new Date(start.substring(0, 4) + "-" + start.substring(4, 6) + "-" + start.substring(6)),
+				endDate: new Date(end.substring(0, 4) + "-" + end.substring(4, 6) + "-" + end.substring(6)),
+ 
 			}
 
 			result.push(meet);

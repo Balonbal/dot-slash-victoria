@@ -28,7 +28,7 @@
 				</div>
 				<div class="form-group row">
 					<label for="importMedley" class="col-4">Import from medley.no</label>
-					<select class="form-control col-8"></select>
+					<select id="importMedley" class="form-control col-8"></select>
 				</div>
 			</section>
 
@@ -42,7 +42,7 @@
 			<div id="participantSummary" data-text="Club">
 					<section id="clubSettings">
 					<h3>Club settings</h3>
-						<div class="form-group row">
+					<div class="form-group row hidden" id="clubSelection">
 						<label for="activeClub" class="col-4">Selected club:</label>
 						<select class="form-control col-8" id="activeClub" disabled></select>
 					</div>

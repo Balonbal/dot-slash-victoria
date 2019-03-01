@@ -23,7 +23,7 @@ function getStyle(art) {
 		case "BUTTERFLY": return "BU";
 		case "BACKSTROKE": return "RY";
 		case "MEDLEYRELAY": return "LM";
-		case "MEDLEY": return "IM";
+		case "INDIVIDUALMEDLEY": return "IM";
 		default: return false;
 	}
 }

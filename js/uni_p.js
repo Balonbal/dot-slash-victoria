@@ -8,6 +8,20 @@ let meetData = {
 
 let club;
 
+let allMeets;
+
+function addMeets(meets) {
+	allMeets = meets;
+	const select = document.getElementById("importMedley");
+	for (let i in meets) {
+		const meet = meets[i];
+		const node = document.createElement("option");
+		node.innerText = "[" + meet.startDate.toLocaleDateString() + "] " + meet.organizer + ": " + meet.name;
+		node.value = i;
+		select.appendChild(node);
+	}
+}
+
 function importMeet(data) {
 	try {
 		const meet = {
@@ -290,7 +304,6 @@ window.addEventListener("load", function() {
 		const reader = new FileReader();
 		reader.addEventListener("load", function(e) {
 			const xml = parseXml(e.target.result);
-			console.log(xml);
 			importMeet(xml.MeetSetUp);
 		});
 		reader.readAsText(file);
@@ -302,5 +315,20 @@ window.addEventListener("load", function() {
 	});
 	document.getElementById("addClub").addEventListener("click", function() {
 		addClubSelection(document.getElementById("clubName").value);
+		document.getElementById("clubSelection").classList.remove("hidden");
+		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"));
+	});
+	document.getElementById("importMedley").addEventListener("click", function() {
+		if (typeof allMeets == "undefined") {
+			getMedleyList(function (list) { addMeets(list); });
+		}
+	});
+	document.getElementById("importMedley").addEventListener("change", function() {
+		const meet = allMeets[document.getElementById("importMedley").value];
+		console.log("Fetching " + meet.url);
+		getMedleyMeet(meet.url, function (text) {
+			const xml = parseXml(text);
+			importMeet(xml.MeetSetUp);
+		});
 	});
 });
