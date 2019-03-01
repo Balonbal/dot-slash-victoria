@@ -8,16 +8,53 @@
 		<script type="text/javascript" src="../js/base.js"></script>
 		<script type="text/javascript" src="../js/encoding-indexes.js"></script>
 		<script type="text/javascript" src="../js/encoding.js"></script>
+		<script type="text/javascript" src="../js/xmlParser.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
 		<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
 	</head>
 	<body>
-		<div id="meetDetails">
+		<div id="meetDetails" class="container">
+			<h2>Meet details</h2>
+			<section id="meetSettings">
+
+				<div class="form-group row">
+					<label for="meetName" class="col-4">Meet name</label>
+					<input type="text" id="meetName" class="col-8" readonly/>
+				</div>
+				<div class="form-group row">
+					<label for="importFile" class="col-4">Import from XML</label>
+					<input type="file" accept=".xml" class="form-control-file col-8" id="importFile"/>
+				</div>
+				<div class="form-group row">
+					<label for="importMedley" class="col-4">Import from medley.no</label>
+					<select id="importMedley" class="form-control col-8"></select>
+				</div>
+			</section>
 
 		</div>
-		<div id="participantBar" class="tabBar container">
-			<div id="participantSingle" data-text="Individuals" class="content">
+		<div class="container" id="noMeet">
+			<div class="alert alert-danger">
+				You have not yet selected a meet
+			</div>
+		</div>
+		<div id="participantBar" class="tabBar container hidden">
+			<div id="participantSummary" data-text="Club">
+					<section id="clubSettings">
+					<h3>Club settings</h3>
+					<div class="form-group row hidden" id="clubSelection">
+						<label for="activeClub" class="col-4">Selected club:</label>
+						<select class="form-control col-8" id="activeClub" disabled></select>
+					</div>
+					<div class="form-group row">
+						<label for="clubName" class="col-4">Add club name:</label>
+						<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
+						<button class="btn btn-success col-1" id="addClub">Add</button>
+						<button class="btn btn-warning col-3" id="changeClub">Change name</button>
+					</div>
+				</section>
+			</div>
+			<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
 				<h1>Participants</h1>
 				<table id="participantList" class="table">
 					<tr>
@@ -33,14 +70,15 @@
 					</tr>
 				</table>
 			</div>
-			<div id="participantTeam" data-text="Teams">
+			<div id="participantTeam" data-text="Teams" data-disabled="true">
 				<h1>Teams</h1>
 			</div>
-			<div id="participantSummary" data-text="Summary">
-				<h1>Summary</h1>
-				<button id="makeUnip">Lag uni_p.txt</button>
-				<textarea id="unip"></textarea>
-			</div>
+
+		</div>
+		<div id="summary" class="container">
+			<h1>Summary</h1>
+			<div id="individualsSummary"></div>
+			<button id="makeUnip" class="btn btn-primary btn-lg" disabled>Make uni_p.txt</button>
 		</div>
 
 		<!-- Templates -->

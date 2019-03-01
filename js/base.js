@@ -1,4 +1,6 @@
 window.TextEncoder = window.TextDecoder = null;
+// We cannot get the file directley from medley due to browser security issues
+const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
 function generateTabBar(base) {
 	
 	let tabMenu = document.createElement("div");
@@ -12,13 +14,21 @@ function generateTabBar(base) {
 		button.addEventListener("click", function () {
 			showTab(base, child);
 		});
-		button.classList.add("btn", "btn-outline-primary");
+		button.classList.add("btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
 		button.innerText = child.getAttribute("data-text");
-		button.disabled = i == 0;
+		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
+		button.id = "tabButton" + child.id;
 		tabMenu.appendChild(button);
 	}
 
 	base.prepend(tabMenu);
+}
+
+function enableTab(barName, tabName) {
+	const button = document.getElementById("tabButton" + tabName);
+	button.classList.remove("btn-outline-disabled");
+	button.classList.add("btn-outline-primary");
+	button.disabled = false;
 }
 
 function showTab(tabs, tab) {
@@ -61,6 +71,40 @@ function onLoad() {
 		generateTabBar(tabBars[i]);
 	}
 }
+
+function getMedleyMeet(url, callback) {
+	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
+	fetch(dest).then((response) => response.text()).then((text) => callback(text));
+}
+
+function getMedleyList(callback) {
+	const d = new Date();
+	let url = medley_url;
+	
+	fetch(url + "/list.php").then((response) => response.text()).then(function (text) {
+		const xml = parseXml(text);
+		const meets = xml.ArrayOfStrc_stevneoppsett.strc_stevneoppsett;
+		const result = [];
+		for (let i in meets) {
+			const m = meets[i];
+			const start = getNode(m, "fradato");
+			const end = getNode(m, "tildato");
+			const meet = {
+				name: getNode(m, "stevnenavn"),
+				organizer: getNode(m, "arrangor"),
+				url: getNode(m, "xmllink"),
+				startDate: new Date(start.substring(0, 4) + "-" + start.substring(4, 6) + "-" + start.substring(6)),
+				endDate: new Date(end.substring(0, 4) + "-" + end.substring(4, 6) + "-" + end.substring(6)),
+ 
+			}
+
+			result.push(meet);
+		}
+
+		callback(result);
+	});
+}
+
 function download(filename, text) {
 	var element = document.createElement('a');
 	const data = new TextEncoder("iso-8859-15", {NONSTANDARD_allowLegacyEncoding: true}).encode(text);
