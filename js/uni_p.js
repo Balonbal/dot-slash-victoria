@@ -87,6 +87,13 @@ function getEvent(index) {
 	return false;
 }
 
+function hideEditors() {
+	const editors = document.getElementsByClassName("edit");
+	for (let i = 0; i < editors.length; i++) {
+		editors[i].classList.add("hidden");
+	}
+}
+
 function createUNIP(meetData) {
 	meetData.participants.sort();
 
@@ -96,6 +103,7 @@ function createUNIP(meetData) {
 		let params = [];
 		for (let j in person.events) {
 			const evt = person.events[j];
+			const time = (evt.min != "00" || evt.sec != "00" || evt.hun != "00") ? evt.min +":" + evt.sec + "." + evt.hun : "";
 			params = [
 				evt.index,
 				getEvent(evt.index).distance,
@@ -105,7 +113,7 @@ function createUNIP(meetData) {
 				"",
 				person.sex + ("" + person.birthYear).substring(2),
 				person.birthYear,
-				evt.min+":"+evt.sec+"."+evt.hun,
+				time,
 				"",
 				"",
 				"",
@@ -188,7 +196,7 @@ function initEditor(person, table, span) {
 				getT(willSwim, "input").checked = true;
 			}
 		}
-		personEvent = personEvent || { index: e.index, distance: e.distance, style: e.style, min: 0, sec: 0, hun: 0 };
+		personEvent = personEvent || { index: e.index, distance: e.distance, style: e.style, min: "00", sec: "00", hun: "00" };
 		index.innerText = e.index;
 
 		name.innerText = e.distance + "m " + e.style;
@@ -199,10 +207,11 @@ function initEditor(person, table, span) {
 		
 		const addTimeListener = function (name) {
 			const func = function() {
-				let value = getE(time, name).value;
+				let value = parseInt(getE(time, name).value);
 				if (value < 0) value = 0;
 				if (value > 59 && name != "hun") value = 59;
 				if (value > 99) value = 99;
+				value = (value < 10 ? "0" : "") + value;
 				getE(time, name).value = value;
 				personEvent[name] = value;
 				getT(willSwim, "input").checked = true;
@@ -210,8 +219,21 @@ function initEditor(person, table, span) {
 				evt.initEvent("change", false, true);
 				getT(willSwim, "input").dispatchEvent(evt);
 			}
-
+			const next = function() {
+				//Both numbers 
+				if (getE(time, name).value.length == 2) {
+					if (name == "min") getE(time, "sec").focus();
+					if (name == "sec") getE(time, "hun").focus();
+					getE(time, name).blur();
+				}
+			}
+			const focus = function () {
+				getE(time, name).select();
+			}
 			getE(time, name).addEventListener("change", func);
+			getE(time, name).addEventListener("keyup", next);
+			getE(time, name).addEventListener("focus", focus);
+			
 		}
 
 
@@ -247,6 +269,7 @@ function appendParticipant(person) {
 	person.events = person.events || [];
 	person.club = person.club || club;
 
+	hideEditors();
 	const t = document.getElementById("participantDummy");
 	const n = document.importNode(t.content, true);;
 	const node = n.children[0];
@@ -271,7 +294,8 @@ function appendParticipant(person) {
 
 	
 	const editor = n.children[1];
-	events.addEventListener("click", function () {
+	node.addEventListener("click", function () {
+		hideEditors();
 		if (editor.classList.contains("hidden")) editor.classList.remove("hidden");
 		else editor.classList.add("hidden");
 	});
