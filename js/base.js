@@ -72,11 +72,27 @@ function onLoad() {
 	}
 }
 
-function getMedleyList() {
+function getMedleyList(callback) {
 	const d = new Date();
 	let url = medley_url;
 	
-	return fetch(url + "/list.php").then((response => response.text()));
+	fetch(url + "/list.php").then((response) => response.text()).then(function (text) {
+		const xml = parseXml(text);
+		const meets = xml.ArrayOfStrc_stevneoppsett.strc_stevneoppsett;
+		const result = [];
+		for (let i in meets) {
+			const m = meets[i];
+			const meet = {
+				name: getNode(m, "stevnenavn"),
+				organizer: getNode(m, "arrangor"),
+				url: getNode(m, "xmllink"),
+			}
+
+			result.push(meet);
+		}
+
+		callback(result);
+	});
 }
 
 function download(filename, text) {
