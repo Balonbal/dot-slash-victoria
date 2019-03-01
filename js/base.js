@@ -12,13 +12,21 @@ function generateTabBar(base) {
 		button.addEventListener("click", function () {
 			showTab(base, child);
 		});
-		button.classList.add("btn", "btn-outline-primary");
+		button.classList.add("btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
 		button.innerText = child.getAttribute("data-text");
-		button.disabled = i == 0;
+		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
+		button.id = "tabButton" + child.id;
 		tabMenu.appendChild(button);
 	}
 
 	base.prepend(tabMenu);
+}
+
+function enableTab(barName, tabName) {
+	const button = document.getElementById("tabButton" + tabName);
+	button.classList.remove("btn-outline-disabled");
+	button.classList.add("btn-outline-primary");
+	button.disabled = false;
 }
 
 function showTab(tabs, tab) {

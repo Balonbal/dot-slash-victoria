@@ -2,15 +2,68 @@ function ce(i) { return document.createElement(i); }
 
 let meetData = {
 	events: [
-		{ index: 1, distance: "25", style: "FR", sex: "M" },
-		{ index: 2, distance: "25", style: "FR", sex: "K" },
-		{ index: 3, distance: "50", style: "BR", sex: "M" },
-		{ index: 4, distance: "50", style: "BR", sex: "K" },
 	],
 	participants: [],
 }
 
-const club = "NTNUI-Svømming";
+let club;
+
+function importMeet(data) {
+	try {
+		const meet = {
+			name: getNode(data, "MeetName"),
+			events: [],
+			participants: [],
+		}
+		for (let i in data.Events.Event) {
+			const evt = data.Events.Event[i];
+			const e = {
+				index: parseInt(getNode(evt, "EventNumber")), 
+				distance: getNode(evt, "EventLength"),
+				style: getStyle(getNode(evt, "Eventart")), 
+				sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
+			}
+			meet.events.push(e);
+		}
+		//Successful import
+		meetData = meet;
+		document.getElementById("noMeet").classList.add("hidden");
+		document.getElementById("participantBar").classList.remove("hidden");
+		document.getElementById("meetName").value = meetData.name;
+
+	} catch (e) { console.log(e) };
+}
+
+function isTeamEvent(evt) {
+	if (evt.style == "LM") return true;
+	return false;
+}
+
+function hasTeamEvents() {
+	for (let i in meetData.events) {
+		const e = meetData.events[i];
+		if (isTeamEvent(e)) return true;
+	}
+	return false;
+}
+
+function updateClubSelection(clubName) {
+	enableTab("participantBar", "participantSingle");
+	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
+}
+
+function addClubSelection(clubName) {
+	const node = document.createElement("option");
+	node.selected = true;
+	node.innerText = clubName;
+	node.value = clubName;
+	document.getElementById("activeClub").appendChild(node);
+	document.getElementById("activeClub").disabled = false;
+	const evt = document.createEvent("HTMLEvents");
+	evt.initEvent("change", false, true);
+	document.getElementById("activeClub").dispatchEvent(evt);
+
+}
 
 function getEvent(index) {
 	for (let i in meetData.events) {
@@ -104,7 +157,7 @@ function initEditor(person, table, span) {
 	for (let i in meetData.events) {
 		const e = meetData.events[i];
 		if (e.sex != person.sex) continue;
-		if (e.team) continue;
+		if (isTeamEvent(e) && !person.team) continue;
 
 		const node = document.importNode(t.content, true);
 		const willSwim = getE(node, "willSwim");
@@ -178,6 +231,7 @@ function appendParticipant(person) {
 	person.sex = person.sex || "M";
 	person.birthYear = person.birthYear || new Date().getFullYear() - 14;
 	person.events = person.events || [];
+	person.club = person.club || club;
 
 	const t = document.getElementById("participantDummy");
 	const n = document.importNode(t.content, true);;
@@ -229,5 +283,24 @@ window.addEventListener("load", function() {
 		const unip = createUNIP(meetData);
 		document.getElementById("unip").innerText = unip;
 		download("uni_p-" + club + ".txt", unip);
+	});
+	document.getElementById("importFile").addEventListener("change", function(e) {
+		const file = e.target.files[0];
+		if (!file) return;
+		const reader = new FileReader();
+		reader.addEventListener("load", function(e) {
+			const xml = parseXml(e.target.result);
+			console.log(xml);
+			importMeet(xml.MeetSetUp);
+		});
+		reader.readAsText(file);
+
+	});
+	document.getElementById("activeClub").addEventListener("change", function() {
+		club = document.getElementById("activeClub").value;
+		updateClubSelection(club);
+	});
+	document.getElementById("addClub").addEventListener("click", function() {
+		addClubSelection(document.getElementById("clubName").value);
 	});
 });
