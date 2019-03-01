@@ -1,4 +1,6 @@
 window.TextEncoder = window.TextDecoder = null;
+// We cannot get the file directley from medley due to browser security issues
+const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
 function generateTabBar(base) {
 	
 	let tabMenu = document.createElement("div");
@@ -72,13 +74,9 @@ function onLoad() {
 
 function getMedleyList() {
 	const d = new Date();
-	let url = "https://medley.no/tidsjekk/stevneoppsett.asmx/VisStevneoppsett?FraNr=1&FraDato=";
-	url += d.getFullYear();
-	url += d.getMonth() < 10 ? "0" : ""; 
-	url += d.getMonth();
-	url += d.getDate() < 10 ? "0" : "";
-	url += d.getDate();
-	fetch(url).then((data) => { data.text }).then((text) => console.log);
+	let url = medley_url;
+	
+	return fetch(url + "/list.php").then((response => response.text()));
 }
 
 function download(filename, text) {
