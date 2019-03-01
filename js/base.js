@@ -69,6 +69,18 @@ function onLoad() {
 		generateTabBar(tabBars[i]);
 	}
 }
+
+function getMedleyList() {
+	const d = new Date();
+	let url = "https://medley.no/tidsjekk/stevneoppsett.asmx/VisStevneoppsett?FraNr=1&FraDato=";
+	url += d.getFullYear();
+	url += d.getMonth() < 10 ? "0" : ""; 
+	url += d.getMonth();
+	url += d.getDate() < 10 ? "0" : "";
+	url += d.getDate();
+	fetch(url).then((data) => { data.text }).then((text) => console.log);
+}
+
 function download(filename, text) {
 	var element = document.createElement('a');
 	const data = new TextEncoder("iso-8859-15", {NONSTANDARD_allowLegacyEncoding: true}).encode(text);
