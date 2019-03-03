@@ -72,7 +72,19 @@
 					</table>
 				</div>
 				<div id="participantTeam" data-text="Teams" data-disabled="true">
-					<h1>Teams</h1>
+					<h4>Teams</h4>
+					<table id="teamList" class="table">
+						<tr>
+							<th>Class</th>
+							<th>Sex</th>
+							<th>Team name</th>
+							<th>Events</th>
+							<th>Actions</th>
+						</tr>
+						<tr>
+							<td colspan="5"><a href="#">Add more...</a></td>
+						</tr>
+					</table>
 				</div>
 
 			</div>
@@ -105,6 +117,17 @@
 						</tr>
 					</table>
 				</td>
+			</tr>
+		</template>
+
+		<!-- Team Participant -->
+		<template id="teamDummy">
+			<tr class="teamRow">
+				<td class="teamClass"><select><option value="JR">Junior</option><option value="SR">Senior</option></select></td>
+				<td class="teamSex"><select><option value="M">Male</option><option value="K">Female</option><option value="MIX">Mixed</option></select></td>
+				<td class="teamName"><input type="text"/></td>
+				<td class="events"></td>
+				<td>-</td>
 			</tr>
 		</template>
 
