@@ -38,40 +38,43 @@
 				You have not yet selected a meet
 			</div>
 		</div>
-		<div id="participantBar" class="tabBar container hidden">
-			<div id="participantSummary" data-text="Club">
-					<section id="clubSettings">
-					<h3>Club settings</h3>
-					<div class="form-group row hidden" id="clubSelection">
-						<label for="activeClub" class="col-4">Selected club:</label>
-						<select class="form-control col-8" id="activeClub" disabled></select>
-					</div>
-					<div class="form-group row">
-						<label for="clubName" class="col-4">Add club name:</label>
-						<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
-						<button class="btn btn-success col-1" id="addClub">Add</button>
-						<button class="btn btn-warning col-3" id="changeClub">Change name</button>
-					</div>
-				</section>
+		<section id="clubSettings" class="container hidden">
+			<h3>Club settings</h3>
+			<div class="form-group row hidden" id="clubSelection">
+				<label for="activeClub" class="col-4">Selected club:</label>
+				<select class="form-control col-8" id="activeClub" disabled></select>
 			</div>
-			<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
-				<h1>Participants</h1>
-				<table id="participantList" class="table">
-					<tr>
-						<th>Name</th>
-						<th>Year of birth (class)</th>
-						<th>Sex</th>
-						<th>Events</th>
-						<th>Actions</th>
-					</tr>
+			<div class="form-group row">
+				<label for="clubName" class="col-4">Set club name:</label>
+				<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
+				<button class="btn btn-success col-1" id="addClub">Add</button>
+				<button class="btn btn-warning col-3 hidden" id="changeClub">Change name</button>
+			</div>
+		</section>
+		<div class="container hidden" id="participantsContainer">
+			<h3>Participants</h3>
 
-					<tr>
-						<td colspan="5"><a href="#">Add more...</a></td>
-					</tr>
-				</table>
-			</div>
-			<div id="participantTeam" data-text="Teams" data-disabled="true">
-				<h1>Teams</h1>
+			<div id="participantBar" class="tabBar">
+				<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
+					<h4>Individuals</h4>
+					<table id="participantList" class="table">
+						<tr>
+							<th>Name</th>
+							<th>Year of birth (class)</th>
+							<th>Sex</th>
+							<th>Events</th>
+							<th>Actions</th>
+						</tr>
+
+						<tr>
+							<td colspan="5"><a href="#">Add more...</a></td>
+						</tr>
+					</table>
+				</div>
+				<div id="participantTeam" data-text="Teams" data-disabled="true">
+					<h1>Teams</h1>
+				</div>
+
 			</div>
 
 		</div>
