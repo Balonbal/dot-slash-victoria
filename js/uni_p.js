@@ -42,7 +42,7 @@ function importMeet(data) {
 		//Successful import
 		meetData = meet;
 		document.getElementById("noMeet").classList.add("hidden");
-		document.getElementById("participantBar").classList.remove("hidden");
+		document.getElementById("clubSettings").classList.remove("hidden");
 		document.getElementById("meetName").value = meetData.name;
 
 	} catch (e) { console.log(e) };
@@ -62,6 +62,7 @@ function hasTeamEvents() {
 }
 
 function updateClubSelection(clubName) {
+	document.getElementById("participantsContainer").classList.remove("hidden");
 	enableTab("participantBar", "participantSingle");
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
 }
@@ -87,6 +88,13 @@ function getEvent(index) {
 	return false;
 }
 
+function hideEditors() {
+	const editors = document.getElementsByClassName("edit");
+	for (let i = 0; i < editors.length; i++) {
+		editors[i].classList.add("hidden");
+	}
+}
+
 function createUNIP(meetData) {
 	meetData.participants.sort();
 
@@ -96,16 +104,19 @@ function createUNIP(meetData) {
 		let params = [];
 		for (let j in person.events) {
 			const evt = person.events[j];
+			const meetEvent = getEvent(evt.index);
+			const time = (evt.min != "00" || evt.sec != "00" || evt.hun != "00") ? evt.min +":" + evt.sec + "." + evt.hun : "";
+
 			params = [
 				evt.index,
 				getEvent(evt.index).distance,
 				getEvent(evt.index).style,
-				person.name.substring(person.name.lastIndexOf(" ") + 1),
-				person.name.substring(0, person.name.lastIndexOf(" ")),
+				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
+				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
 				"",
-				person.sex + ("" + person.birthYear).substring(2),
-				person.birthYear,
-				evt.min+":"+evt.sec+"."+evt.hun,
+				meetEvent.sex + person.team ? person.class :("" + person.birthYear).substring(2),
+				person.team ? person.class : person.birthYear,
+				time,
 				"",
 				"",
 				"",
@@ -171,7 +182,7 @@ function initEditor(person, table, span) {
 	for (let i in meetData.events) {
 		const e = meetData.events[i];
 		if (e.sex != person.sex) continue;
-		if (isTeamEvent(e) && !person.team) continue;
+		if (isTeamEvent(e) ^ person.team) continue;
 
 		const node = document.importNode(t.content, true);
 		const willSwim = getE(node, "willSwim");
@@ -188,7 +199,7 @@ function initEditor(person, table, span) {
 				getT(willSwim, "input").checked = true;
 			}
 		}
-		personEvent = personEvent || { index: e.index, distance: e.distance, style: e.style, min: 0, sec: 0, hun: 0 };
+		personEvent = personEvent || { index: e.index, distance: e.distance, style: e.style, min: "00", sec: "00", hun: "00" };
 		index.innerText = e.index;
 
 		name.innerText = e.distance + "m " + e.style;
@@ -199,10 +210,11 @@ function initEditor(person, table, span) {
 		
 		const addTimeListener = function (name) {
 			const func = function() {
-				let value = getE(time, name).value;
+				let value = parseInt(getE(time, name).value);
 				if (value < 0) value = 0;
 				if (value > 59 && name != "hun") value = 59;
 				if (value > 99) value = 99;
+				value = (value < 10 ? "0" : "") + value;
 				getE(time, name).value = value;
 				personEvent[name] = value;
 				getT(willSwim, "input").checked = true;
@@ -210,8 +222,21 @@ function initEditor(person, table, span) {
 				evt.initEvent("change", false, true);
 				getT(willSwim, "input").dispatchEvent(evt);
 			}
-
+			const next = function() {
+				//Both numbers 
+				if (getE(time, name).value.length == 2) {
+					if (name == "min") getE(time, "sec").focus();
+					if (name == "sec") getE(time, "hun").focus();
+					getE(time, name).blur();
+				}
+			}
+			const focus = function () {
+				getE(time, name).select();
+			}
 			getE(time, name).addEventListener("change", func);
+			getE(time, name).addEventListener("keyup", next);
+			getE(time, name).addEventListener("focus", focus);
+			
 		}
 
 
@@ -239,6 +264,78 @@ function initEditor(person, table, span) {
 	}
 }
 
+function appendTeam(team) {
+	team = team || {};
+	team.name = team.name || "";
+	team.sex = team.sex || "M";
+	team.class = team.class || "JR";
+	team.events = team.events || [];
+	team.club = team.club || club;
+	team.team = true;
+
+	hideEditors();
+	const t = document.getElementById("teamDummy");
+	const n = document.importNode(t.content, true);
+	const node = n.children[0];
+
+	const name = getE(node, "teamName");
+	const cls = getE(node, "teamClass");
+	const sex = getE(node, "teamSex");
+	const events = getE(node, "teamEvents");
+	
+	sex.getElementsByTagName("option")[["M", "K", "MIX"].indexOf(team.sex)].selected = true;
+	cls.getElementsByTagName("option")[["JR", "SR"].indexOf(team.class)].selected = true;
+
+	const suggestName = function () {
+		let i = 1;
+		for (let p in meetData.participants) {
+			const t = meetData.participants[p];
+			if (!t.team) continue;
+			if (t == team) break;
+			if (t.sex != team.sex) continue;
+			if (t.class != team.class) continue;
+			i++;
+		}
+		let gender = "Mix ";
+		if (team.sex == "M") gender = "G";
+		if (team.sex == "K") gender = "J";
+		team.name = club + " " + gender + i + " " + team.class;
+		setFields(name, team.name);
+	}
+	suggestName();
+	colChangeListener(cls, function () {
+		team.class = getT(cls, "select").value;
+		suggestName();
+	}, "select");
+	colChangeListener(sex, function () {
+		team.sex = getT(sex, "select").value;
+		fixSex(team);
+		const evs = getE(editor, "eventTable").firstElementChild;
+		getE(editor, "eventTable").innerHTML = "";
+		getE(editor, "eventTable").appendChild(evs);
+		initEditor(team, getE(editor, "eventTable"), events);
+
+		suggestName();
+	}, "select");
+	colChangeListener(name, function () {
+		team.name = getT(name, "input").value;
+	});
+
+	const editor = n.children[1];
+	initEditor(team, getE(editor, "eventTable"), events);
+
+	node.addEventListener("click", function() {
+		hideEditors();
+		if (editor.classList.contains("hidden")) editor.classList.remove("hidden");
+		else editor.classList.add("hidden");
+	});
+
+	meetData.participants.push(team);
+	const prev = document.getElementById("teamList").lastChild.lastElementChild;
+        document.getElementById("teamList").lastChild.insertBefore(node, prev);
+        document.getElementById("teamList").lastChild.insertBefore(editor, prev);
+}
+
 function appendParticipant(person) {
 	person = person || {};
 	person.name = person.name || "";
@@ -247,6 +344,7 @@ function appendParticipant(person) {
 	person.events = person.events || [];
 	person.club = person.club || club;
 
+	hideEditors();
 	const t = document.getElementById("participantDummy");
 	const n = document.importNode(t.content, true);;
 	const node = n.children[0];
@@ -271,7 +369,8 @@ function appendParticipant(person) {
 
 	
 	const editor = n.children[1];
-	events.addEventListener("click", function () {
+	node.addEventListener("click", function () {
+		hideEditors();
 		if (editor.classList.contains("hidden")) editor.classList.remove("hidden");
 		else editor.classList.add("hidden");
 	});
@@ -293,10 +392,10 @@ function appendParticipant(person) {
 
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
+	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
 	document.getElementById("makeUnip").addEventListener("click", function() {
 		const unip = createUNIP(meetData);
-		document.getElementById("unip").innerText = unip;
-		download("uni_p-" + club + ".txt", unip);
+		download("uni_p-" + meetData.name + "_" + club + ".txt", unip);
 	});
 	document.getElementById("importFile").addEventListener("change", function(e) {
 		const file = e.target.files[0];
@@ -320,10 +419,18 @@ window.addEventListener("load", function() {
 	});
 	document.getElementById("importMedley").addEventListener("click", function() {
 		if (typeof allMeets == "undefined") {
-			getMedleyList(function (list) { addMeets(list); });
+			const node = document.createElement("option");
+			node.value = "invalid";
+			node.innerText = "Fetching list...";
+			document.getElementById("importMedley").appendChild(node);
+			getMedleyList(function (list) { 
+				addMeets(list); 
+				node.innerText = "-- Select one --";
+			});
 		}
 	});
 	document.getElementById("importMedley").addEventListener("change", function() {
+		if (document.getElementById("importMedley").value == "invalid") return;
 		const meet = allMeets[document.getElementById("importMedley").value];
 		console.log("Fetching " + meet.url);
 		getMedleyMeet(meet.url, function (text) {

@@ -38,47 +38,62 @@
 				You have not yet selected a meet
 			</div>
 		</div>
-		<div id="participantBar" class="tabBar container hidden">
-			<div id="participantSummary" data-text="Club">
-					<section id="clubSettings">
-					<h3>Club settings</h3>
-					<div class="form-group row hidden" id="clubSelection">
-						<label for="activeClub" class="col-4">Selected club:</label>
-						<select class="form-control col-8" id="activeClub" disabled></select>
-					</div>
-					<div class="form-group row">
-						<label for="clubName" class="col-4">Add club name:</label>
-						<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
-						<button class="btn btn-success col-1" id="addClub">Add</button>
-						<button class="btn btn-warning col-3" id="changeClub">Change name</button>
-					</div>
-				</section>
+		<section id="clubSettings" class="container hidden">
+			<h3>Club settings</h3>
+			<div class="form-group row hidden" id="clubSelection">
+				<label for="activeClub" class="col-4">Selected club:</label>
+				<select class="form-control col-8" id="activeClub" disabled></select>
 			</div>
-			<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
-				<h1>Participants</h1>
-				<table id="participantList" class="table">
-					<tr>
-						<th>Name</th>
-						<th>Year of birth (class)</th>
-						<th>Sex</th>
-						<th>Events</th>
-						<th>Actions</th>
-					</tr>
+			<div class="form-group row">
+				<label for="clubName" class="col-4">Set club name:</label>
+				<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
+				<button class="btn btn-success col-1" id="addClub">Add</button>
+				<button class="btn btn-warning col-3 hidden" id="changeClub">Change name</button>
+			</div>
+		</section>
+		<div class="container hidden" id="participantsContainer">
+			<h3>Participants</h3>
 
-					<tr>
-						<td colspan="5"><a href="#">Add more...</a></td>
-					</tr>
-				</table>
-			</div>
-			<div id="participantTeam" data-text="Teams" data-disabled="true">
-				<h1>Teams</h1>
+			<div id="participantBar" class="tabBar">
+				<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
+					<h4>Individuals</h4>
+					<table id="participantList" class="table">
+						<tr>
+							<th>Name</th>
+							<th>Year of birth (class)</th>
+							<th>Sex</th>
+							<th>Events</th>
+							<th>Actions</th>
+						</tr>
+
+						<tr>
+							<td colspan="5"><a href="#">Add more...</a></td>
+						</tr>
+					</table>
+				</div>
+				<div id="participantTeam" data-text="Teams" data-disabled="true">
+					<h4>Teams</h4>
+					<table id="teamList" class="table">
+						<tr>
+							<th>Class</th>
+							<th>Sex</th>
+							<th>Team name</th>
+							<th>Events</th>
+							<th>Actions</th>
+						</tr>
+						<tr>
+							<td colspan="5"><a href="#">Add more...</a></td>
+						</tr>
+					</table>
+				</div>
+
 			</div>
 
 		</div>
 		<div id="summary" class="container">
 			<h1>Summary</h1>
 			<div id="individualsSummary"></div>
-			<button id="makeUnip" class="btn btn-primary btn-lg" disabled>Make uni_p.txt</button>
+			<button id="makeUnip" class="btn btn-primary btn-lg">Make uni_p.txt</button>
 		</div>
 
 		<!-- Templates -->
@@ -91,7 +106,30 @@
 				<td class="events"></td>
 				<td>-</td>
 			</tr>
-			<tr class="edit hidden">
+			<tr class="edit">
+				<td colspan="5">
+					<table class="table eventTable">
+						<tr>
+							<th>Will swim?</th>
+							<th>Event id</th>
+							<th>Event</th>
+							<th>Anticipated time</th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</template>
+
+		<!-- Team Participant -->
+		<template id="teamDummy">
+			<tr class="teamRow">
+				<td class="teamClass"><select><option value="JR">Junior</option><option value="SR">Senior</option></select></td>
+				<td class="teamSex"><select><option value="M">Male</option><option value="K">Female</option><option value="MIX">Mixed</option></select></td>
+				<td class="teamName"><input type="text"/></td>
+				<td class="teamEvents"></td>
+				<td>-</td>
+			</tr>
+			<tr class="edit">
 				<td colspan="5">
 					<table class="table eventTable">
 						<tr>
@@ -111,7 +149,7 @@
 				<td class="willSwim"><input type="checkBox"/></td>
 				<td class="eventId"></td>
 				<td class="eventName"></td>
-				<td class="eventTime"><input class="min" type="number"/><input type="number" class="sec"/><input type="number" class="hun"/></td>
+				<td class="eventTime"><input class="min" type="text" pattern="[0-5][0-9]"/><input type="text" pattern="[0-5][0-9]" class="sec"/><input type="text" pattern="[0-9][0-9]" class="hun"/></td>
 			</tr>
 		</template>
 	</body>
