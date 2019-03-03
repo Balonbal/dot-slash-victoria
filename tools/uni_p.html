@@ -93,7 +93,7 @@
 		<div id="summary" class="container">
 			<h1>Summary</h1>
 			<div id="individualsSummary"></div>
-			<button id="makeUnip" class="btn btn-primary btn-lg" disabled>Make uni_p.txt</button>
+			<button id="makeUnip" class="btn btn-primary btn-lg">Make uni_p.txt</button>
 		</div>
 
 		<!-- Templates -->
@@ -126,8 +126,20 @@
 				<td class="teamClass"><select><option value="JR">Junior</option><option value="SR">Senior</option></select></td>
 				<td class="teamSex"><select><option value="M">Male</option><option value="K">Female</option><option value="MIX">Mixed</option></select></td>
 				<td class="teamName"><input type="text"/></td>
-				<td class="events"></td>
+				<td class="teamEvents"></td>
 				<td>-</td>
+			</tr>
+			<tr class="edit">
+				<td colspan="5">
+					<table class="table eventTable">
+						<tr>
+							<th>Will swim?</th>
+							<th>Event id</th>
+							<th>Event</th>
+							<th>Anticipated time</th>
+						</tr>
+					</table>
+				</td>
 			</tr>
 		</template>
 
