@@ -1,6 +1,25 @@
 window.TextEncoder = window.TextDecoder = null;
 // We cannot get the file directley from medley due to browser security issues
 const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
+
+function setTheme(title) {
+	const styleSheets = document.getElementsByTagName("link");
+	for (let i = 0; i < styleSheets.length; i++) {
+		const sheet = styleSheets[i];
+		sheet.disabled = sheet.relList.contains("alternate") && sheet.title != title;
+	}
+	storeTheme(title);
+}
+
+function storeTheme(theme) {
+	window.localStorage.setItem("theme", theme);
+}
+
+function loadTheme() {
+	const theme = window.localStorage.getItem("theme");
+	if (theme) setTheme(theme);
+}
+
 function generateTabBar(base) {
 	
 	let tabMenu = document.createElement("div");
@@ -70,6 +89,7 @@ function onLoad() {
 	for (let i = 0; i < tabBars.length; i++) {
 		generateTabBar(tabBars[i]);
 	}
+	loadTheme();
 }
 
 function getMedleyMeet(url, callback) {
