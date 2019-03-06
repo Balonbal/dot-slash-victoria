@@ -142,3 +142,27 @@ function download(filename, text) {
 }
 
 window.addEventListener("load", onLoad);
+
+
+
+function themeChanger(){
+	const selector = document.getElementsByClassName("selector");
+	switch (selector.value) {
+		case "dark":
+		// set dark cocie in browser
+		localStorage.setItem("theme", "dark");
+		break;
+		case "light":
+			// set dark cocie in browser
+			localStorage.setItem("theme", "light");
+			break;
+		default: 
+			// set default theme which is dark
+			localStorage.setItem("theme", "dark");
+			window.alert("default case in theme selector for some reason triggered.");
+	}
+	loadTheme();
+}
+
+window.addEventListener("change", themeChanger);
+
