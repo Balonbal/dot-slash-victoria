@@ -150,16 +150,15 @@ function themeChanger(){
 	switch (selector.value) {
 		case "dark":
 		// set dark cocie in browser
-		localStorage.setItem("theme", "dark");
+		setTheme("dark");
 		break;
 		case "light":
 			// set dark cocie in browser
-			localStorage.setItem("theme", "light");
+		setTheme("light");
 			break;
 		default: 
 			// set default theme which is dark
-			localStorage.setItem("theme", "dark");
-			window.alert("default case in theme selector for some reason triggered.");
+			setTheme("dark");
 	}
 	loadTheme();
 }
