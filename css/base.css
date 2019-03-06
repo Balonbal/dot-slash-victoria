@@ -1,3 +1,39 @@
 .hidden {
 	display: none !important;
 }
+
+.topper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: #404040;
+  color: white;
+	display: block;
+}
+
+.topper select{
+	border-radius: 5px;
+}
+
+.container{
+
+}
+
+.selector{
+	font-family: Roboto;
+	color: white;
+	font-weight: bold;
+	background-color: #202020;
+	padding: 5px;
+	position: fixed;
+	top: 10px;
+	right: 20px;
+}
+
+.selector option{
+	font-size: 20px;
+	font-family: Roboto;
+	background-color: rgba(20,20,20,0.5);
+	font-weight: bold;
+}
