@@ -149,12 +149,12 @@ function themeChanger(){
 	const selector = document.getElementsByClassName("selector");
 	switch (selector.value) {
 		case "dark":
-		// set dark cocie in browser
-		setTheme("dark");
-		break;
+			// set dark cocie in browser
+			setTheme("dark");
+			break;
 		case "light":
 			// set dark cocie in browser
-		setTheme("light");
+			setTheme("light");
 			break;
 		default: 
 			// set default theme which is dark
