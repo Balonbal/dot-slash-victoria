@@ -171,7 +171,7 @@ function getEventString(person) {
 		s += e.distance + "m " + e.style;
 		if (i != person.events.length -1) s += ", ";
 	}
-	if (s == "") s = "<a href='#'>Add events...</a>";
+	if (s == "") s = "<a href='javascript:void(0)'>Add events...</a>";
 	return s;
 }
 
