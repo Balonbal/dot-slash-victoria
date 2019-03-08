@@ -42,6 +42,8 @@ function importMeet(data) {
 			}
 			//Successful import
 			meetData = meet;
+
+			$(".personRow, .teamRow, .edit").remove();
 			document.getElementById("noMeet").classList.add("hidden");
 			document.getElementById("clubSettings").classList.remove("hidden");
 			document.getElementById("meetName").value = meetData.name;
