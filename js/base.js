@@ -17,13 +17,37 @@ function generateTabBar(base) {
 		button.classList.add("btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
 		button.innerText = child.getAttribute("data-text");
 		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
-		console.log(child.innerText + " is " + button.disabled);
 		button.id = "tabButton" + child.id;
 		tabMenu.appendChild(button);
 	}
 
 	base.prepend(tabMenu);
 }
+
+function showModal(id, body, cb_confirm, cb_cancel, options) {
+	options = options || {};
+	cb_cancel = cb_cancel || function() {};
+	body = body || document.createTextNode("Are you sure you want to do that?");
+	const modal = $("#" + id);
+	if (!modal) return;
+	modal.find(".modal-body").html("");
+	modal.find(".modal-body").append(body);
+	if (options.header) modal.find(".modal-title").text(options.header);
+	
+	const confirmBtn = modal.find(".modal-footer").find(".btn-success");
+	confirmBtn.off("click");
+	confirmBtn.on("click", function () {
+		cb_confirm();
+		modal.modal("hide");
+	});
+	modal.off("hidden.bs.modal");
+	modal.on("hidden.bs.modal", function () {
+		cb_cancel();
+	});
+
+	modal.modal();
+	return modal;
+}	
 
 function enableTab(barName, tabName) {
 	const button = document.getElementById("tabButton" + tabName);
