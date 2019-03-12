@@ -23,29 +23,43 @@ function addMeets(meets) {
 }
 
 function importMeet(data) {
-	try {
-		const meet = {
-			name: getNode(data, "MeetName"),
-			events: [],
-			participants: [],
-		}
-		for (let i in data.Events.Event) {
-			const evt = data.Events.Event[i];
-			const e = {
-				index: parseInt(getNode(evt, "EventNumber")), 
-				distance: getNode(evt, "EventLength"),
-				style: getStyle(getNode(evt, "Eventart")), 
-				sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
+	const changeMeet = function(data) {
+		try {
+			const meet = {
+				name: getNode(data, "MeetName"),
+				events: [],
+				participants: [],
 			}
-			meet.events.push(e);
-		}
-		//Successful import
-		meetData = meet;
-		document.getElementById("noMeet").classList.add("hidden");
-		document.getElementById("clubSettings").classList.remove("hidden");
-		document.getElementById("meetName").value = meetData.name;
+			for (let i in data.Events.Event) {
+				const evt = data.Events.Event[i];
+				const e = {
+					index: parseInt(getNode(evt, "EventNumber")), 
+					distance: getNode(evt, "EventLength"),
+					style: getStyle(getNode(evt, "Eventart")), 
+					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
+				}
+				meet.events.push(e);
+			}
+			//Successful import
+			meetData = meet;
 
-	} catch (e) { console.log(e) };
+			$(".personRow, .teamRow, .edit").remove();
+			document.getElementById("noMeet").classList.add("hidden");
+			document.getElementById("clubSettings").classList.remove("hidden");
+			document.getElementById("meetName").value = meetData.name;
+
+		} catch (e) { console.log(e) };
+
+	}
+	if (meetData.participants.length != 0) {
+		showModal("confirmationBox", 
+			document.createTextNode("You have entered participants to the selected meet, are you sure you want to change meet? All unsaved data will be discarded."),
+			function () { changeMeet(data); },
+			function () {},
+			{ header: "Are you sure you want to change meet?" });
+	} else {
+		changeMeet(data);
+	}
 }
 
 function isTeamEvent(evt) {
@@ -63,7 +77,7 @@ function hasTeamEvents() {
 
 function updateClubSelection(clubName) {
 	document.getElementById("participantsContainer").classList.remove("hidden");
-	enableTab("participantBar", "participantSingle");
+	enableTab("participantBar", "participantSingle", false);
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
 }
 
@@ -171,7 +185,7 @@ function getEventString(person) {
 		s += e.distance + "m " + e.style;
 		if (i != person.events.length -1) s += ", ";
 	}
-	if (s == "") s = "<a href='#'>Add events...</a>";
+	if (s == "") s = "<a href='javascript:void(0)'>Add events...</a>";
 	return s;
 }
 
@@ -415,7 +429,7 @@ window.addEventListener("load", function() {
 	document.getElementById("addClub").addEventListener("click", function() {
 		addClubSelection(document.getElementById("clubName").value);
 		document.getElementById("clubSelection").classList.remove("hidden");
-		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"));
+		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 	});
 	document.getElementById("importMedley").addEventListener("click", function() {
 		if (typeof allMeets == "undefined") {

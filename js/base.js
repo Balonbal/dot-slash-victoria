@@ -24,6 +24,31 @@ function generateTabBar(base) {
 	base.prepend(tabMenu);
 }
 
+function showModal(id, body, cb_confirm, cb_cancel, options) {
+	options = options || {};
+	cb_cancel = cb_cancel || function() {};
+	body = body || document.createTextNode("Are you sure you want to do that?");
+	const modal = $("#" + id);
+	if (!modal) return;
+	modal.find(".modal-body").html("");
+	modal.find(".modal-body").append(body);
+	if (options.header) modal.find(".modal-title").text(options.header);
+	
+	const confirmBtn = modal.find(".modal-footer").find(".btn-success");
+	confirmBtn.off("click");
+	confirmBtn.on("click", function () {
+		cb_confirm();
+		modal.modal("hide");
+	});
+	modal.off("hidden.bs.modal");
+	modal.on("hidden.bs.modal", function () {
+		cb_cancel();
+	});
+
+	modal.modal();
+	return modal;
+}	
+
 function enableTab(barName, tabName) {
 	const button = document.getElementById("tabButton" + tabName);
 	button.classList.remove("btn-outline-disabled");
@@ -31,7 +56,7 @@ function enableTab(barName, tabName) {
 	button.disabled = false;
 }
 
-function showTab(tabs, tab) {
+function showTab(tabs, tab, disableTabs = true) {
 	const children = tabs.children;
 	for (let i = 1; i < children.length; i++) {
 		const child = children[i];
@@ -43,6 +68,7 @@ function showTab(tabs, tab) {
 		}
 	}
 
+	if (!disableTabs) return;
 	//Update button styles
 	const buttons = children[0].children;
 	for (let i = 0; i < buttons.length; i++) {
