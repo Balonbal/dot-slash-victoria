@@ -68,6 +68,10 @@ function updateClubSelection(clubName) {
 }
 
 function addClubSelection(clubName) {
+	if (clubInList(clubName)) {
+		updateClubSelection(clubName);
+		return;
+	}
 	const node = document.createElement("option");
 	node.selected = true;
 	node.innerText = clubName;
@@ -160,6 +164,7 @@ function setFields(node, value) {
 
 function colChangeListener(node, func, type) {
 	type = type || "input";
+	getT(node, type).addEventListener("input", func);
 	getT(node, type).addEventListener("change", func);
 	getT(node, type).addEventListener("keyup", func);
 }
@@ -215,6 +220,14 @@ function initEditor(person, table, span) {
 				if (value > 59 && name != "hun") value = 59;
 				if (value > 99) value = 99;
 				value = (value < 10 ? "0" : "") + value;
+
+				["min", "sec", "hun"].forEach(function (el) {
+					if (!validateEventTime(personEvent)) {
+						getE(time, el).setCustomValidity("This does not look like a time for " + personEvent.distance + "m " + personEvent.style);
+					} else {
+						getE(time, el).setCustomValidity("");
+					}
+				});
 				getE(time, name).value = value;
 				personEvent[name] = value;
 				getT(willSwim, "input").checked = true;
@@ -228,6 +241,7 @@ function initEditor(person, table, span) {
 					if (name == "min") getE(time, "sec").focus();
 					if (name == "sec") getE(time, "hun").focus();
 					getE(time, name).blur();
+					func();
 				}
 			}
 			const focus = function () {
@@ -364,6 +378,12 @@ function appendParticipant(person) {
 
 	colChangeListener(age, function () {
 		person.birthYear = getT(age, "input").value;
+		const valid = validateAge(person.birthYear);
+		if (valid !== true) {
+			getT(age, "input").setCustomValidity("This age is far away from the normal");
+		} else {
+			getT(age, "input").setCustomValidity("");
+		}
 	});
 
 
@@ -388,6 +408,62 @@ function appendParticipant(person) {
 	const prev = document.getElementById("participantList").lastChild.lastElementChild;
 	document.getElementById("participantList").lastChild.insertBefore(node, prev);
 	document.getElementById("participantList").lastChild.insertBefore(editor, prev);
+}
+
+function validateTeamName(name) {
+	return name.length > 1;
+}
+
+function validatePersonName(name) {
+	if (name.length < 3) return false;
+	if (!name.match(/^(.+) (.+)$/)) return false;
+	return true;
+}
+
+function validateAge(age) {
+	const i = parseInt(age);
+	if (!i) return {error: "NaN", value: age};
+	const year = new Date().getFullYear();
+	if (year - i < 5) return {error: "tooYoung", value: year-i};
+	if (year - i >120) return {error: "tooOld", value: year-i};
+	return true;
+}
+
+function validateEventTime(evt) {
+	if (evt.min == "00" && evt.sec == "00" && evt.hun == "00") return true;
+
+	//TODO add plausable time range for events
+	return true;
+}
+
+function validateParticipant(participant) {
+	let errors = [];
+	if 	((participant.team && !validateTeamName(participant.name)) ||
+		(!participant.team && !validatePersonName(participant.name))) errors.push({type: "invalidName", value: participant});
+	if (participant.birthYear - newDate().getFullYear() < 5 ||
+		participant.birthYear - newDate().getFullYear() > 110) errors.push({type: "invalidAge", value: participant});
+	
+	for (let i in participant.events) {
+		const evt = participant.events[i];
+		if (!validateEventTime(evt)) errors.push({type:"invalidTime", value: evt}); 
+	}
+
+	return errors;
+}
+
+function clubInList(club) {
+	return ($("#" + club).filter(function() { 
+		return $(this).text().toLowerCase() == club.toLowerCase() 
+	})).length != 0;
+}
+
+function validateClub() {
+	if (club.length < 1) return false;
+	return true;
+}
+
+function validateAll() {
+
 }
 
 window.addEventListener("load", function() {
