@@ -1,6 +1,42 @@
 window.TextEncoder = window.TextDecoder = null;
 // We cannot get the file directley from medley due to browser security issues
 const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
+const themes = [];
+const getResource = function (type, name) {
+	let url = window.location.href;
+	url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
+	return url + "/" + type + "/" + name;
+}
+const getImg = function(name) { return getResource("img", name); }
+
+function makeThemeList() {
+	addTheme("default");
+	const sheets = $("link");
+	for (let i = 0; i < sheets.length; i++) {	
+		const sheet = sheets[i];
+		if (sheet.relList.contains("alternate")) addTheme(sheet.title);
+	}
+}
+
+function addTheme(name) {
+	if (themes.includes(name)) return;
+	const img = document.createElement("img");
+	img.src = getImg(name == "default" ? "light.png" : name + ".png");
+	img.style.height = "1em";
+	let text;
+	switch (name) {
+		case "default": text = "Light (default)"; break;
+		case "dark": text = "Dark (by Pavel)"; break;
+		default: text = name;
+	}
+
+	$("<a href='javascript:void(0)'></a>")
+		.addClass("dropdown-item")
+		.append(img)
+		.append(" " + text)
+		.on("click", () => setTheme(name))
+		.appendTo($(".themeList"));
+}
 
 function setTheme(title) {
 	const styleSheets = document.getElementsByTagName("link");
@@ -8,6 +44,7 @@ function setTheme(title) {
 		const sheet = styleSheets[i];
 		sheet.disabled = sheet.relList.contains("alternate") && sheet.title != title;
 	}
+	$(".themeText").text(title);
 	storeTheme(title);
 }
 
@@ -16,8 +53,9 @@ function storeTheme(theme) {
 }
 
 function loadTheme() {
-	const theme = window.localStorage.getItem("theme");
-	if (theme) setTheme(theme);
+	let theme = window.localStorage.getItem("theme");
+	theme = theme || "default";
+	setTheme(theme);
 }
 
 function generateTabBar(base) {
@@ -92,6 +130,7 @@ function onLoad() {
 		generateTabBar(tabBars[i]);
 	}
 	loadTheme();
+	makeThemeList();
 }
 
 function getMedleyMeet(url, callback) {
@@ -143,27 +182,6 @@ function download(filename, text) {
 	document.body.removeChild(element);
 }
 
-window.addEventListener("load", onLoad);
-
-
-
-function themeChanger(){
-	const selector = document.getElementsByClassName("selector");
-	switch (selector.value) {
-		case "dark":
-			// set dark cocie in browser
-			setTheme("dark");
-			break;
-		case "light":
-			// set dark cocie in browser
-			setTheme("light");
-			break;
-		default: 
-			// set default theme which is dark
-			setTheme("dark");
-	}
-	loadTheme();
-}
-
-window.addEventListener("change", themeChanger);
+$(() => onLoad());
+//window.addEventListener("load", onLoad);
 
