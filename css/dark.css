@@ -1,32 +1,6 @@
-html {
-  background-color: #202020;
-}
-
 body{
   background-color: #202020;
-}
-
-h1{
-  color: #FFF;
-}
-
-h2{
-  color: #FFF;
-}
-
-h3{
-  color: #FFF;
-}
-h4{
-  color: #FFF;
-}
-
-.table{
-  color: #FFF;
-}
-
-label {
-  color: #FFF;
+  color: #fff;
 }
 
 .btn-outline-primary{
@@ -99,8 +73,6 @@ input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:
 
 .btn{
   color: #FFF;
-  background-color: #007bff;
-  border-color: #007bff;
 }
 
 container {
