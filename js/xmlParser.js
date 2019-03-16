@@ -30,11 +30,10 @@ function getStyle(art) {
 
 function parseXml(xml, arrayTags)
 {
-	var text = new TextEncoder("UTF-8").encode(xml);
     var dom = null;
     if (window.DOMParser)
     {
-        dom = (new DOMParser()).parseFromString(xml, "text/xml");
+        dom = (new DOMParser()).parseFromString(xml, "application/xml");
     }
     else if (window.ActiveXObject)
     {

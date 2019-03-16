@@ -100,7 +100,20 @@ function onLoad() {
 
 function getMedleyMeet(url, callback) {
 	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
-	fetch(dest).then((response) => response.text()).then((text) => callback(text));
+	fetch(dest).then((response) => {
+		//For some reason this xml is not UTF-8, we need to convert
+		const reader = response.body.getReader();
+		const decoder = new TextDecoder("iso-8859-1");
+		
+		let text = "";
+		reader.read().then(function process(data) {
+			if (data.done) return;
+			text += decoder.decode(data.value, {stream: true});
+			return reader.read().then(process);
+		}).then(() => {
+			callback(text);
+		});
+	});
 }
 
 function getMedleyList(callback) {
