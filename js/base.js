@@ -74,13 +74,37 @@ function generateTabBar(base) {
 		button.classList.add("btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
 		button.innerText = child.getAttribute("data-text");
 		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
-		console.log(child.innerText + " is " + button.disabled);
 		button.id = "tabButton" + child.id;
 		tabMenu.appendChild(button);
 	}
 
 	base.prepend(tabMenu);
 }
+
+function showModal(id, body, cb_confirm, cb_cancel, options) {
+	options = options || {};
+	cb_cancel = cb_cancel || function() {};
+	body = body || document.createTextNode("Are you sure you want to do that?");
+	const modal = $("#" + id);
+	if (!modal) return;
+	modal.find(".modal-body").html("");
+	modal.find(".modal-body").append(body);
+	if (options.header) modal.find(".modal-title").text(options.header);
+	
+	const confirmBtn = modal.find(".modal-footer").find(".btn-success");
+	confirmBtn.off("click");
+	confirmBtn.on("click", function () {
+		cb_confirm();
+		modal.modal("hide");
+	});
+	modal.off("hidden.bs.modal");
+	modal.on("hidden.bs.modal", function () {
+		cb_cancel();
+	});
+
+	modal.modal();
+	return modal;
+}	
 
 function enableTab(barName, tabName) {
 	const button = document.getElementById("tabButton" + tabName);
@@ -135,7 +159,20 @@ function onLoad() {
 
 function getMedleyMeet(url, callback) {
 	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
-	fetch(dest).then((response) => response.text()).then((text) => callback(text));
+	fetch(dest).then((response) => {
+		//For some reason this xml is not UTF-8, we need to convert
+		const reader = response.body.getReader();
+		const decoder = new TextDecoder("iso-8859-1");
+		
+		let text = "";
+		reader.read().then(function process(data) {
+			if (data.done) return;
+			text += decoder.decode(data.value, {stream: true});
+			return reader.read().then(process);
+		}).then(() => {
+			callback(text);
+		});
+	});
 }
 
 function getMedleyList(callback) {
