@@ -15,9 +15,19 @@
 		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
 		<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
-		<link rel="stylesheet" href="../css/dark.css">
+		<link rel="alternate stylesheet" type="text/css" href="../css/dark.css" title="dark">
 	</head>
 	<body>
+		<nav class="navbar">
+			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
+			<div class="btn-group dropleft">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Theme: <span class="themeText"></span>
+				</button>
+				<div class="themeList dropdown-menu" aria-labelledby="themeDropdown"></div>
+			</div>
+		</nav>
+
 		<div id="meetDetails" class="container">
 			<h2>Meet details</h2>
 			<section id="meetSettings">
