@@ -64,6 +64,7 @@ function importMeet(data) {
 
 function isTeamEvent(evt) {
 	if (evt.style == "LM") return true;
+	if (evt.distance.match(/\d+\*\d{2,}/)) return true;
 	return false;
 }
 
