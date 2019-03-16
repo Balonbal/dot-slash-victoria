@@ -98,6 +98,12 @@ function onLoad() {
 	}
 }
 
+function getClubList(callback) {
+	fetch(medley_url + "/clubList.php")
+		.then((response) => response.json())
+		.then(json => callback(json));
+}
+
 function getMedleyMeet(url, callback) {
 	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
 	fetch(dest).then((response) => response.text()).then((text) => callback(text));
