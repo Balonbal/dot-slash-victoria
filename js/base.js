@@ -36,6 +36,7 @@ function generateTabBar(base) {
 		button.classList.add("btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
 		button.innerText = child.getAttribute("data-text");
 		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
+		console.log(child.innerText + " is " + button.disabled);
 		button.id = "tabButton" + child.id;
 		tabMenu.appendChild(button);
 	}
@@ -50,7 +51,7 @@ function enableTab(barName, tabName) {
 	button.disabled = false;
 }
 
-function showTab(tabs, tab) {
+function showTab(tabs, tab, disableTabs = true) {
 	const children = tabs.children;
 	for (let i = 1; i < children.length; i++) {
 		const child = children[i];
@@ -62,6 +63,7 @@ function showTab(tabs, tab) {
 		}
 	}
 
+	if (!disableTabs) return;
 	//Update button styles
 	const buttons = children[0].children;
 	for (let i = 0; i < buttons.length; i++) {

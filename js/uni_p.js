@@ -63,7 +63,7 @@ function hasTeamEvents() {
 
 function updateClubSelection(clubName) {
 	document.getElementById("participantsContainer").classList.remove("hidden");
-	enableTab("participantBar", "participantSingle");
+	enableTab("participantBar", "participantSingle", false);
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
 }
 
@@ -171,7 +171,7 @@ function getEventString(person) {
 		s += e.distance + "m " + e.style;
 		if (i != person.events.length -1) s += ", ";
 	}
-	if (s == "") s = "<a href='#'>Add events...</a>";
+	if (s == "") s = "<a href='javascript:void(0)'>Add events...</a>";
 	return s;
 }
 
@@ -415,7 +415,7 @@ window.addEventListener("load", function() {
 	document.getElementById("addClub").addEventListener("click", function() {
 		addClubSelection(document.getElementById("clubName").value);
 		document.getElementById("clubSelection").classList.remove("hidden");
-		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"));
+		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 	});
 	document.getElementById("importMedley").addEventListener("click", function() {
 		if (typeof allMeets == "undefined") {
