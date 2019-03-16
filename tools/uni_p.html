@@ -61,11 +61,12 @@
 		</div>
 		<section id="clubSettings" class="container hidden">
 			<h3>Club settings</h3>
-			<div class="form-group row hidden" id="clubSelection">
+			<div class="form-group row" id="clubSelection">
 				<label for="activeClub" class="col-4">Selected club:</label>
 				<select class="form-control col-8" id="activeClub" disabled></select>
 			</div>
-			<div class="form-group row">
+			<a href="javascript:void(0)" id="showAddClub">Don't see your club?</a>
+			<div class="form-group row hidden" id="setClubName">
 				<label for="clubName" class="col-4">Set club name:</label>
 				<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
 				<button class="btn btn-success col-1" id="addClub">Add</button>

@@ -484,11 +484,39 @@ window.addEventListener("load", function() {
 		reader.readAsText(file);
 
 	});
+	const clubs = [];
+	$("#activeClub").on("click", () => {
+		if (clubs.length == 0) {
+			const dummy = $("<option>")
+				.text("Fetching...")
+				.val("-1")
+				.attr("selected", "selected")
+				.appendTo("#activeClub");
+			getClubList(function (cs) {
+				for (let i in cs) {
+					const c = cs[i];
+					$("<option>")
+						.text(c)
+						.val(c)
+						.appendTo($("#activeClub"));
+					clubs.push(c);
+				}
+				dummy.text("-- Select one --");
+			});
+		}
+
+	});
 	document.getElementById("activeClub").addEventListener("change", function() {
 		club = document.getElementById("activeClub").value;
+		if (club == "-1") return;
 		updateClubSelection(club);
 	});
+	$("#showAddClub").on("click", () => {
+		$("#showAddClub").addClass("hidden");
+		$("#setClubName").removeClass("hidden");
+	});
 	document.getElementById("addClub").addEventListener("click", function() {
+		clubs.push($("#clubName").val);
 		addClubSelection(document.getElementById("clubName").value);
 		document.getElementById("clubSelection").classList.remove("hidden");
 		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
@@ -514,4 +542,5 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 	});
+
 });
