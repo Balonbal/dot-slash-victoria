@@ -13,6 +13,7 @@ function getXMLElement(filepath , elementName){
 }
 
 function getNode(root, name) {
+	if (typeof root[name] == "undefined") return false;
 	return root[name]["#text"];
 }
 

@@ -35,6 +35,21 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal" id="enrollMatrix" role="dialog">
+			<div class="modal-dialog modal-lg" style="width:90%" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Enrollment Matrix</h5>
+						<button type="button2" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="overflow-x: scroll">
+						<table class="table"></table>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="meetDetails" class="container">
 			<h2>Meet details</h2>
 			<section id="meetSettings">
@@ -91,6 +106,7 @@
 							<td colspan="5"><a href="javascript:void(0)">Add more...</a></td>
 						</tr>
 					</table>
+					<button class="btn btn-outline-warning" id="openMatrix">Use enrollment matrix</button>
 				</div>
 				<div id="participantTeam" data-text="Teams" data-disabled="true">
 					<h4>Teams</h4>
@@ -127,7 +143,7 @@
 				<td class="events"></td>
 				<td>-</td>
 			</tr>
-			<tr class="edit">
+			<tr class="edit hidden">
 				<td colspan="5">
 					<table class="table eventTable">
 						<tr>
@@ -150,7 +166,7 @@
 				<td class="teamEvents"></td>
 				<td>-</td>
 			</tr>
-			<tr class="edit">
+			<tr class="edit hidden">
 				<td colspan="5">
 					<table class="table eventTable">
 						<tr>

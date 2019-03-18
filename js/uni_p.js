@@ -35,7 +35,7 @@ function importMeet(data) {
 				const e = {
 					index: parseInt(getNode(evt, "EventNumber")), 
 					distance: getNode(evt, "EventLength"),
-					style: getStyle(getNode(evt, "Eventart")), 
+					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")), 
 					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
 				}
 				meet.events.push(e);
@@ -190,6 +190,39 @@ function getEventString(person) {
 	return s;
 }
 
+function createEnrollmentMatrix(options) {
+	options = options || {};
+	const modal = $("#enrollMatrix");
+	const table = modal.find(".modal-body").find("table");
+	table.html(""); //clear
+	const header = $("<tr>").appendTo(table);
+	$("<th>").text("Event\nPerson").appendTo(header);
+	for (let i in meetData.events) {
+		const e = meetData.events[i];
+		if (options.team ^ isTeamEvent(e)) continue;
+		$("<th>").text(e.index + ". " + e.distance + " " + e.style).appendTo(header);
+	}
+	for (let j in meetData.participants) {
+		const p = meetData.participants[j];
+		if (p.team ^ options.team) continue;
+		const row = $("<tr>").appendTo(table);
+		$("<td>").text(p.name).appendTo(row);
+		const willSwim = function(index) {
+			for (let i in p.events) {
+				if (p.events[i].index == index) return true;
+			}
+			return false;
+		}
+		for (let i in meetData.events) {
+			if (isTeamEvent(meetData.events[i]) ^ p.team) continue;
+			$("<input>")
+				.attr("type", "checkbox")
+				.attr("checked", willSwim(meetData.events[i].index))
+				.appendTo($("<td>").appendTo(row));
+		}
+	}
+	modal.modal();
+}
 
 function initEditor(person, table, span) {
 	const t = document.getElementById("eventDummy");
