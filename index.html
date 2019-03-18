@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -11,10 +12,21 @@
 		<script type="text/javascript" src="js/translations.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/base.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+		<link rel="alternate stylesheet" type ="text/css" href="css/dark.css" title="dark"> 
 	</head>
 	<body>
+		<nav class="navbar">
+			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
+			<div class="btn-group dropleft">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Theme: <span class="themeText"></span>
+				</button>
+				<div class="themeList dropdown-menu" aria-labelledby="themeDropdown"></div>
+			</div>
+		</nav>
 		<div class="container">
 			<h1 class="t">header</h1>
+			<small class="subtitle">Usage: <i>./victoria &lt;stuff-to-do&gt;</i> where stuff-to-do is any of the following:</small>
 			<ul class="list-group">
 				<li class="list-group-item"><a href="tools/uni_p.html">uni_p.txt generator<span class="badge t">unfinished</span></a></li>
 			</ul>

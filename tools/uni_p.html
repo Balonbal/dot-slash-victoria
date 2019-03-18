@@ -16,8 +16,18 @@
 		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
 		<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+		<link rel="alternate stylesheet" type="text/css" href="../css/dark.css" title="dark">
 	</head>
 	<body>
+		<nav class="navbar">
+			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
+			<div class="btn-group dropleft">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Theme: <span class="themeText"></span>
+				</button>
+				<div class="themeList dropdown-menu" aria-labelledby="themeDropdown"></div>
+			</div>
+		</nav>
 		<div class="modal" id="confirmationBox" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -41,16 +51,19 @@
 			<section id="meetSettings">
 
 				<div class="form-group row">
-					<label for="meetName" class="col-4 t">Meet name</label>
-					<input type="text" id="meetName" class="col-8" readonly/>
-				</div>
-				<div class="form-group row">
 					<label for="importFile" class="col-4 t">Import from XML</label>
 					<input type="file" accept=".xml" class="form-control-file col-8" id="importFile"/>
 				</div>
+				
+				
 				<div class="form-group row">
 					<label for="importMedley" class="col-4 t">Import from medley.no</label>
 					<select id="importMedley" class="form-control col-8"></select>
+				</div>
+
+				<div class="form-group row">
+					<label for="meetName" class="col-4 t">Meet name</label>
+					<input type="text" id="meetName" class="col-8" readonly/>
 				</div>
 			</section>
 
@@ -67,8 +80,13 @@
 			<div class="form-group row">
 				<label for="clubName" class="col-4 t">Set club name:</label>
 				<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
+				<div class="col-3"></div>
 				<button class="btn btn-success col-1 t" id="addClub">Add</button>
 				<button class="btn btn-warning col-3 hidden t" id="changeClub">Change name</button>
+			</div>
+			<div class="form-group row hidden" id="clubSelection">
+				<label for="activeClub" class="col-4 t">Selected club:</label>
+				<select class="form-control col-8" id="activeClub" disabled></select>
 			</div>
 		</section>
 		<div class="container hidden" id="participantsContainer">
