@@ -1,7 +1,8 @@
 const pages = {
 	"base": {
 		"title": { "en": "./victoria" },
-		"header": { "en": "./victoria - helper tools for swimmers", "no": "./victoria - hjelpeverktøy for svømmere" }
+		"header": { "en": "./victoria - helper tools for swimmers", "no": "./victoria - hjelpeverktøy for svømmere" },
+		"unfinished": { "en": "(unfinished)", "no": "(uferdig)" },
 
 	}
 }
@@ -12,28 +13,7 @@ function Translator() {
 	this.path = url.substring(this.url.length);
 	this.page = this.path.substring(this.path.lastIndexOf("/") + 1, this.path.lastIndexOf("."));
 	this.pages = pages;
-	this.SetLanguage = function(lang) {
-		this.language = lang;	
-		for (let p in pages) {
-			this.LoadTranslation(p, lang);
-		}
-		this.Translate();
-	}
-	this.addTranslations = function(page, language, translations) {
 
-	}
-	this.getTranslation = function(key, page) {
-		page = page || this.page;
-		if (!this.pages[page]) page = "base";
-		const p = this.pages[page];
-		if (!p[key]) {
-			if (page != "base") return this.getTranslation(key, "base");
-			return false;
-		}
-		const val = p[key];
-		if (!val[this.language]) return val.en;
-		return val[this.language];
-	}
 	this.LoadTranslation = function(page, language) {
 		console.log("[Translator::LoadTranslation] This operation is not supported yet, as it requires a host for the translation files");
 		return false;
@@ -58,6 +38,30 @@ function Translator() {
 			});
 		});
 	}
+	this.SetLanguage = function(lang) {
+		this.language = lang;	
+		for (let p in pages) {
+			this.LoadTranslation(p, lang);
+		}
+		window.localStorage.setItem("language", lang);
+	}
+	let language = window.localStorage.getItem("language");
+	this.SetLanguage(language || "en");
+	this.addTranslations = function(page, language, translations) {
+
+	}
+	this.getTranslation = function(key, page) {
+		page = page || this.page;
+		if (!this.pages[page]) page = "base";
+		const p = this.pages[page];
+		if (!p[key]) {
+			if (page != "base") return this.getTranslation(key, "base");
+			return false;
+		}
+		const val = p[key];
+		if (!val[this.language]) return val.en;
+		return val[this.language];
+	}
 	this.Translate = function() {
 		const nodes = $(".t");
 		this.nodes = this.nodes || [];
@@ -79,7 +83,7 @@ function Translator() {
 	}
 }
 
-
+translator = new Translator();
 window.addEventListener("load", function() {
-	
+	translator.Translate();
 });
