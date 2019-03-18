@@ -3,6 +3,14 @@ const pages = {
 		"title": { "en": "./victoria" },
 		"header": { "en": "./victoria - helper tools for swimmers", "no": "./victoria - hjelpeverktøy for svømmere" },
 		"unfinished": { "en": "(unfinished)", "no": "(uferdig)" },
+		"Theme:" : {"no": "Fargetema:" },
+		"Language:": {"no": "Språk:" },
+		"Usage:": { "no": "Bruk:" },
+		"whereToDo": { "en": "where stuff-to-do is any of the following:", "no": "hvor stuff-to-do er hvilken som helst av følgende kommandoer:" },
+		"theme_default" : { "en": "Light (default)", "no": "Lys (standard)" },
+		"theme_dark": { "en": "Dark (by Pavel)", "no": "Mørkt (av Pavel)" },
+		"lang_en": { "en": "English", "no": "Engelsk" },
+		"lang_no": { "en": "Norwegian", "no": "Norsk" },
 
 	}, "uni_p": {
 		"Meet details": { "no": "Stevnedetaljer" },
@@ -80,9 +88,8 @@ function Translator() {
 			this.LoadTranslation(p, lang);
 		}
 		window.localStorage.setItem("language", lang);
+		$(".languageText").text(this.getTranslation("lang_" + lang));
 	}
-	let language = window.localStorage.getItem("language");
-	this.SetLanguage(language || "en");
 	this.addTranslations = function(page, language, translations) {
 
 	}
@@ -122,5 +129,9 @@ function Translator() {
 
 translator = new Translator();
 window.addEventListener("load", function() {
+	addLanguage("en");
+	addLanguage("no");
+	let language = window.localStorage.getItem("language");
+	translator.SetLanguage(language || "en");
 	translator.Translate();
 });

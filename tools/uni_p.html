@@ -19,13 +19,19 @@
 		<link rel="alternate stylesheet" type="text/css" href="../css/dark.css" title="dark">
 	</head>
 	<body>
-		<nav class="navbar">
+		<nav class="navbar navbar-dark bg-primary">
 			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
-			<div class="btn-group dropleft">
+			<div class="btn-group dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Theme: <span class="themeText"></span>
+					<span class="t">Theme:</span> <span class="themeText"></span>
 				</button>
 				<div class="themeList dropdown-menu" aria-labelledby="themeDropdown"></div>
+			</div>
+			<div class="btn-group dropleft">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="t">Language:</span> <span class="languageText"></span>
+				</button>
+				<div class="langList dropdown-menu" aria-labelledby="languageDropwown"></div>
 			</div>
 		</nav>
 		<div class="modal" id="confirmationBox" role="dialog">

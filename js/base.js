@@ -23,19 +23,28 @@ function addTheme(name) {
 	const img = document.createElement("img");
 	img.src = getImg(name == "default" ? "light.png" : name + ".png");
 	img.style.height = "1em";
-	let text;
-	switch (name) {
-		case "default": text = "Light (default)"; break;
-		case "dark": text = "Dark (by Pavel)"; break;
-		default: text = name;
-	}
 
 	$("<a href='javascript:void(0)'></a>")
 		.addClass("dropdown-item")
 		.append(img)
-		.append(" " + text)
+		.append($("<span>").addClass("t").text("theme_" + name))
 		.on("click", () => setTheme(name))
 		.appendTo($(".themeList"));
+}
+function addLanguage(language) {
+	let text;
+	switch (language) {
+		case "no": text = "Norsk"; break;
+		case "en": text = "English"; break;
+	}
+	$("<a href='javascript:void(0)'></a>")
+		.addClass("dropdown-item")
+		.append($("<span>").addClass("t").text("lang_" + language))
+		.on("click", () => {
+			if (!translator) return;
+			translator.SetLanguage(language);
+			translator.Translate();
+		}).appendTo($(".langList"));
 }
 
 function setTheme(title) {
