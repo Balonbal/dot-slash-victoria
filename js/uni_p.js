@@ -415,8 +415,8 @@ function validateTeamName(name) {
 }
 
 function validatePersonName(name) {
-	if (name.length < 3) return false;
-	if (!name.match(/^(.+) (.+)$/)) return false;
+	if (name.length < 3) return {error: "Too short", value: name};
+	if (!name.match(/^(.+) (.+)$/)) return {error: "notTwoNames", value: name};
 	return true;
 }
 
@@ -438,14 +438,14 @@ function validateEventTime(evt) {
 
 function validateParticipant(participant) {
 	let errors = [];
-	if 	((participant.team && !validateTeamName(participant.name)) ||
-		(!participant.team && !validatePersonName(participant.name))) errors.push({type: "invalidName", value: participant});
-	if (participant.birthYear - newDate().getFullYear() < 5 ||
-		participant.birthYear - newDate().getFullYear() > 110) errors.push({type: "invalidAge", value: participant});
+	const nameValid = participant.team ? validateTeamName(participant.name) : validatePersonName(participant.name);
+	const ageValid = participant.team ? true : validateAge(participant.birthYear);
+	if (nameValid !== true) errors.push({error: nameValid.error, value: participant});
+	if (ageValid !== true) errors.push({error: ageValid.error, value: participant});
 	
 	for (let i in participant.events) {
 		const evt = participant.events[i];
-		if (!validateEventTime(evt)) errors.push({type:"invalidTime", value: evt}); 
+		if (!validateEventTime(evt)) errors.push({type:"invalidTime", value: {participant: participant, evt: evt}}); 
 	}
 
 	return errors;
@@ -458,12 +458,38 @@ function clubInList(club) {
 }
 
 function validateClub() {
-	if (club.length < 1) return false;
+	if (club.length < 1) return {error: "tooShort", value: club};
 	return true;
 }
 
-function validateAll() {
+function getParticipantEl(part) {
+	const els = document.getElementsByClassName(part.team ? "teamRow" : "personRow");
+	for (let i in els) {
+		const e = els[i];
+		if (getT(getE(e, "personName"), "input").value != part.name) continue;
+		if (getT(getE(e, "age"), "input").value != part.birthYear) continue;
+		return e;
+	}
+	return false;
+}
 
+function validateAll() {
+	let errors = [];
+	for (let i in meetData.participants) {
+		const p = meetData.participants[i];
+		const err = validateParticipant(p);
+		const el = getParticipantEl(p);
+		console.log(p);
+		console.log(err);
+		console.log(el);
+		if (err.length > 0) el.classList.add("table-warning");
+		else el.classList.remove("table-warning");
+		for (let j in err) {
+			const e = err[j];
+			errors.push(e);
+			
+		}
+	}
 }
 
 window.addEventListener("load", function() {
