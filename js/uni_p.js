@@ -380,7 +380,7 @@ function appendParticipant(person) {
 		person.birthYear = getT(age, "input").value;
 		const valid = validateAge(person.birthYear);
 		if (valid !== true) {
-			getT(age, "input").setCustomValidity("This age is far away from the normal");
+			getT(age, "input").setCustomValidity(valid.error);
 		} else {
 			getT(age, "input").setCustomValidity("");
 		}
