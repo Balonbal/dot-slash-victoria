@@ -349,6 +349,8 @@ function appendTeam(team) {
 	const prev = document.getElementById("teamList").lastChild.lastElementChild;
         document.getElementById("teamList").lastChild.insertBefore(node, prev);
         document.getElementById("teamList").lastChild.insertBefore(editor, prev);
+
+	if (translator) translator.Translate();
 }
 
 function appendParticipant(person) {
@@ -403,6 +405,8 @@ function appendParticipant(person) {
 	const prev = document.getElementById("participantList").lastChild.lastElementChild;
 	document.getElementById("participantList").lastChild.insertBefore(node, prev);
 	document.getElementById("participantList").lastChild.insertBefore(editor, prev);
+
+	if (translator) translator.Translate();
 }
 
 window.addEventListener("load", function() {

@@ -4,6 +4,42 @@ const pages = {
 		"header": { "en": "./victoria - helper tools for swimmers", "no": "./victoria - hjelpeverktøy for svømmere" },
 		"unfinished": { "en": "(unfinished)", "no": "(uferdig)" },
 
+	}, "uni_p": {
+		"Meet details": { "no": "Stevnedetaljer" },
+		"Confirmation": { "no": "Bekreftelse" },
+		"Cancel": { "no": "Avbryt" },
+		"Confirm": { "no": "Bekreft" },
+		"Meet name": { "no": "Stevnenavn" },
+		"Import from XML": { "no": "Importer fra XML-fil" },
+		"Import from medley.no": { "no": "Importer fra medley.no" },
+		"You have not yet selected a meet": { "no": "Du har ikke valgt et stevne enda" },
+		"Club settings": { "no": "Klubbinstillinger" },
+		"Selected club:": { "no": "Velg klubb" },
+		"Set club name:": { "no": "Legg til klubbnavn" },
+		"Add": { "no": "Legg til" },
+		"Change name": { "no": "Endre navn" },
+		"Participants": { "no": "Deltakere" },
+		"Individuals": { "no": "Individuelle Utøvere" },
+		"Name": { "no": "Navn" },
+		"Year of birth (class)": {"no": "Fødselsår (klasse)" },
+		"Sex": { "no": "Kjønn" },
+		"Events": { "no": "Øvelser" },
+		"Actions": { "no": "Handlinger" },
+		"Add more...": { "no": "Legg til flere..." },
+		"Teams": { "no": "Lagutøvere" },
+		"Class": { "no": "Aldersklasse" },
+		"Team name": { "no": "Lagnavn" },
+		"Summary": { "no": "Sammendrag" },
+		"Make uni_p.txt": { "no": "Lag uni_p.txt" },
+		"Will swim?": { "no": "Skal svømme?" },
+		"Event id": { "no": "Øvelsesnummer" },
+		"Event": { "no": "Øvelse" },
+		"Anticipated time": { "no": "Påmeldingstid" },
+		"Junior": { "no": "Junior" },
+		"Senior": { "no": "Senior" },
+		"Male": { "no": "Mann" },
+		"Female": { "no": "Kvinne" },
+		"Mixed": { "no": "Mixed" },
 	}
 }
 
@@ -56,6 +92,7 @@ function Translator() {
 		const p = this.pages[page];
 		if (!p[key]) {
 			if (page != "base") return this.getTranslation(key, "base");
+			console.log("[Translator::getTranslation] Unable to find key: " + key);
 			return false;
 		}
 		const val = p[key];
