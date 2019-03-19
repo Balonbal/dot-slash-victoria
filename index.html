@@ -4,30 +4,37 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>./victoria - </title>
+		<title>./victoria</title>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/base.js"></script>
+		<script type="text/javascript" src="js/translations.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/base.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
 		<link rel="alternate stylesheet" type ="text/css" href="css/dark.css" title="dark"> 
 	</head>
 	<body>
-		<nav class="navbar">
+		<nav class="navbar navbar-dark bg-primary">
 			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
-			<div class="btn-group dropleft">
+			<div class="btn-group dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Theme: <span class="themeText"></span>
+					<span class="t">Theme:</span> <span class="themeText"></span>
 				</button>
 				<div class="themeList dropdown-menu" aria-labelledby="themeDropdown"></div>
 			</div>
+			<div class="btn-group dropleft">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="t">Language:</span> <span class="languageText"></span>
+				</button>
+				<div class="langList dropdown-menu" aria-labelledby="languageDropwown"></div>
+			</div>
 		</nav>
 		<div class="container">
-			<h1 class="title">./victoria - helper tools for swimmers</h1>
-			<small class="subtitle">Usage: <i>./victoria &lt;stuff-to-do&gt;</i> where stuff-to-do is any of the following:</small>
+			<h1 class="t">header</h1>
+			<small class="subtitle"><span class="t">Usage:</span> <i>./victoria &lt;stuff-to-do&gt;</i> <span class="t">whereToDo</span></small>
 			<ul class="list-group">
-				<li class="list-group-item"><a href="tools/uni_p.html">uni_p.txt generator<span class="badge">(unfinished)</span></a></li>
+				<li class="list-group-item"><a href="tools/uni_p.html">uni_p.txt generator<span class="badge t">unfinished</span></a></li>
 			</ul>
 		</div>
 	</body>

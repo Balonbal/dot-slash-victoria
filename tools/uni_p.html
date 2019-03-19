@@ -12,26 +12,33 @@
 		<script type="text/javascript" src="../js/encoding-indexes.js"></script>
 		<script type="text/javascript" src="../js/encoding.js"></script>
 		<script type="text/javascript" src="../js/xmlParser.js"></script>
+		<script type="text/javascript" src="../js/translations.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
 		<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
 		<link rel="alternate stylesheet" type="text/css" href="../css/dark.css" title="dark">
 	</head>
 	<body>
-		<nav class="navbar">
+		<nav class="navbar navbar-dark bg-primary">
 			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
-			<div class="btn-group dropleft">
+			<div class="btn-group dropdown">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Theme: <span class="themeText"></span>
+					<span class="t">Theme:</span> <span class="themeText"></span>
 				</button>
 				<div class="themeList dropdown-menu" aria-labelledby="themeDropdown"></div>
+			</div>
+			<div class="btn-group dropleft">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="t">Language:</span> <span class="languageText"></span>
+				</button>
+				<div class="langList dropdown-menu" aria-labelledby="languageDropwown"></div>
 			</div>
 		</nav>
 		<div class="modal" id="confirmationBox" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="confirmationTitle">Confirmation</h5>
+						<h5 class="modal-title t" id="confirmationTitle">Confirmation</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -39,89 +46,87 @@
 					<div class="modal-body" id="confirmationBody">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-success">Confirm</button>
+						<button type="button" class="btn btn-danger t" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-success t">Confirm</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="meetDetails" class="container">
-			<h2>Meet details</h2>
+			<h2 class="t">Meet details</h2>
 			<section id="meetSettings">
 
 				<div class="form-group row">
-					<label for="importFile" class="col-4">Import from XML</label>
+					<label for="importFile" class="col-4 t">Import from XML</label>
 					<input type="file" accept=".xml" class="form-control-file col-8" id="importFile"/>
 				</div>
 				
-				<div class="form-group row">
-					<label for="meetName" class="col-4">Meet name</label>
-					<input type="text" id="meetName" class="col-8" readonly/>
-				</div>
 				
 				<div class="form-group row">
-					<label for="nothing" class="col-12" style="text-align: center;">or</label>
-				</div>
-				
-				<div class="form-group row">
-					<label for="importMedley" class="col-4">Import from medley.no</label>
+					<label for="importMedley" class="col-4 t">Import from medley.no</label>
 					<select id="importMedley" class="form-control col-8"></select>
+				</div>
+
+				<div class="form-group row">
+					<label for="meetName" class="col-4 t">Meet name</label>
+					<input type="text" id="meetName" class="col-8" readonly/>
 				</div>
 			</section>
 
 		</div>
 		<div class="container" id="noMeet">
-			<div class="alert alert-danger">
-				You have not yet selected a meet
-			</div>
+			<div class="alert alert-danger t">You have not yet selected a meet</div>
 		</div>
 		<section id="clubSettings" class="container hidden">
-			<h3>Club settings</h3>
-			
+			<h3 class="t">Club settings</h3>
+			<div class="form-group row hidden" id="clubSelection">
+				<label for="activeClub" class="col-4 t">Selected club:</label>
+				<select class="form-control col-8" id="activeClub" disabled></select>
+			</div>
 			<div class="form-group row">
-				<label for="clubName" class="col-4">Set club name:</label>
+				<label for="clubName" class="col-4 t">Set club name:</label>
 				<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
 				<div class="col-3"></div>
-				<button class="btn btn-success col-1" id="addClub">Add</button>
-				<button class="btn btn-warning col-3 hidden" id="changeClub">Change name</button>
+				<button class="btn btn-success col-1 t" id="addClub">Add</button>
+				<button class="btn btn-warning col-3 hidden t" id="changeClub">Change name</button>
 			</div>
 			<div class="form-group row hidden" id="clubSelection">
-				<label for="activeClub" class="col-4">Selected club:</label>
+				<label for="activeClub" class="col-4 t">Selected club:</label>
 				<select class="form-control col-8" id="activeClub" disabled></select>
 			</div>
 		</section>
 		<div class="container hidden" id="participantsContainer">
-			<h3>Participants</h3>
+			<h3 class="t">Participants</h3>
 
 			<div id="participantBar" class="tabBar">
 				<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
-					<h4>Individuals</h4>
+					<h4 class="t">Individuals</h4>
 					<table id="participantList" class="table">
 						<tr>
-							<th>Name</th>
-							<th>Year of birth (class)</th>
-							<th>Sex</th>
-							<th>Events</th>
-							<th>Actions</th>
+							<th class="t">Name</th>
+							<th class="t">Year of birth (class)</th>
+							<th class="t">Sex</th>
+							<th class="t">Events</th>
+							<th class="t">Actions</th>
 						</tr>
 
 						<tr>
-							<td colspan="5"><a href="javascript:void(0)">Add more...</a></td>
+							<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
 						</tr>
 					</table>
 				</div>
 				<div id="participantTeam" data-text="Teams" data-disabled="true">
-					<h4>Teams</h4>
+					<h4 class="t">Teams</h4>
 					<table id="teamList" class="table">
 						<tr>
-							<th>Class</th>
-							<th>Sex</th>
-							<th>Team name</th>
-							<th>Events</th>
-							<th>Actions</th>
+							<th class="t">Class</th>
+							<th class="t">Sex</th>
+							<th class="t">Team name</th>
+							<th class="t">Events</th>
+							<th class="t">Actions</th>
 						</tr>
 						<tr>
-							<td colspan="5"><a href="javascript:void(0)">Add more...</a></td>
+							<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
 						</tr>
 					</table>
 				</div>
@@ -130,9 +135,9 @@
 
 		</div>
 		<div id="summary" class="container">
-			<h1>Summary</h1>
+			<h1 class="t">Summary</h1>
 			<div id="individualsSummary"></div>
-			<button id="makeUnip" class="btn btn-primary btn-lg">Make uni_p.txt</button>
+			<button id="makeUnip" class="btn btn-primary btn-lg t">Make uni_p.txt</button>
 		</div>
 
 		<!-- Templates -->
@@ -149,10 +154,10 @@
 				<td colspan="5">
 					<table class="table eventTable">
 						<tr>
-							<th>Will swim?</th>
-							<th>Event id</th>
-							<th>Event</th>
-							<th>Anticipated time</th>
+							<th class="t">Will swim?</th>
+							<th class="t">Event id</th>
+							<th class="t">Event</th>
+							<th class="t">Anticipated time</th>
 						</tr>
 					</table>
 				</td>
@@ -162,8 +167,8 @@
 		<!-- Team Participant -->
 		<template id="teamDummy">
 			<tr class="teamRow">
-				<td class="teamClass"><select><option value="JR">Junior</option><option value="SR">Senior</option></select></td>
-				<td class="teamSex"><select><option value="M">Male</option><option value="K">Female</option><option value="MIX">Mixed</option></select></td>
+				<td class="teamClass"><select><option value="JR" class="t">Junior</option><option value="SR" class="t">Senior</option></select></td>
+				<td class="teamSex"><select><option value="M" class="t">Male</option><option value="K" class="t">Female</option><option value="MIX" class="t">Mixed</option></select></td>
 				<td class="teamName"><input type="text"/></td>
 				<td class="teamEvents"></td>
 				<td>-</td>
@@ -172,10 +177,10 @@
 				<td colspan="5">
 					<table class="table eventTable">
 						<tr>
-							<th>Will swim?</th>
-							<th>Event id</th>
-							<th>Event</th>
-							<th>Anticipated time</th>
+							<th class="t">Will swim?</th>
+							<th class="t">Event id</th>
+							<th class="t">Event</th>
+							<th class="t">Anticipated time</th>
 						</tr>
 					</table>
 				</td>
