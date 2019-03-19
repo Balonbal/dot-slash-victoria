@@ -103,7 +103,10 @@ function Translator() {
 			return false;
 		}
 		const val = p[key];
-		if (!val[this.language]) return val.en;
+		if (!val[this.language]) {
+			if (val.en) return val.en;
+			return false;
+		}
 		return val[this.language];
 	}
 	this.Translate = function() {
@@ -122,7 +125,7 @@ function Translator() {
 				index = findNode(nodes[i], this.nodes);
 			}
 			const trans = this.getTranslation(this.nodes[index].key);	
-			return trans !== false ? trans : text;
+			return trans !== false ? trans : this.nodes[i].key;
 		});
 	}
 }
