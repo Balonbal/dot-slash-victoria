@@ -1,0 +1,80 @@
+body{
+  background-color: #202020;
+  color: #fff;
+}
+
+.btn-outline-primary{
+  color: #FFF;
+}
+
+.btn:disabled{
+  opacity: 1;
+}
+
+.btn-outline-primary:disabled{
+  color: #FFF;
+}
+
+button, input !important{
+  background-color: #202020;
+  color: #FFF;
+  font-size: large;
+  font-family: sans-serif;
+  text-align: center;
+  border-radius: .25rem;
+  
+}
+
+input{
+  background-color: #333333;
+  color: #FFF;
+  font-size: large;
+	font-family: sans-serif;
+	text-align: center;
+	border-radius: .25rem;
+}
+
+#meetName {
+  border-width: 0px;
+  font-family: Roboto;
+  background-color: #333333;
+}
+
+#importMedley{
+  border-width: 0px;
+  font-family: Roboto;
+  background-color: #333333;
+  color: white;
+  font-weight: bold;
+}
+
+#activeClub{
+  border-width: 0px;
+  font-family: Roboto;
+  background-color: #333333;
+  color: white;
+  font-weight: bold;
+}
+
+
+input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:-internal-autofill-previewed, textarea:-internal-autofill-selected, select:-internal-autofill-previewed, select:-internal-autofill-selected {
+    background-color: #202020; !important;
+    background-image: none !important;
+    color: #FFF !important;
+}
+
+
+
+.form-control{
+  background-color: #202020;
+  color: #FFF;
+}
+
+
+.btn{
+  color: #FFF;
+}
+
+container {
+  background-color: #202020;
+}

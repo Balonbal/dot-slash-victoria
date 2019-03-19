@@ -23,33 +23,48 @@ function addMeets(meets) {
 }
 
 function importMeet(data) {
-	try {
-		const meet = {
-			name: getNode(data, "MeetName"),
-			events: [],
-			participants: [],
-		}
-		for (let i in data.Events.Event) {
-			const evt = data.Events.Event[i];
-			const e = {
-				index: parseInt(getNode(evt, "EventNumber")), 
-				distance: getNode(evt, "EventLength"),
-				style: getStyle(getNode(evt, "Eventart")), 
-				sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
+	const changeMeet = function(data) {
+		try {
+			const meet = {
+				name: getNode(data, "MeetName"),
+				events: [],
+				participants: [],
 			}
-			meet.events.push(e);
-		}
-		//Successful import
-		meetData = meet;
-		document.getElementById("noMeet").classList.add("hidden");
-		document.getElementById("clubSettings").classList.remove("hidden");
-		document.getElementById("meetName").value = meetData.name;
+			for (let i in data.Events.Event) {
+				const evt = data.Events.Event[i];
+				const e = {
+					index: parseInt(getNode(evt, "EventNumber")), 
+					distance: getNode(evt, "EventLength"),
+					style: getStyle(getNode(evt, "Eventart")), 
+					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
+				}
+				meet.events.push(e);
+			}
+			//Successful import
+			meetData = meet;
 
-	} catch (e) { console.log(e) };
+			$(".personRow, .teamRow, .edit").remove();
+			document.getElementById("noMeet").classList.add("hidden");
+			document.getElementById("clubSettings").classList.remove("hidden");
+			document.getElementById("meetName").value = meetData.name;
+
+		} catch (e) { console.log(e) };
+
+	}
+	if (meetData.participants.length != 0) {
+		showModal("confirmationBox", 
+			document.createTextNode("You have entered participants to the selected meet, are you sure you want to change meet? All unsaved data will be discarded."),
+			function () { changeMeet(data); },
+			function () {},
+			{ header: "Are you sure you want to change meet?" });
+	} else {
+		changeMeet(data);
+	}
 }
 
 function isTeamEvent(evt) {
 	if (evt.style == "LM") return true;
+	if (evt.distance.match(/\d+\*\d{2,}/)) return true;
 	return false;
 }
 
@@ -348,6 +363,8 @@ function appendTeam(team) {
 	const prev = document.getElementById("teamList").lastChild.lastElementChild;
         document.getElementById("teamList").lastChild.insertBefore(node, prev);
         document.getElementById("teamList").lastChild.insertBefore(editor, prev);
+
+	if (translator) translator.Translate();
 }
 
 function appendParticipant(person) {
@@ -408,6 +425,8 @@ function appendParticipant(person) {
 	const prev = document.getElementById("participantList").lastChild.lastElementChild;
 	document.getElementById("participantList").lastChild.insertBefore(node, prev);
 	document.getElementById("participantList").lastChild.insertBefore(editor, prev);
+
+	if (translator) translator.Translate();
 }
 
 function validateTeamName(name) {

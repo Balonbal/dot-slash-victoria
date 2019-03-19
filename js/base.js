@@ -1,6 +1,72 @@
 window.TextEncoder = window.TextDecoder = null;
 // We cannot get the file directley from medley due to browser security issues
 const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
+const themes = [];
+const getResource = function (type, name) {
+	let url = window.location.href;
+	url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
+	return url + "/" + type + "/" + name;
+}
+const getImg = function(name) { return getResource("img", name); }
+
+function makeThemeList() {
+	addTheme("default");
+	const sheets = $("link");
+	for (let i = 0; i < sheets.length; i++) {	
+		const sheet = sheets[i];
+		if (sheet.relList.contains("alternate")) addTheme(sheet.title);
+	}
+}
+
+function addTheme(name) {
+	if (themes.includes(name)) return;
+	const img = document.createElement("img");
+	img.src = getImg(name == "default" ? "light.png" : name + ".png");
+	img.style.height = "1em";
+
+	$("<a href='javascript:void(0)'></a>")
+		.addClass("dropdown-item")
+		.append(img)
+		.append($("<span>").addClass("t").text("theme_" + name))
+		.on("click", () => setTheme(name))
+		.appendTo($(".themeList"));
+}
+function addLanguage(language) {
+	let text;
+	switch (language) {
+		case "no": text = "Norsk"; break;
+		case "en": text = "English"; break;
+	}
+	$("<a href='javascript:void(0)'></a>")
+		.addClass("dropdown-item")
+		.append($("<span>").addClass("t").text("lang_" + language))
+		.on("click", () => {
+			if (!translator) return;
+			translator.SetLanguage(language);
+			translator.Translate();
+		}).appendTo($(".langList"));
+}
+
+function setTheme(title) {
+	const styleSheets = document.getElementsByTagName("link");
+	for (let i = 0; i < styleSheets.length; i++) {
+		const sheet = styleSheets[i];
+		sheet.disabled = sheet.relList.contains("alternate") && sheet.title != title;
+	}
+	$(".themeText").text(title);
+	storeTheme(title);
+}
+
+function storeTheme(theme) {
+	window.localStorage.setItem("theme", theme);
+}
+
+function loadTheme() {
+	let theme = window.localStorage.getItem("theme");
+	theme = theme || "default";
+	setTheme(theme);
+}
+
 function generateTabBar(base) {
 	
 	let tabMenu = document.createElement("div");
@@ -14,7 +80,7 @@ function generateTabBar(base) {
 		button.addEventListener("click", function () {
 			showTab(base, child);
 		});
-		button.classList.add("btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
+		button.classList.add("t", "btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
 		button.innerText = child.getAttribute("data-text");
 		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
 		button.id = "tabButton" + child.id;
@@ -96,6 +162,8 @@ function onLoad() {
 	for (let i = 0; i < tabBars.length; i++) {
 		generateTabBar(tabBars[i]);
 	}
+	loadTheme();
+	makeThemeList();
 }
 
 function getClubList(callback) {
@@ -106,7 +174,20 @@ function getClubList(callback) {
 
 function getMedleyMeet(url, callback) {
 	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
-	fetch(dest).then((response) => response.text()).then((text) => callback(text));
+	fetch(dest).then((response) => {
+		//For some reason this xml is not UTF-8, we need to convert
+		const reader = response.body.getReader();
+		const decoder = new TextDecoder("iso-8859-1");
+		
+		let text = "";
+		reader.read().then(function process(data) {
+			if (data.done) return;
+			text += decoder.decode(data.value, {stream: true});
+			return reader.read().then(process);
+		}).then(() => {
+			callback(text);
+		});
+	});
 }
 
 function getMedleyList(callback) {
@@ -153,4 +234,6 @@ function download(filename, text) {
 	document.body.removeChild(element);
 }
 
-window.addEventListener("load", onLoad);
+$(() => onLoad());
+//window.addEventListener("load", onLoad);
+
