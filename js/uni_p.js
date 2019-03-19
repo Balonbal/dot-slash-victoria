@@ -452,7 +452,7 @@ function validateEventTime(evt) {
 	if (evt.min == "00" && evt.sec == "00" && evt.hun == "00") return true;
 
 	//TODO add plausable time range for events
-	return true;
+	return false;
 }
 
 function validateParticipant(participant) {
@@ -492,19 +492,32 @@ function getParticipantEl(part) {
 	return false;
 }
 
+function getEventEl(editor, index) {
+	return $(editor).find("td.eventId").filter((i, node) => {
+		return node.innerText == index;
+	}).parent();
+}
+
 function validateAll() {
 	let errors = [];
 	for (let i in meetData.participants) {
 		const p = meetData.participants[i];
 		const err = validateParticipant(p);
 		const el = getParticipantEl(p);
-		console.log(p);
-		console.log(err);
-		console.log(el);
-		if (err.length > 0) el.classList.add("table-warning");
-		else el.classList.remove("table-warning");
+		const editor = el.nextSibling;
+		$(el).removeClass("table-warning");
+		$(editor).find("tr").removeClass("table-warning");
 		for (let j in err) {
 			const e = err[j];
+
+					console.log(e.value);
+			switch (e.type) {
+				case "invalidTime":
+					getEventEl(editor, e.value.evt.index).addClass("table-warning");
+					break;
+				default:
+					el.classList.add("table-warning");
+			}
 			errors.push(e);
 			
 		}
