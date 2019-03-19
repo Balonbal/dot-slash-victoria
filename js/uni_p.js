@@ -34,7 +34,7 @@ function importMeet(data) {
 				const evt = data.Events.Event[i];
 				const e = {
 					index: parseInt(getNode(evt, "EventNumber")), 
-					distance: getNode(evt, "EventLength"),
+					ance: getNode(evt, "EventLength"),
 					style: getStyle(getNode(evt, "Eventart")), 
 					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
 				}
@@ -64,7 +64,7 @@ function importMeet(data) {
 
 function isTeamEvent(evt) {
 	if (evt.style == "LM") return true;
-	if (evt.distance.match(/\d+\*\d{2,}/)) return true;
+	if (evt.ance.match(/\d+\*\d{2,}/)) return true;
 	return false;
 }
 
@@ -128,7 +128,7 @@ function createUNIP(meetData) {
 
 			params = [
 				evt.index,
-				getEvent(evt.index).distance,
+				getEvent(evt.index).ance,
 				getEvent(evt.index).style,
 				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
 				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
@@ -157,7 +157,7 @@ function fixSex(person) {
 		for (let j in meetData.events) {
 			const candidate = meetData.events[j];
 			if (candidate.sex != person.sex) continue;
-			if (candidate.distance != e.distance) continue;
+			if (candidate.ance != e.ance) continue;
 			if (candidate.style != e.style) continue;
 			e.index = candidate.index;
 			break;
@@ -188,7 +188,7 @@ function getEventString(person) {
 	let s = "";
 	for (let i = 0; i < person.events.length; i++) {
 		const e = person.events[i];
-		s += e.distance + "m " + e.style;
+		s += e.ance + "m " + e.style;
 		if (i != person.events.length -1) s += ", ";
 	}
 	if (s == "") s = "<a href='javascript:void(0)'>Add events...</a>";
@@ -219,10 +219,10 @@ function initEditor(person, table, span) {
 				getT(willSwim, "input").checked = true;
 			}
 		}
-		personEvent = personEvent || { index: e.index, distance: e.distance, style: e.style, min: "00", sec: "00", hun: "00" };
+		personEvent = personEvent || { index: e.index, ance: e.ance, style: e.style, min: "00", sec: "00", hun: "00" };
 		index.innerText = e.index;
 
-		name.innerText = e.distance + "m " + e.style;
+		name.innerText = e.ance + "m " + e.style;
 		
 		getE(time, "min").value = personEvent.min;
 		getE(time, "sec").value = personEvent.sec;
@@ -238,7 +238,7 @@ function initEditor(person, table, span) {
 
 				["min", "sec", "hun"].forEach(function (el) {
 					if (!validateEventTime(personEvent)) {
-						getE(time, el).setCustomValidity("This does not look like a time for " + personEvent.distance + "m " + personEvent.style);
+						getE(time, el).setCustomValidity("This does not look like a time for " + personEvent.ance + "m " + personEvent.style);
 					} else {
 						getE(time, el).setCustomValidity("");
 					}
@@ -589,3 +589,46 @@ window.addEventListener("load", function() {
 	});
 
 });
+
+
+const expectedTimes = {
+	
+	"BF":
+	{
+		"25" : {"min": 10, "max" : 	3600},
+		"50" : {"min": 22 , "max" : 3600	},
+		"100" : {"min": 49 , "max" : 3600	},
+		"200" : {"min": 91 , "max" : 3600	}
+	},
+	"RY":
+	{
+		"25" : {"min": 11 , "max" :	3600},
+		"50" : {"min": 24 , "max" : 3600	},
+		"100" : {"min": 51 , "max" : 3600	},
+		"200" : {"min": 91 , "max" : 3600	}
+
+	},
+	"BR":
+	{
+		"25" : {"min": 12 , "max" :	3600},
+		"50" : {"min": 25 , "max" : 3600	},
+		"100" : {"min": 57, "max" : 3600	},
+		"200" : {"min": 126 , "max" : 3600	}
+	},
+	"FR":
+	{
+		"25" : {"min": 9 , "max" : 3600	},
+		"50" : {"min": 20 , "max" : 3600	},
+		"100" : {"min": 46 , "max" : 3600	},
+		"200" : {"min": 82 , "max" : 3600	},
+		"400" : {"min": 220 , "max" : 3600	},
+		"800" : {"min": 452 , "max" : 3600	},
+		"1500" : {"min": 871 , "max" : 3600	}
+	},
+	"IM":
+	{
+		"100" : {"min": 46 , "max" : 3600	},
+		"200" : {"min": 94 , "max" : 3600	},
+		"400" : {"min": 188 , "max" : 3600	}
+	}
+}
