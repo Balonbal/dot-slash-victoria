@@ -1,10 +1,10 @@
 body{
   background-color: #202020;
-  color: #fff;
+  color: white;
 }
 
 .btn-outline-primary{
-  color: #FFF;
+  color: white;
 }
 
 .btn:disabled{
@@ -12,12 +12,12 @@ body{
 }
 
 .btn-outline-primary:disabled{
-  color: #FFF;
+  color: white;
 }
 
 button, input !important{
   background-color: #202020;
-  color: #FFF;
+  color: white;
   font-size: large;
   font-family: sans-serif;
   text-align: center;
@@ -27,7 +27,7 @@ button, input !important{
 
 input{
   background-color: #333333;
-  color: #FFF;
+  color: white;
   font-size: large;
 	font-family: sans-serif;
 	text-align: center;
@@ -56,25 +56,74 @@ input{
   font-weight: bold;
 }
 
-
 input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:-internal-autofill-previewed, textarea:-internal-autofill-selected, select:-internal-autofill-previewed, select:-internal-autofill-selected {
-    background-color: #202020; !important;
+    background-color: #202020 !important;
     background-image: none !important;
-    color: #FFF !important;
+    color: white !important;
 }
-
-
 
 .form-control{
   background-color: #202020;
-  color: #FFF;
+  color: white;
 }
 
 
 .btn{
-  color: #FFF;
+  color: white;
 }
 
 container {
   background-color: #202020;
+}
+
+th.t{
+color: white;
+}
+
+td.eventName{
+color: white;
+}
+
+td.eventId{
+color: white;
+}
+td{
+color: white;
+}
+
+.personRow:hover, .personRow:hover + .edit, .edit:hover, .teamRow:hover, .teamRow:hover + .edit {
+	background-color: rgba(43,76,125,0.5);
+}
+
+input[type="text"]{
+border-width: 1px;
+border-color: #007bff;
+}
+input[type="number"]{
+border-width: 1px;
+border-color: #007bff;
+}
+select{
+    background-color: #222222;
+    color: white;
+		border-color: #007bff;
+}
+
+input#importFile{
+	border-color: #007bff;
+}
+
+select#importMedley{
+border-color: #007bff;
+
+}
+input#meetName{
+border-color: #007bff;
+
+}
+div#confirmationBody{
+color: black;
+}
+h5#confirmationTitle{
+color: black;
 }

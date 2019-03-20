@@ -44,3 +44,7 @@ input {
 	text-align: center;
 	border-radius: .25rem;
 }
+select{
+    border-width: 1px;
+    border-radius: 1px;
+}
