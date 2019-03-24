@@ -3,12 +3,12 @@
 }
 
 .topper {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  background-color: #404040;
-  color: white;
+  	position: fixed;
+  	left: 0;
+  	top: 0;
+  	width: 100%;
+  	background-color: #404040;
+  	color: white;
 	display: block;
 }
 
@@ -43,4 +43,8 @@ input {
 	font-family: sans-serif;
 	text-align: center;
 	border-radius: .25rem;
+}
+select{
+    	border-width: 1px;
+    	border-radius: 1px;
 }
