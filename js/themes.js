@@ -21,7 +21,7 @@ function setTheme(theme){
     let insertion = STYLE_PREFIX;
     for (i = 0; i < numOfDirsToParent; i++) {
         insertion += "..\\";
-    }   
+    }
     insertion += PATH + theme + ".css\"" + STYLE_SUFFIX;
     // remove the old html style
     document.getElementById("theme-link").remove();
