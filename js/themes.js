@@ -41,6 +41,8 @@ document.getElementById("theme-selector").addEventListener("change",function(){
 
 
 // when document loads check if user has saved themes before.
+
+/*
 document.addEventListener("load", onLoadTheme());
 function onLoadTheme(){
   if(window.localStorage.getItem("theme"))
@@ -48,3 +50,5 @@ function onLoadTheme(){
     setTheme(window.localStorage.getItem("theme"));    
   }
 }
+
+*/

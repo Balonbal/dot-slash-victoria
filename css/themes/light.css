@@ -1,12 +1,12 @@
 /*Light theme. Add only colors to this file*/
 
 body{
-background-color: white;
+    background-color: white;
 }
 
 .topper {
-  	background-color: #404040;
-  	color: white;
+    background-color: #404040;
+    color: white;
 }
 
 .eventTable tr:hover, .personRow:hover{

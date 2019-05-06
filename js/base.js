@@ -8,8 +8,6 @@ const getResource = function (type, name) {
 	return url + "/" + type + "/" + name;
 }
 
-const getImg = function(name) { return getResource("img", name); }
-
 function addLanguage(language) {
 	let text;
 	switch (language) {
@@ -26,7 +24,6 @@ function addLanguage(language) {
 		}).appendTo($(".langList"));
 }
 
-// what does this function do?
 function generateTabBar(base) {
 	let tabMenu = document.createElement("div");
 	tabMenu.classList.add("tabMenu", "navbar");
@@ -117,11 +114,13 @@ function addClickToEdit(element, display, field) {
 }
 
 
-function onLoadBase() {
-	window.alert(1);
+function onLoad() {
 	const tabBars = document.getElementsByClassName("tabBar");
-	for (let i = 0; i < tabBars.length; i++) {
-		generateTabBar(tabBars[i]);
+	for (let i = 0; i < tabBars.length; i++){
+			generateTabBar(tabBars[i]);
+	}
+	if (window.localStorage.getItem("theme"))	{
+		setTheme(window.localStorage.getItem("theme"));    
 	}
 }
 
@@ -188,6 +187,6 @@ function download(filename, text) {
 	document.body.removeChild(element);
 }
 
-$(() => onLoadBase());
-//window.addEventListener("load", onLoadBase);
+$(() => onLoad());
+//window.addEventListener("load", onLoad);
 
