@@ -18,7 +18,7 @@
 }
 
 .selector{
-	font-family: Roboto;
+	font-family: "Roboto","Segoe UI";
 	font-weight: bold;
 	padding: 5px;
 	position: fixed;
@@ -27,9 +27,11 @@
 }
 
 .selector option{
-	font-size: 20px;
-	font-family: Roboto;
-	font-weight: bold;
+	font-size: 20px;	
+	font-family: "Roboto", "Segoe UI";
+	font-weight: 400;
+	text-align: inherit;
+	line-height: 1.5;
 }
 
 input {
@@ -44,7 +46,10 @@ select{
 }
 
 #theme-selector{
-	margin-bottom: auto;
+	margin: 0px;
+	width: 5%;
+	min-width: 150px;
+	top: 4px;
 }
 
 /* UNI_P*/
