@@ -1,36 +1,15 @@
 window.TextEncoder = window.TextDecoder = null;
 // We cannot get the file directley from medley due to browser security issues
 const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
-const themes = [];
+
 const getResource = function (type, name) {
 	let url = window.location.href;
 	url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
 	return url + "/" + type + "/" + name;
 }
+
 const getImg = function(name) { return getResource("img", name); }
 
-function makeThemeList() {
-	addTheme("default");
-	const sheets = $("link");
-	for (let i = 0; i < sheets.length; i++) {	
-		const sheet = sheets[i];
-		if (sheet.relList.contains("alternate")) addTheme(sheet.title);
-	}
-}
-
-function addTheme(name) {
-	if (themes.includes(name)) return;
-	const img = document.createElement("img");
-	img.src = getImg(name == "default" ? "light.png" : name + ".png");
-	img.style.height = "1em";
-
-	$("<a href='javascript:void(0)'></a>")
-		.addClass("dropdown-item")
-		.append(img)
-		.append($("<span>").addClass("t").text("theme_" + name))
-		.on("click", () => setTheme(name))
-		.appendTo($(".themeList"));
-}
 function addLanguage(language) {
 	let text;
 	switch (language) {
@@ -47,28 +26,8 @@ function addLanguage(language) {
 		}).appendTo($(".langList"));
 }
 
-function setTheme(title) {
-	const styleSheets = document.getElementsByTagName("link");
-	for (let i = 0; i < styleSheets.length; i++) {
-		const sheet = styleSheets[i];
-		sheet.disabled = sheet.relList.contains("alternate") && sheet.title != title;
-	}
-	$(".themeText").text(title);
-	storeTheme(title);
-}
-
-function storeTheme(theme) {
-	window.localStorage.setItem("theme", theme);
-}
-
-function loadTheme() {
-	let theme = window.localStorage.getItem("theme");
-	theme = theme || "default";
-	setTheme(theme);
-}
-
+// what does this function do?
 function generateTabBar(base) {
-	
 	let tabMenu = document.createElement("div");
 	tabMenu.classList.add("tabMenu", "navbar");
 	
@@ -157,14 +116,15 @@ function addClickToEdit(element, display, field) {
 	});
 }
 
-function onLoad() {
+
+function onLoadBase() {
+	window.alert(1);
 	const tabBars = document.getElementsByClassName("tabBar");
 	for (let i = 0; i < tabBars.length; i++) {
 		generateTabBar(tabBars[i]);
 	}
-	loadTheme();
-	makeThemeList();
 }
+
 
 function getMedleyMeet(url, callback) {
 	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
@@ -228,6 +188,6 @@ function download(filename, text) {
 	document.body.removeChild(element);
 }
 
-$(() => onLoad());
-//window.addEventListener("load", onLoad);
+$(() => onLoadBase());
+//window.addEventListener("load", onLoadBase);
 

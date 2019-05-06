@@ -1,3 +1,6 @@
+/*Add siza, margin and other non style spesific things in this file*/
+
+/*All files*/
 .hidden {
 	display: none !important;
 }
@@ -7,8 +10,6 @@
   	left: 0;
   	top: 0;
   	width: 100%;
-  	background-color: #404040;
-  	color: white;
 	display: block;
 }
 
@@ -16,15 +17,9 @@
 	border-radius: 5px;
 }
 
-.container{
-
-}
-
 .selector{
 	font-family: Roboto;
-	color: white;
 	font-weight: bold;
-	background-color: #202020;
 	padding: 5px;
 	position: fixed;
 	top: 10px;
@@ -34,7 +29,6 @@
 .selector option{
 	font-size: 20px;
 	font-family: Roboto;
-	background-color: rgba(20,20,20,0.5);
 	font-weight: bold;
 }
 
@@ -47,4 +41,13 @@ input {
 select{
     	border-width: 1px;
     	border-radius: 1px;
+}
+
+#theme-selector{
+	margin-bottom: auto;
+}
+
+/* UNI_P*/
+.eventTime > input {
+	width: 60px;
 }
