@@ -11,7 +11,6 @@ for(i = 0; i < allHrefParts.length; i++){ // loop through the entire loop
 }
 let numOfDirsToParent = hrefParts.length - 2;
 
-
 function setTheme(theme){
     // save settings to users browser.
     window.localStorage.setItem("theme", theme);
@@ -38,17 +37,3 @@ document.getElementById("theme-selector").addEventListener("change",function(){
         setTheme(document.getElementById("theme-selector").value);
     }
 });
-
-
-// when document loads check if user has saved themes before.
-
-/*
-document.addEventListener("load", onLoadTheme());
-function onLoadTheme(){
-  if(window.localStorage.getItem("theme"))
-  {
-    setTheme(window.localStorage.getItem("theme"));    
-  }
-}
-
-*/

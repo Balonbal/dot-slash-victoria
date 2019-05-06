@@ -161,12 +161,9 @@ function getMedleyList(callback) {
 				url: getNode(m, "xmllink"),
 				startDate: new Date(start.substring(0, 4) + "-" + start.substring(4, 6) + "-" + start.substring(6)),
 				endDate: new Date(end.substring(0, 4) + "-" + end.substring(4, 6) + "-" + end.substring(6)),
- 
 			}
-
 			result.push(meet);
 		}
-
 		callback(result);
 	});
 }
@@ -189,4 +186,3 @@ function download(filename, text) {
 
 $(() => onLoad());
 //window.addEventListener("load", onLoad);
-
