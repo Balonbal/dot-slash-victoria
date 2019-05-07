@@ -15,21 +15,13 @@ function numOfDirsToParent(){
 
 function setTheme(theme){
     // save settings to users browser.
-    window.localStorage.setItem("theme", theme);
-    // prepare html style tag
-    const PATH = "css/themes/";
-    const STYLE_PREFIX = "<link id=\"theme-link\" rel=\"stylesheet\" type=\"text/css\" href=\"";
-    const STYLE_SUFFIX = "/>";
-    let insertion = STYLE_PREFIX;
-    for (i = 0; i < numOfDirsToParent(); i++) {
-        insertion += "..\\";
-    }
-    insertion += PATH + theme + ".css\"" + STYLE_SUFFIX;
-    // remove the old html style
-    document.getElementById("theme-link").remove();
-    // insert the new html style
-    document.head.innerHTML += insertion;
-    // change the value of the dropdown theme selector
+    window.localStorage.setItem("theme", theme);    
+    let pathToRoot = "";
+    for (i = 0; i < numOfDirsToParent(); i++){ pathToRoot += "../"; }
+    $(document).ready(function(){
+        $("#theme-link").attr("href", pathToRoot + "css/themes/" + theme + ".css");
+    });
+    
     document.getElementById("theme-selector").value = theme;
 }
 
