@@ -18,9 +18,7 @@ function setTheme(theme){
     window.localStorage.setItem("theme", theme);    
     let pathToRoot = "";
     for (i = 0; i < numOfDirsToParent(); i++){ pathToRoot += "../"; }
-    $(document).ready(function(){
         $("#theme-link").attr("href", pathToRoot + "css/themes/" + theme + ".css");
-    });
     
     document.getElementById("theme-selector").value = theme;
 }
