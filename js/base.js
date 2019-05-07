@@ -4,6 +4,7 @@ const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // F
 const themes = [];
 const getResource = function (type, name) {
 	let url = window.location.href;
+
 	url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
 	return url + "/" + type + "/" + name;
 }

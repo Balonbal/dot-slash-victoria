@@ -52,10 +52,11 @@ const pages = {
 }
 
 function Translator() {
-	let url = window.location.href;	
+	let url = window.location.href; 
 	this.url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
 	this.path = url.substring(this.url.length);
-	this.page = this.path.substring(this.path.lastIndexOf("/") + 1, this.path.lastIndexOf("."));
+	this.page = this.path.substring(this.path.lastIndexOf("/") + 1);
+	if (this.page.indexOf(".") != -1) this.page = this.page.substring(this.page.lastIndexOf("."));
 	this.pages = pages;
 
 	this.LoadTranslation = function(page, language) {
