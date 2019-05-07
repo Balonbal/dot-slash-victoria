@@ -51,8 +51,3 @@ select{
 	min-width: 150px;
 	top: 4px;
 }
-
-/* UNI_P*/
-.eventTime > input {
-	width: 60px;
-}
