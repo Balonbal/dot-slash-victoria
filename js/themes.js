@@ -17,7 +17,7 @@ function setTheme(theme){
     // save settings to users browser.
     window.localStorage.setItem("theme", theme);
     // prepare html style tag
-    const PATH = "css\\themes\\";
+    const PATH = "css/themes/";
     const STYLE_PREFIX = "<link id=\"theme-link\" rel=\"stylesheet\" type=\"text/css\" href=\"";
     const STYLE_SUFFIX = "/>";
     let insertion = STYLE_PREFIX;
