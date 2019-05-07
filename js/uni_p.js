@@ -78,8 +78,8 @@ function hasTeamEvents() {
 
 function updateClubSelection(clubName) {
 	document.getElementById("participantsContainer").classList.remove("hidden");
-	enableTab("participantBar", "participantSingle", false);
-	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
+	tabBarManager.getBar("participantBar").enableTab("participantSingle");
+	if (hasTeamEvents()) tabBarManager.getBar("participantBar").enableTab("participantTeam");
 }
 
 function addClubSelection(clubName) {

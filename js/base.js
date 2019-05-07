@@ -94,30 +94,90 @@ function addLanguage(language) {
 }
 
 
+//--- Tabs ---
 
-function generateTabBar(base) {
-	
-	let tabMenu = document.createElement("div");
-	tabMenu.classList.add("tabMenu", "navbar");
-	
-	const children = base.children;
-	for (let i = 0; i < children.length; i++) {
-		const child = children[i];
-		if (i != 0) child.classList.add("hidden");
-		const button = document.createElement("button");
-		button.addEventListener("click", function () {
-			showTab(base, child);
+function TabBarManager() {
+	this.tabBars = [];
+
+	this.load = function() {
+		const _this = this;
+		$(".tabBar").each(function () {
+			_this.tabBars[this.id] = new TabBar(this);
 		});
-		button.classList.add("t", "btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
-		button.innerText = child.getAttribute("data-text");
-		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
-		button.id = "tabButton" + child.id;
-		tabMenu.appendChild(button);
+	}
+	this.getBar = function (id) {
+		return this.tabBars[id];
 	}
 
-	base.prepend(tabMenu);
+	this.load();
 }
 
+function TabBar(base) {
+	this.root = $(base);
+	this.tabs = [];
+	this.tabButtons = [];
+	this.generate = function() {
+		
+		const tabMenu = $("<div>", {class: "tabMenu navbar"});
+		
+		const _this = this;
+		this.root.children().each(function (i, child) {
+			if (i != 0) child.classList.add("hidden");
+			const disabled = child.getAttribute("data-disabled") == "true";
+			_this.tabButtons[child.id] = $("<button>")
+				.on("click", () => _this.showTab(child.id))
+				.addClass("t btn btn-outline btn-outline-" + (disabled ? "disabled" : "primary"))
+				.text(child.getAttribute("data-text"))
+				.attr("id", "tabButton" + child.id)
+				.attr("disabled", (i == 0 || disabled))
+				.appendTo(tabMenu);
+			_this.tabs[child.id] = $(child);
+		});
+
+		this.root.prepend(tabMenu);
+	}
+
+	this.enableTab = function(tabName) {
+		this.tabButtons[tabName]
+			.removeClass("btn-outline-disabled")
+			.addClass("btn-outline-primary")
+			.attr("disabled", false);
+	}
+
+	this.showTab = function(tab) {
+		//Keep first child (the button bar) visible
+		this.root.children(":not(:first-child)").addClass("hidden");
+		this.tabs[tab].removeClass("hidden");
+	}
+
+	//Generate on creation
+	this.generate();
+}
+
+
+function showTab(tabs, tab, disableTabs = true) {
+	const children = tabs.children;
+	for (let i = 1; i < children.length; i++) {
+		const child = children[i];
+		const visible = child == tab;
+		if (visible) {
+			child.classList.remove("hidden");
+		} else {
+			child.classList.add("hidden");
+		}
+	}
+
+	if (!disableTabs) return;
+	//Update button styles
+	const buttons = children[0].children;
+	for (let i = 0; i < buttons.length; i++) {
+		const button = buttons[i];
+		const active = button.innerText == tab.getAttribute("data-text");
+		button.disabled = active;
+	}
+}
+
+// --- Modal ---
 function showModal(id, body, cb_confirm, cb_cancel, options) {
 	options = options || {};
 	cb_cancel = cb_cancel || function() {};
@@ -143,34 +203,7 @@ function showModal(id, body, cb_confirm, cb_cancel, options) {
 	return modal;
 }	
 
-function enableTab(barName, tabName) {
-	const button = document.getElementById("tabButton" + tabName);
-	button.classList.remove("btn-outline-disabled");
-	button.classList.add("btn-outline-primary");
-	button.disabled = false;
-}
 
-function showTab(tabs, tab, disableTabs = true) {
-	const children = tabs.children;
-	for (let i = 1; i < children.length; i++) {
-		const child = children[i];
-		const visible = child == tab;
-		if (visible) {
-			child.classList.remove("hidden");
-		} else {
-			child.classList.add("hidden");
-		}
-	}
-
-	if (!disableTabs) return;
-	//Update button styles
-	const buttons = children[0].children;
-	for (let i = 0; i < buttons.length; i++) {
-		const button = buttons[i];
-		const active = button.innerText == tab.getAttribute("data-text");
-		button.disabled = active;
-	}
-}
 
 function addClickToEdit(element, display, field) {
 	element.addEventListener("click", function() {
@@ -185,12 +218,10 @@ function addClickToEdit(element, display, field) {
 	});
 }
 
+let tabBarManager, themeManager;
 function onLoad() {
-	const tabBars = document.getElementsByClassName("tabBar");
-	for (let i = 0; i < tabBars.length; i++) {
-		generateTabBar(tabBars[i]);
-	}
-	const themeManager = new ThemeManager();
+	tabBarManager = new TabBarManager();
+	themeManager = new ThemeManager();
 }
 
 function getMedleyMeet(url, callback) {
