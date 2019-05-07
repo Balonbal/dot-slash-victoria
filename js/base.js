@@ -1,7 +1,13 @@
+// Clear javascript text encoder to allow for leacy encoding options (ISO-8859)
 window.TextEncoder = window.TextDecoder = null;
-// We cannot get the file directley from medley due to browser security issues
+// We cannot get the file directly from medley due to browser security issues
 const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
-const themes = [];
+
+//Debug on local files
+const debug = window.location.href.indexOf("file:///") != -1;
+const base_url = debug ? "" : "https://balonbal.github.io/dot-slash-victoria";
+
+//TODO Replace with a const url
 const getResource = function (type, name) {
 	let url = window.location.href;
 	url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
@@ -9,28 +15,68 @@ const getResource = function (type, name) {
 }
 const getImg = function(name) { return getResource("img", name); }
 
-function makeThemeList() {
-	addTheme("default");
-	const sheets = $("link");
-	for (let i = 0; i < sheets.length; i++) {	
-		const sheet = sheets[i];
-		if (sheet.relList.contains("alternate")) addTheme(sheet.title);
+// --- Themes ---
+function ThemeManager() {
+	this.theme = "default";
+	this.makeThemeList = function() {
+		this.addThemeToList("default");
+		//Check all included stylesheets
+		const sheets = $("link");
+		for (let i = 0; i < sheets.length; i++) {	
+			const sheet = sheets[i];
+			if (sheet.relList.contains("alternate")) this.addThemeToList(sheet.title);
+		}
 	}
+	this.addThemeToList = function(name) {
+		const img = $("<img>", {
+			src: getImg(name == "default" ? "light.png" : name + ".png"),
+			style: "height: 1em",
+			alt: name,
+		});
+		const themeText = $("<span>", {
+			classList: ["t"],
+			text: "theme_" + name,
+		});
+
+		$("<a>")
+			.attr("href", "javascript:void(0)")
+			.addClass("dropdown-item")
+			.append(img)
+			.append(themeText)
+			.on("click", () => this.set(name))
+			.appendTo($(".themeList"));
+	}
+	
+
+	this.set = function(name) {
+		const styleSheets = $("link");
+		for (let i = 0; i < styleSheets.length; i++) {
+			const sheet = styleSheets[i];
+			sheet.disabled = sheet.relList.contains("alternate") && sheet.title != name;
+		}
+		$(".themeText").text(name);
+		this.theme = name;
+		this.save();
+	}
+
+	this.save = function() {
+		window.localStorage.setItem("theme", this.theme);
+	}
+
+	this.load = function() {
+		let theme = window.localStorage.getItem("theme");
+		theme = theme || "default";
+		this.set(theme);
+	}
+	//Try load on creation, without explicit calling
+	this.makeThemeList();
+	this.load();
 }
 
-function addTheme(name) {
-	if (themes.includes(name)) return;
-	const img = document.createElement("img");
-	img.src = getImg(name == "default" ? "light.png" : name + ".png");
-	img.style.height = "1em";
 
-	$("<a href='javascript:void(0)'></a>")
-		.addClass("dropdown-item")
-		.append(img)
-		.append($("<span>").addClass("t").text("theme_" + name))
-		.on("click", () => setTheme(name))
-		.appendTo($(".themeList"));
-}
+
+
+// --- Translations ---
 function addLanguage(language) {
 	let text;
 	switch (language) {
@@ -47,25 +93,7 @@ function addLanguage(language) {
 		}).appendTo($(".langList"));
 }
 
-function setTheme(title) {
-	const styleSheets = document.getElementsByTagName("link");
-	for (let i = 0; i < styleSheets.length; i++) {
-		const sheet = styleSheets[i];
-		sheet.disabled = sheet.relList.contains("alternate") && sheet.title != title;
-	}
-	$(".themeText").text(title);
-	storeTheme(title);
-}
 
-function storeTheme(theme) {
-	window.localStorage.setItem("theme", theme);
-}
-
-function loadTheme() {
-	let theme = window.localStorage.getItem("theme");
-	theme = theme || "default";
-	setTheme(theme);
-}
 
 function generateTabBar(base) {
 	
@@ -162,8 +190,7 @@ function onLoad() {
 	for (let i = 0; i < tabBars.length; i++) {
 		generateTabBar(tabBars[i]);
 	}
-	loadTheme();
-	makeThemeList();
+	const themeManager = new ThemeManager();
 }
 
 function getMedleyMeet(url, callback) {
