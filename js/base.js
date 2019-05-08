@@ -155,28 +155,6 @@ function TabBar(base) {
 }
 
 
-function showTab(tabs, tab, disableTabs = true) {
-	const children = tabs.children;
-	for (let i = 1; i < children.length; i++) {
-		const child = children[i];
-		const visible = child == tab;
-		if (visible) {
-			child.classList.remove("hidden");
-		} else {
-			child.classList.add("hidden");
-		}
-	}
-
-	if (!disableTabs) return;
-	//Update button styles
-	const buttons = children[0].children;
-	for (let i = 0; i < buttons.length; i++) {
-		const button = buttons[i];
-		const active = button.innerText == tab.getAttribute("data-text");
-		button.disabled = active;
-	}
-}
-
 // --- Modal ---
 function showModal(id, body, cb_confirm, cb_cancel, options) {
 	options = options || {};
