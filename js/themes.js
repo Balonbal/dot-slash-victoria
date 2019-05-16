@@ -15,7 +15,6 @@ function setTheme(theme) {
 
 // drop down menu change listener
 $('#theme-selector').change(function () {
-    console.log('theme change detected! ' + $('#theme-selector').val());
     if ($('#theme-selector')) {
       setTheme($('#theme-selector').val());
     }
