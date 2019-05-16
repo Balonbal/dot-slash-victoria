@@ -1,3 +1,6 @@
+/*Add size, margin and other non-style spesific things in this file*/
+
+/*All files*/
 .hidden {
 	display: none !important;
 }
@@ -24,8 +27,6 @@ footer {
   	left: 0;
   	top: 0;
   	width: 100%;
-  	background-color: #404040;
-  	color: white;
 	display: block;
 }
 
@@ -33,15 +34,9 @@ footer {
 	border-radius: 5px;
 }
 
-.container{
-
-}
-
 .selector{
-	font-family: Roboto;
-	color: white;
+	font-family: "Roboto","Segoe UI";
 	font-weight: bold;
-	background-color: #202020;
 	padding: 5px;
 	position: fixed;
 	top: 10px;
@@ -49,10 +44,11 @@ footer {
 }
 
 .selector option{
-	font-size: 20px;
-	font-family: Roboto;
-	background-color: rgba(20,20,20,0.5);
-	font-weight: bold;
+	font-size: 20px;	
+	font-family: "Roboto", "Segoe UI";
+	font-weight: 400;
+	text-align: inherit;
+	line-height: 1.5;
 }
 
 input {
@@ -65,4 +61,12 @@ input {
 select{
     	border-width: 1px;
     	border-radius: 1px;
+
+}
+
+#theme-selector{
+	margin: 0px;
+	width: 5%;
+	min-width: 150px;
+	top: 4px;
 }

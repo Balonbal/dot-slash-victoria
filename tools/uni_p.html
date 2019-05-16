@@ -14,19 +14,18 @@
 		<script type="text/javascript" src="../js/xmlParser.js"></script>
 		<script type="text/javascript" src="../js/translations.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/base.css"></link>
-		<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
+		<link rel="stylesheet" type="text/css" href="../css/tools/uni_p.css"></link>
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
-		<link rel="alternate stylesheet" type="text/css" href="../css/dark.css" title="dark">
+		<link id="theme-link-dark" rel="stylesheet" href="../css/themes/dark.css">
+		<link id="theme-link-light" rel="alternate stylesheet" href="../css/themes/light.css">
 	</head>
 	<body>
 		<nav class="navbar navbar-dark bg-primary">
 			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
-			<div class="btn-group dropdown">
-				<button class="btn btn-secondary dropdown-toggle" type="button" id="themeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="t">Theme:</span> <span class="themeText"></span>
-				</button>
-				<div class="themeList dropdown-menu" aria-labelledby="themeDropdown"></div>
-			</div>
+			<select class="selector btn-group form-control" name="" id="theme-selector">
+				<option value="dark">Dark theme</option>
+				<option value="light">Light theme</option>
+	        </select>
 			<div class="btn-group dropleft">
 				<button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span class="t">Language:</span> <span class="languageText"></span>
@@ -197,4 +196,5 @@
 			</tr>
 		</template>
 	</body>
+	<script type="text/javascript" src="../js/themes.js"></script>
 </html>

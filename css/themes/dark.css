@@ -1,0 +1,70 @@
+/*Dark theme. Add only colors to this file*/
+
+/* All Files */
+body {
+    background-color: #222222;
+}
+h1, h2, h3, h4, h5, h6, h7, h8, h9, i, label{
+    color: white;
+}
+
+select#theme-selector{
+    background-color: #222222;
+    color: white;
+}
+
+.topper {
+    background-color: #404040;
+    color: white;
+}
+
+.theme-selector{
+    color: white;
+    background-color: #202020;
+}
+
+.theme-selector option{
+    background-color: rgba(20,20,20,0.5);
+}
+
+/*Language selector:*/
+.dropdown-menu{
+    background-color: #333333;
+}
+.dropdown-item:hover{
+    background-color: #336699;
+}
+
+/*Tools*/
+
+.list-group-item{
+    background-color: #555555;
+}
+a{
+    color: white;
+}
+
+.list-group-item:hover, a:hover{
+    background-color: #336699;
+    color: white;
+}
+
+/*UNI_P*/
+
+.eventTable tr:hover, .personRow:hover{
+    background-color: #336699;
+}
+
+.modal-content{
+    background-color: #333333;
+}
+div#confirmationBody{
+    color: white;
+}
+span{
+    color: white;
+}
+
+th.t, td.eventId, td.eventName, td{
+    color: white;
+}
