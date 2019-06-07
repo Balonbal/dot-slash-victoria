@@ -413,6 +413,7 @@ window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
 	document.getElementById("makeUnip").addEventListener("click", function() {
+
 		const unip = createUNIP(meetData);
 		download("uni_p-" + meetData.name + "_" + club + ".txt", unip);
 	});
@@ -433,8 +434,10 @@ window.addEventListener("load", function() {
 	});
 	document.getElementById("addClub").addEventListener("click", function() {
 		addClubSelection(document.getElementById("clubName").value);
-		document.getElementById("clubSelection").classList.remove("hidden");
+		// document.getElementById("clubSelection").classList.remove("hidden");
+		$("#clubSelection").removeClass("hidden");
 		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
+		$("#clubSelection").hide();
 	});
 	document.getElementById("importMedley").addEventListener("click", function() {
 		if (typeof allMeets == "undefined") {
