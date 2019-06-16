@@ -196,7 +196,7 @@ function initEditor(person, table, span) {
 
 	for (let i in meetData.events) {
 		const e = meetData.events[i];
-		if (e.sex != person.sex) continue;
+		if (e.sex != "Mix" && e.sex != person.sex) continue;
 		if (isTeamEvent(e) ^ person.team) continue;
 
 		const node = document.importNode(t.content, true);
