@@ -35,7 +35,7 @@ function importMeet(data) {
 				const e = {
 					index: parseInt(getNode(evt, "EventNumber")), 
 					distance: getNode(evt, "EventLength"),
-					style: getStyle(getNode(evt, "Eventart")), 
+					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")), 
 					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
 				}
 				meet.events.push(e);
