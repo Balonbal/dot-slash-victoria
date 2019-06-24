@@ -1,8 +1,22 @@
+const (
+	SEX_MALE = "M",
+	SEX_FEMALE = "K",
+	SEX_MIX = "Mix"
+)
+
+
 function Event(index, distance, style, sex) {
 	this.index = index;
 	this.distance = distance;
 	this.style = style;
 	this.sex = sex;
+	this.isTeamEvent = function () {
+		// Team Medley
+		if (evt.style == "LM") return true;
+		// e.g 4x25, 7x150 etc
+		if (evt.distance.match(/\d+\*\d{2,}/)) return true;
+		return false;
+	}
 }
 	
 function Meet(name = "", events = [], participants = []) {
@@ -14,6 +28,22 @@ function Meet(name = "", events = [], participants = []) {
 	}
 	this.addEvent = function(evt) {
 		this.events.push(evt);
+	}
+	this.hasTeamEvents = function() {
+		for (let e in this.events) {
+			if (this.events[e].isTeamEvent()) return true;
+		}
+		return false;
+	}
+	this.findEvent = function(style, distance, sex) {
+		for (let e in this.events) {
+			const evt = this.events[e];
+			if (evt.style != style) continue;
+			if (evt.distance != distance) continue;
+			if (evt.sex != sex) continue;
+			return evt;
+		}
+		return false;
 	}
 }
 
@@ -69,7 +99,6 @@ function MeetManager() {
 			if (typeof index == "undefined") index = this.meets.push(meet) - 1;
 			else this.meets[index] = meet;
 
-			console.log(meet);
 			return meet;
 		} catch (e) {
 
@@ -101,7 +130,6 @@ function MeetManager() {
 			}, change: () => {
 				if (selector.val() == "invalid") return;
 				_this.importMedleyMeet(parseInt(selector.val()), (meet) => {
-					console.log(meet);
 					if (!meet) return;
 					_this.showMeet(meet);
 				});
@@ -110,61 +138,53 @@ function MeetManager() {
 	}
 }
 
-
-let club;
-
-function importMeet(data) {
-	const changeMeet = function(data) {
-		try {
-			const meet = {
-				name: getNode(data, "MeetName"),
-				events: [],
-				participants: [],
-			}
-			for (let i in data.Events.Event) {
-				const evt = data.Events.Event[i];
-				const e = {
-					index: parseInt(getNode(evt, "EventNumber")), 
-					distance: getNode(evt, "EventLength"),
-					style: getStyle(getNode(evt, "Eventart")), 
-					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
-				}
-				meet.events.push(e);
-			}
-			//Successful import
-			meetData = meet;
-
-			$(".personRow, .teamRow, .edit").remove();
-			document.getElementById("noMeet").classList.add("hidden");
-			document.getElementById("clubSettings").classList.remove("hidden");
-			document.getElementById("meetName").value = meetData.name;
-
-		} catch (e) { console.log(e) };
-
+function Club(name) {
+	this.name = name;
+	this.participants = [];
+	this.addParticipant = function (p) {
+		this.participants.push(p);
 	}
-	if (meetData.participants.length != 0) {
-		showModal("confirmationBox", 
-			document.createTextNode("You have entered participants to the selected meet, are you sure you want to change meet? All unsaved data will be discarded."),
-			function () { changeMeet(data); },
-			function () {},
-			{ header: "Are you sure you want to change meet?" });
-	} else {
-		changeMeet(data);
+	this.serialize = function () {
+		let string = "";
+		for (let p in this.participants) {
+			string += this.participants[p].serialize();
+		}
+
+		return string;
 	}
 }
 
-function isTeamEvent(evt) {
-	if (evt.style == "LM") return true;
-	if (evt.distance.match(/\d+\*\d{2,}/)) return true;
-	return false;
-}
+function Participant(name, team = false, sex = SEX_MALE) {
+	this.name = name;
+	this.team = team;
+	this.sex = sex;
+	this.events = [];
 
-function hasTeamEvents() {
-	for (let i in meetData.events) {
-		const e = meetData.events[i];
-		if (isTeamEvent(e)) return true;
+	this.serialize = function () {
+		let string = "";
+		//TODO
+		return string;
 	}
-	return false;
+	this.participate = function (evt) {
+		this.events.push(evt);
+	}
+	this.correctSex = function (sex, meet) {
+		this.sex = sex;
+		if (sex != SEX_MALE && sex != SEX_FEMALE) return;
+		for (let e in this.events) {
+			const evt = this.events[e];
+			if (evt.sex == sex) continue;
+			if (evt.sex == SEX_MIX) continue;
+			const correctEvent = meet.findEvent(evt.style, evt.distance, sex);
+			if (!correctEvent) {
+				//TODO display error
+				console.log("[uni_p:Participant/correctSex] Event corresponding to " + evt + " not found for sex " + sexx + ", keeping old");
+				continue;
+			}
+			this.events[e] = correctEvent;
+		}
+	}
+	
 }
 
 function updateClubSelection(clubName) {
@@ -528,6 +548,6 @@ $(() => {
 	document.getElementById("addClub").addEventListener("click", function() {
 		addClubSelection(document.getElementById("clubName").value);
 		document.getElementById("clubSelection").classList.remove("hidden");
-		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
+		tabBarManager.getBar("participantBar").showTab("participantSingle");
 	});
 });
