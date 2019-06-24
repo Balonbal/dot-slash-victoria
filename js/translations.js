@@ -126,7 +126,7 @@ function Translator() {
 				index = findNode(nodes[i], this.nodes);
 			}
 			const trans = this.getTranslation(this.nodes[index].key);	
-			return trans !== false ? trans : this.nodes[i].key;
+			return trans !== false ? trans : this.nodes[index].key;
 		});
 	}
 }
