@@ -59,8 +59,8 @@
 					<label for="importFile" class="col-4 t">Import from XML</label>
 					<input type="file" accept=".xml" class="form-control-file col-8" id="importFile"/>
 				</div>
-				
-				
+
+
 				<div class="form-group row">
 					<label for="importMedley" class="col-4 t">Import from medley.no</label>
 					<select id="importMedley" class="form-control col-8"></select>
@@ -138,6 +138,35 @@
 			<div id="individualsSummary"></div>
 			<button id="makeUnip" class="btn btn-primary btn-lg t">Make uni_p.txt</button>
 		</div>
+
+		<!-- Errors banners start -->
+		<div class="errorContainer">
+			<section id="errorContent">
+				<div class="container" id="noMeet">
+					<div class="alert alert-danger t">You have not yet selected a meet.</div>
+				</div>
+				<div class="container" id="noAthleetes" style="display: none;">
+					<div class="alert alert-danger t">No athletes are registered for the meet</div>
+				</div>
+				<div class="container" id="noTeams" style="display: none;">
+					<div class="alert alert-warning t">No relay teams are registered for the meet</div>
+				</div>
+				<div class="container" id="noTimeIndividual" style="display: none;">
+					<div class="alert alert-warning t">No qualification time registered for athlete</div>
+				</div>
+				<div class="container" id="noTimeTeam" style="display: none;">
+					<div class="alert alert-warning t">No qualification time registered for relayTeam</div>
+				</div>
+				<div class="container" id="invalidQualificationTimeHigh" style="display: none;">
+					<div class="alert alert-warning t">Qualification time is too high</div>
+				</div>
+
+				<div class="container" id="invalidQualificationTimeLow" style="display: none;">
+					<div class="alert alert-warning t">Qualification time is to low</div>
+				</div>
+			</section>
+		</div>
+		<!-- Error banners end -->
 
 		<!-- Templates -->
 		<!-- Single participant -->
