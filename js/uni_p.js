@@ -411,7 +411,7 @@ function appendParticipant(person) {
 
 
 
-function updateErrorsAndWarnings(){
+function validate(){
 	/* check for errors first and enable make UNI_p file
 	 after error checks are complete, check for warnings
 	 write DONE if front of each point when they are implemented
