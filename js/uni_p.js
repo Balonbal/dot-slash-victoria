@@ -409,15 +409,17 @@ function appendParticipant(person) {
 	if (translator) translator.Translate();
 }
 
+
+
 function updateErrorsAndWarnings(){
 	/* check for errors first and enable make UNI_p file
 	 after error checks are complete, check for warnings
 	 write DONE if front of each point when they are implemented
 
 	 Errors:
-	 - no meet selected
-	 - club name is not set
-	 - No Athlete or no relay Teams are registered correctlly
+	 - DONE: no meet selected
+	 - DONE: club name is not set
+	 - DONE:  No Athlete or no relay Teams are registered correctlly
 	 - Athlete has no name and are active
 	 - relay team has no name and are active
 	 - qualification time is too low (world record or something like that)
@@ -436,9 +438,36 @@ function updateErrorsAndWarnings(){
 	 - No Teams are registered though individual athletes are registered
 	 - No individual athletes are registered though relay teams are registered
 	 - Relay team's name does not follow recomended naming convention (might create a duplicate in JechSoft Victoria)
-
-
 	 */
+
+	 // declaration of a global variable control
+	 window.control = {
+	 	'error': [],
+	 	'warning': [],
+	 	'info':[]
+	 };
+
+if(meetData.name == undefined){
+	control.error.push("No meet selected. Select a meet in Meet Details.");
+};
+if(meetData.clubName == undefined){
+	control.error.push("No club name defined. Select a club name in Club Settings.");
+};
+if(!meetData.participants.length){
+	control.error.push("No participants are registered for the meet. Make sure 'will swim checkbox are checked'.");
+};
+
+for(i = 0; i < meetData.participants.length; i++){
+	// if participant is a relay team, skip checking.
+	if(meetData.participants[i].team){
+		continue;
+	};
+	// for every individual athlete check if there is at least one space in the name
+	if((meetData.participants[i].name.split(" ").length - 1) < 1){
+		control.warning.push("One of athletes is registered without first name or last name.");
+	};
+};
+
 };
 
 window.addEventListener("load", function() {
