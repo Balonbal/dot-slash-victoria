@@ -33,6 +33,7 @@ function importMeet(data) {
 			for (let i in data.Events.Event) {
 				const evt = data.Events.Event[i];
 				const e = {
+
 					index: parseInt(getNode(evt, "EventNumber")),
 					distance: getNode(evt, "EventLength"),
 					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")),
@@ -83,6 +84,10 @@ function updateClubSelection(clubName) {
 }
 
 function addClubSelection(clubName) {
+	if (clubInList(clubName)) {
+		updateClubSelection(clubName);
+		return;
+	}
 	const node = document.createElement("option");
 	node.selected = true;
 	node.innerText = clubName;
@@ -175,6 +180,7 @@ function setFields(node, value) {
 
 function colChangeListener(node, func, type) {
 	type = type || "input";
+	getT(node, type).addEventListener("input", func);
 	getT(node, type).addEventListener("change", func);
 	getT(node, type).addEventListener("keyup", func);
 }
@@ -230,6 +236,14 @@ function initEditor(person, table, span) {
 				if (value > 59 && name != "hun") value = 59;
 				if (value > 99) value = 99;
 				value = (value < 10 ? "0" : "") + value;
+
+				["min", "sec", "hun"].forEach(function (el) {
+					if (!validateEventTime(personEvent)) {
+						getE(time, el).setCustomValidity("This does not look like a time for " + personEvent.distance + "m " + personEvent.style);
+					} else {
+						getE(time, el).setCustomValidity("");
+					}
+				});
 				getE(time, name).value = value;
 				personEvent[name] = value;
 				getT(willSwim, "input").checked = true;
@@ -243,6 +257,7 @@ function initEditor(person, table, span) {
 					if (name == "min") getE(time, "sec").focus();
 					if (name == "sec") getE(time, "hun").focus();
 					getE(time, name).blur();
+					func();
 				}
 			}
 			const focus = function () {
@@ -381,6 +396,12 @@ function appendParticipant(person) {
 
 	colChangeListener(age, function () {
 		person.birthYear = getT(age, "input").value;
+		const valid = validateAge(person.birthYear);
+		if (valid !== true) {
+			getT(age, "input").setCustomValidity(valid.error);
+		} else {
+			getT(age, "input").setCustomValidity("");
+		}
 	});
 
 
@@ -409,17 +430,14 @@ function appendParticipant(person) {
 	if (translator) translator.Translate();
 }
 
-
-
-function validate(){
 	/* check for errors first and enable make UNI_p file
 	 after error checks are complete, check for warnings
 	 write DONE if front of each point when they are implemented
 
 	 Errors:
-	 - DONE: no meet selected
-	 - DONE: club name is not set
-	 - DONE:  No Athlete or no relay Teams are registered correctlly
+	 - no meet selected
+	 - club name is not set
+	 - No Athlete or no relay Teams are registered correctlly
 	 - Athlete has no name and are active
 	 - relay team has no name and are active
 	 - qualification time is too low (world record or something like that)
@@ -440,35 +458,98 @@ function validate(){
 	 - Relay team's name does not follow recomended naming convention (might create a duplicate in JechSoft Victoria)
 	 */
 
-	 // declaration of a global variable control
-	 window.control = {
-	 	'error': [],
-	 	'warning': [],
-	 	'info':[]
-	 };
+function validateTeamName(name) {
+	return name.length > 1;
+}
 
-if(meetData.name == undefined){
-	control.error.push("No meet selected. Select a meet in Meet Details.");
-};
-if(meetData.clubName == undefined){
-	control.error.push("No club name defined. Select a club name in Club Settings.");
-};
-if(!meetData.participants.length){
-	control.error.push("No participants are registered for the meet. Make sure 'will swim checkbox are checked'.");
-};
+function validatePersonName(name) {
+	if (name.length < 3) return {error: "Too short", value: name};
+	if (!name.match(/^(.+) (.+)$/)) return {error: "notTwoNames", value: name};
+	return true;
+}
 
-for(i = 0; i < meetData.participants.length; i++){
-	// if participant is a relay team, skip checking.
-	if(meetData.participants[i].team){
-		continue;
-	};
-	// for every individual athlete check if there is at least one space in the name
-	if((meetData.participants[i].name.split(" ").length - 1) < 1){
-		control.warning.push("One of athletes is registered without first name or last name.");
-	};
-};
+function validateAge(age) {
+	const i = parseInt(age);
+	if (!i) return {error: "NaN", value: age};
+	const year = new Date().getFullYear();
+	if (year - i < 5) return {error: "tooYoung", value: year-i};
+	if (year - i >120) return {error: "tooOld", value: year-i};
+	return true;
+}
 
-};
+function validateEventTime(evt) {
+	if (evt.min == "00" && evt.sec == "00" && evt.hun == "00") return true;
+
+	//TODO add plausable time range for events
+	return false;
+}
+
+function validateParticipant(participant) {
+	let errors = [];
+	const nameValid = participant.team ? validateTeamName(participant.name) : validatePersonName(participant.name);
+	const ageValid = participant.team ? true : validateAge(participant.birthYear);
+	if (nameValid !== true) errors.push({error: nameValid.error, value: participant});
+	if (ageValid !== true) errors.push({error: ageValid.error, value: participant});
+	for (let i in participant.events) {
+		const evt = participant.events[i];
+		if (!validateEventTime(evt)) errors.push({type:"invalidTime", value: {participant: participant, evt: evt}});
+	}
+
+	return errors;
+}
+
+function clubInList(club) {
+	return ($("#" + club).filter(function() {
+		return $(this).text().toLowerCase() == club.toLowerCase()
+	})).length != 0;
+}
+
+function validateClub() {
+	if (club.length < 1) return {error: "tooShort", value: club};
+	return true;
+}
+
+function getParticipantEl(part) {
+	const els = document.getElementsByClassName(part.team ? "teamRow" : "personRow");
+	for (let i in els) {
+		const e = els[i];
+		if (getT(getE(e, "personName"), "input").value != part.name) continue;
+		if (getT(getE(e, "age"), "input").value != part.birthYear) continue;
+		return e;
+	}
+	return false;
+}
+
+function getEventEl(editor, index) {
+	return $(editor).find("td.eventId").filter((i, node) => {
+		return node.innerText == index;
+	}).parent();
+}
+
+function validateAll() {
+	let errors = [];
+	for (let i in meetData.participants) {
+		const p = meetData.participants[i];
+		const err = validateParticipant(p);
+		const el = getParticipantEl(p);
+		const editor = el.nextSibling;
+		$(el).removeClass("table-warning");
+		$(editor).find("tr").removeClass("table-warning");
+		for (let j in err) {
+			const e = err[j];
+
+					console.log(e.value);
+			switch (e.type) {
+				case "invalidTime":
+					getEventEl(editor, e.value.evt.index).addClass("table-warning");
+					break;
+				default:
+					el.classList.add("table-warning");
+			}
+			errors.push(e);
+		}
+	}
+}
 
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
@@ -488,11 +569,39 @@ window.addEventListener("load", function() {
 		reader.readAsText(file);
 
 	});
+	const clubs = [];
+	$("#activeClub").on("click", () => {
+		if (clubs.length == 0) {
+			const dummy = $("<option>")
+				.text("Fetching...")
+				.val("-1")
+				.attr("selected", "selected")
+				.appendTo("#activeClub");
+			getClubList(function (cs) {
+				for (let i in cs) {
+					const c = cs[i];
+					$("<option>")
+						.text(c)
+						.val(c)
+						.appendTo($("#activeClub"));
+					clubs.push(c);
+				}
+				dummy.text("-- Select one --");
+			});
+		}
+
+	});
 	document.getElementById("activeClub").addEventListener("change", function() {
 		club = document.getElementById("activeClub").value;
+		if (club == "-1") return;
 		updateClubSelection(club);
 	});
+	$("#showAddClub").on("click", () => {
+		$("#showAddClub").addClass("hidden");
+		$("#setClubName").removeClass("hidden");
+	});
 	document.getElementById("addClub").addEventListener("click", function() {
+		clubs.push($("#clubName").val);
 		addClubSelection(document.getElementById("clubName").value);
 		document.getElementById("clubSelection").classList.remove("hidden");
 		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
@@ -518,4 +627,47 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 	});
+
 });
+
+
+const expectedTimes = {
+	"BF":
+	{
+		"25" : { "min" : 10, "max" : 3600 },
+		"50" : { "min" : 22 , "max" : 3600 },
+		"100" : { "min" : 49 , "max" : 3600 },
+		"200" : { "min" : 91 , "max" : 3600 }
+	},
+	"RY":
+	{
+		"25" : { "min" : 11 , "max" : 3600 },
+		"50" : { "min" : 24 , "max" : 3600 },
+		"100" : { "min" : 51 , "max" : 3600 },
+		"200" : { "min" : 91 , "max" : 3600 }
+
+	},
+	"BR":
+	{
+		"25" : {"min" : 12 , "max" :	3600 },
+		"50" : {"min" : 25 , "max" : 3600 },
+		"100" : {"min" : 57, "max" : 3600 },
+		"200" : {"min" : 126 , "max" : 3600 }
+	},
+	"FR":
+	{
+		"25" : {"min" : 9 , "max" : 3600	},
+		"50" : {"min" : 20 , "max" : 3600 },
+		"100" : {"min" : 46 , "max" : 3600 },
+		"200" : {"min" : 82 , "max" : 3600 },
+		"400" : {"min" : 220 , "max" : 3600 },
+		"800" : {"min" : 452 , "max" : 3600 },
+		"1500" : {"min" : 871 , "max" : 3600 }
+	},
+	"IM":
+	{
+		"100" : {"min" : 46 , "max" : 3600 },
+		"200" : {"min" : 94 , "max" : 3600 },
+		"400" : {"min" : 188 , "max" : 3600 }
+	}
+}
