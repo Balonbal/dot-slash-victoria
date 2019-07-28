@@ -47,6 +47,7 @@ function importMeet(data) {
 			document.getElementById("noMeet").classList.add("hidden");
 			document.getElementById("clubSettings").classList.remove("hidden");
 			document.getElementById("meetName").value = meetData.name;
+			$("#meetDetailsTitle").html(meetData.name);
 
 		} catch (e) { console.log(e) };
 
@@ -77,7 +78,6 @@ function hasTeamEvents() {
 }
 
 function updateClubSelection(clubName) {
-		// document.getElementById("participantsContainer").classList.remove("hidden");
 	$("#participantsContent").fadeIn();
 	enableTab("participantBar", "participantSingle", false);
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
@@ -455,6 +455,7 @@ window.addEventListener("load", function() {
 		});
 		reader.readAsText(file);
 		showSectionClub();
+
 	});
 	document.getElementById("activeClub").addEventListener("change", function() {
 		club = document.getElementById("activeClub").value;
@@ -463,6 +464,7 @@ window.addEventListener("load", function() {
 	document.getElementById("addClub").addEventListener("click", function() {
 		if(!$("#clubName").val()){return;};
 		addClubSelection($("#clubName").val());
+		$("#clubSettingsTitle").html($("#clubName").val());
 		showSectionParticipants();
 		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 	});
