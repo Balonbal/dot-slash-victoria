@@ -33,9 +33,9 @@ function importMeet(data) {
 			for (let i in data.Events.Event) {
 				const evt = data.Events.Event[i];
 				const e = {
-					index: parseInt(getNode(evt, "EventNumber")), 
+					index: parseInt(getNode(evt, "EventNumber")),
 					distance: getNode(evt, "EventLength"),
-					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")), 
+					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")),
 					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
 				}
 				meet.events.push(e);
@@ -52,7 +52,7 @@ function importMeet(data) {
 
 	}
 	if (meetData.participants.length != 0) {
-		showModal("confirmationBox", 
+		showModal("confirmationBox",
 			document.createTextNode("You have entered participants to the selected meet, are you sure you want to change meet? All unsaved data will be discarded."),
 			function () { changeMeet(data); },
 			function () {},
@@ -77,7 +77,8 @@ function hasTeamEvents() {
 }
 
 function updateClubSelection(clubName) {
-	document.getElementById("participantsContainer").classList.remove("hidden");
+		// document.getElementById("participantsContainer").classList.remove("hidden");
+	$("#participantsContent").fadeIn();
 	enableTab("participantBar", "participantSingle", false);
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
 }
@@ -142,7 +143,7 @@ function createUNIP(meetData) {
 			];
 			str += params.join(",") + "\n";
 		}
-				
+
 	}
 	return str;
 }
@@ -218,11 +219,11 @@ function initEditor(person, table, span) {
 		index.innerText = e.index;
 
 		name.innerText = e.distance + "m " + e.style;
-		
+
 		getE(time, "min").value = personEvent.min;
 		getE(time, "sec").value = personEvent.sec;
 		getE(time, "hun").value = personEvent.hun;
-		
+
 		const addTimeListener = function (name) {
 			const func = function() {
 				let value = parseInt(getE(time, name).value);
@@ -238,7 +239,7 @@ function initEditor(person, table, span) {
 				getT(willSwim, "input").dispatchEvent(evt);
 			}
 			const next = function() {
-				//Both numbers 
+				//Both numbers
 				if (getE(time, name).value.length == 2) {
 					if (name == "min") getE(time, "sec").focus();
 					if (name == "sec") getE(time, "hun").focus();
@@ -251,7 +252,7 @@ function initEditor(person, table, span) {
 			getE(time, name).addEventListener("change", func);
 			getE(time, name).addEventListener("keyup", next);
 			getE(time, name).addEventListener("focus", focus);
-			
+
 		}
 
 
@@ -271,7 +272,7 @@ function initEditor(person, table, span) {
 				if (typeof pos !== "undefined") person.events.splice(pos, 1);
 			}
 			person.events.sort(function (a,b) { return a.index - b.index; });
-			span.innerHTML = getEventString(person);	
+			span.innerHTML = getEventString(person);
 		});
 		span.innerHTML = getEventString(person);
 
@@ -297,7 +298,7 @@ function appendTeam(team) {
 	const cls = getE(node, "teamClass");
 	const sex = getE(node, "teamSex");
 	const events = getE(node, "teamEvents");
-	
+
 	sex.getElementsByTagName("option")[["M", "K", "MIX"].indexOf(team.sex)].selected = true;
 	cls.getElementsByTagName("option")[["JR", "SR"].indexOf(team.class)].selected = true;
 
@@ -384,7 +385,7 @@ function appendParticipant(person) {
 	});
 
 
-	
+
 	const editor = n.children[1];
 	node.addEventListener("click", function () {
 		hideEditors();
@@ -409,6 +410,34 @@ function appendParticipant(person) {
 	if (translator) translator.Translate();
 }
 
+
+// functions for section switching
+function showSectionMeetDetails(){
+	$("#meetDetailsContent").fadeIn();
+	$("#clubSettingsContent").fadeOut();
+	$("#participantsContent").fadeOut();
+	$("#summaryContent").fadeOut();
+};
+function showSectionClub(){
+	$("#meetDetailsContent").fadeOut();
+	$("#clubSettingsContent").fadeIn();
+	$("#participantsContent").fadeOut();
+	$("#summaryContent").fadeOut();
+};
+function showSectionParticipants(){
+	$("#meetDetailsContent").fadeOut();
+	$("#clubSettingsContent").fadeOut();
+	$("#participantsContent").fadeIn();
+	$("#summaryContent").fadeOut();
+};
+function showSectionSummary(){
+	$("#meetDetailsContent").fadeOut();
+	$("#clubSettingsContent").fadeOut();
+	$("#participantsContent").fadeOut();
+	$("#summaryContent").fadeIn();
+};
+
+
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
@@ -425,15 +454,16 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 		reader.readAsText(file);
-
+		showSectionClub();
 	});
 	document.getElementById("activeClub").addEventListener("change", function() {
 		club = document.getElementById("activeClub").value;
 		updateClubSelection(club);
 	});
 	document.getElementById("addClub").addEventListener("click", function() {
-		addClubSelection(document.getElementById("clubName").value);
-		document.getElementById("clubSelection").classList.remove("hidden");
+		if(!$("#clubName").val()){return;};
+		addClubSelection($("#clubName").val());
+		showSectionParticipants();
 		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 	});
 	document.getElementById("importMedley").addEventListener("click", function() {
@@ -442,8 +472,8 @@ window.addEventListener("load", function() {
 			node.value = "invalid";
 			node.innerText = "Fetching list...";
 			document.getElementById("importMedley").appendChild(node);
-			getMedleyList(function (list) { 
-				addMeets(list); 
+			getMedleyList(function (list) {
+				addMeets(list);
 				node.innerText = "-- Select one --";
 			});
 		}
@@ -456,5 +486,13 @@ window.addEventListener("load", function() {
 			const xml = parseXml(text);
 			importMeet(xml.MeetSetUp);
 		});
+		showSectionClub();
 	});
+
+	// eventlisteners for section switching
+		$("#meetDetailsTitle").on("click",showSectionMeetDetails);
+		$("#clubSettingsTitle").on("click",showSectionClub);
+		$("#participantsTitle").on("click",showSectionParticipants);
+		$("#summaryTitle").on("click",showSectionSummary);
+
 });

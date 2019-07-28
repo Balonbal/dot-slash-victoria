@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>UNI_p.txt generator</title>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="../js/uni_p.js"></script>
@@ -20,6 +20,8 @@
 		<link id="theme-link-light" rel="alternate stylesheet" href="../css/themes/light.css">
 	</head>
 	<body>
+
+		<!-- Navigation start -->
 		<nav class="navbar navbar-dark bg-primary">
 			<a class="navbar-brand" href="https://balonbal.github.io/dot-slash-victoria">./victoria</a>
 			<select class="selector btn-group form-control" name="" id="theme-selector">
@@ -33,6 +35,9 @@
 				<div class="langList dropdown-menu" aria-labelledby="languageDropwown"></div>
 			</div>
 		</nav>
+		<!-- Navigation end -->
+
+		<!-- discard changes confirmation box start-->
 		<div class="modal" id="confirmationBox" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -51,16 +56,19 @@
 				</div>
 			</div>
 		</div>
+		<!-- discard changes confirmation box end-->
+
+		<!-- Section 1: Meet Details start -->
 		<div id="meetDetails" class="container">
-			<h2 class="t">Meet details</h2>
-			<section id="meetSettings">
+			<h3 class="t" id="meetDetailsTitle">Meet details</h3>
+			<section id="meetDetailsContent">
 
 				<div class="form-group row">
 					<label for="importFile" class="col-4 t">Import from XML</label>
 					<input type="file" accept=".xml" class="form-control-file col-8" id="importFile"/>
 				</div>
-				
-				
+
+
 				<div class="form-group row">
 					<label for="importMedley" class="col-4 t">Import from medley.no</label>
 					<select id="importMedley" class="form-control col-8"></select>
@@ -73,29 +81,37 @@
 			</section>
 
 		</div>
-		<div class="container" id="noMeet">
-			<div class="alert alert-danger t">You have not yet selected a meet</div>
+		<!-- Section 1: Meet Details end -->
+
+		<!-- Section 2: Club Settings start -->
+		<div id="clubSettings" class="container">
+			<h3 class="t" id="clubSettingsTitle">Club settings</h3>
+			<section id="clubSettingsContent" style="display:none;">
+
+				<div class="form-group row" id="clubSelection">
+					<label for="activeClub" class="col-4 t">Selected club:</label>
+					<select class="form-control col-8" id="activeClub" disabled></select>
+				</div>
+				<div class="form-group row">
+					<label for="clubName" class="col-4 t">Set club name:</label>
+					<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
+					<div class="col-3"></div>
+					<button class="btn btn-success col-1 t" id="addClub">Add</button>
+					<button class="btn btn-warning col-3 hidden t" id="changeClub">Change name</button>
+				</div>
+				<div class="form-group row hidden" id="clubSelection">
+					<label for="activeClub" class="col-4 t">Selected club:</label>
+					<select class="form-control col-8" id="activeClub" disabled></select>
+				</div>
+
+			</section>
 		</div>
-		<section id="clubSettings" class="container hidden">
-			<h3 class="t">Club settings</h3>
-			<div class="form-group row hidden" id="clubSelection">
-				<label for="activeClub" class="col-4 t">Selected club:</label>
-				<select class="form-control col-8" id="activeClub" disabled></select>
-			</div>
-			<div class="form-group row">
-				<label for="clubName" class="col-4 t">Set club name:</label>
-				<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
-				<div class="col-3"></div>
-				<button class="btn btn-success col-1 t" id="addClub">Add</button>
-				<button class="btn btn-warning col-3 hidden t" id="changeClub">Change name</button>
-			</div>
-			<div class="form-group row hidden" id="clubSelection">
-				<label for="activeClub" class="col-4 t">Selected club:</label>
-				<select class="form-control col-8" id="activeClub" disabled></select>
-			</div>
-		</section>
-		<div class="container hidden" id="participantsContainer">
-			<h3 class="t">Participants</h3>
+		<!-- Section 2: Club Settings end -->
+
+		<!-- Section 3: Participants start -->
+		<div class="container" id="participantsContainer">
+			<h3 class="t" id="participantsTitle">Participants</h3>
+			<section id="participantsContent" style="display: none;">
 
 			<div id="participantBar" class="tabBar">
 				<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
@@ -132,12 +148,29 @@
 
 			</div>
 
+		</section>
 		</div>
+		<!-- Section 3: Participants end -->
+
+		<!-- Section 4: Summary start -->
 		<div id="summary" class="container">
-			<h1 class="t">Summary</h1>
-			<div id="individualsSummary"></div>
-			<button id="makeUnip" class="btn btn-primary btn-lg t">Make uni_p.txt</button>
+			<h3 class="t" id="summaryTitle">Summary</h3>
+			<section id="summaryContent">
+				<div id="individualsSummary"></div>
+				<button id="makeUnip" class="btn btn-primary btn-lg t">Make uni_p.txt</button>
+			</section>
 		</div>
+		<!-- Section 4: Summary end -->
+
+		<!-- Errors banners start -->
+		<div class="errorContainer">
+			<section id="errorContent">
+				<div class="container" id="noMeet">
+					<div class="alert alert-danger t">You have not yet selected a meet.</div>
+				</div>
+			</section>
+		</div>
+		<!-- Error banners end -->
 
 		<!-- Templates -->
 		<!-- Single participant -->
