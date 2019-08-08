@@ -35,7 +35,7 @@ function importMeet(data) {
 				const e = {
 					index: parseInt(getNode(evt, "EventNumber")), 
 					distance: getNode(evt, "EventLength"),
-					style: getStyle(getNode(evt, "Eventart")), 
+					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")), 
 					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
 				}
 				meet.events.push(e);
@@ -196,7 +196,7 @@ function initEditor(person, table, span) {
 
 	for (let i in meetData.events) {
 		const e = meetData.events[i];
-		if (e.sex != person.sex) continue;
+		if (e.sex != "Mix" && e.sex != person.sex) continue;
 		if (isTeamEvent(e) ^ person.team) continue;
 
 		const node = document.importNode(t.content, true);
