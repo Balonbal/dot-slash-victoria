@@ -1,8 +1,6 @@
-const (
-	SEX_MALE = "M",
-	SEX_FEMALE = "K",
-	SEX_MIX = "Mix"
-)
+const SEX_MALE = "M",
+      SEX_FEMALE = "K",
+      SEX_MIX = "Mix";
 
 
 function Event(index, distance, style, sex) {
@@ -185,6 +183,52 @@ function Participant(name, team = false, sex = SEX_MALE) {
 		}
 	}
 	
+}
+
+function ClubManager() {
+	this.clubs = [];
+	this.selectedClub;
+	this.selectors = [];
+	this.attachSelector = function(selector) {
+		selector.on("click", () => {
+			if (selector.val() == "") return;
+			this.selectClub(selector.val());
+		})
+		this.selectors.push(selector);
+	}
+	this.attachNewClubInput = function(input, button) {
+		input.on("submit", () => {
+			if (input.val() == "") return;
+			this.selectClub(input.val());
+		})
+		if (typeof button != "undefined") {
+			button.on("click", () => {input.submit();});
+		}
+	}
+	this.selectClub = function(clubname) {
+		for (let i in this.clubs) {
+			const club = this.clubs[i];
+
+			if (club.name == clubname) {
+				this.selectedClub = club;
+				$("#participantsContainer").removeClass("hidden");
+				//tabBarManager.getBar("participantBar").enableTab("participantSingle");
+				return;
+
+			}
+		}
+
+		//Not found - add club
+		this.addClub(clubname);
+		this.selectClub(clubname);
+	}
+	this.addClub = function(clubname) {
+		this.clubs.push(new Club(clubname));
+		this.selectors.forEach((selector) => { 
+			$("<option>").val(clubname).appendTo(selector);
+		});
+
+	}
 }
 
 function updateClubSelection(clubName) {
@@ -520,10 +564,18 @@ function appendParticipant(person) {
 	if (translator) translator.Translate();
 }
 
+// Attach listeners
 $(() => {
 
 	const meetManager = new MeetManager();
+	const clubManager = new ClubManager();
+
 	meetManager.attachSelector($("#importMedley"));
+	clubManager.attachSelector($("#clubList"));
+	clubManager.attachNewClubInput($("#clubName"), $("#addClub"));
+	clubManager.attachEditor($("#participantBar"));
+
+	/*
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
 	document.getElementById("makeUnip").addEventListener("click", function() {
@@ -550,4 +602,5 @@ $(() => {
 		document.getElementById("clubSelection").classList.remove("hidden");
 		tabBarManager.getBar("participantBar").showTab("participantSingle");
 	});
+	*/
 });
