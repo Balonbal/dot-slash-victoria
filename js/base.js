@@ -7,7 +7,6 @@ const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // F
 const debug = window.location.href.indexOf("file:///") != -1;
 const base_url = debug ? "" : "https://balonbal.github.io/dot-slash-victoria";
 
-//TODO Replace with a const url
 const getResource = function (type, name) {
 	let url = window.location.href;
 	url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
@@ -92,7 +91,6 @@ function addLanguage(language) {
 			translator.Translate();
 		}).appendTo($(".langList"));
 }
-
 
 //--- Tabs ---
 
@@ -202,6 +200,7 @@ function onLoad() {
 	themeManager = new ThemeManager();
 }
 
+
 function getMedleyMeet(url, callback) {
 	const dest =medley_url + "/event.php?doc=" + url.substring(url.indexOf("/", url.indexOf("://") + 3));
 	fetch(dest).then((response) => {
@@ -238,12 +237,9 @@ function getMedleyList(callback) {
 				url: getNode(m, "xmllink"),
 				startDate: new Date(start.substring(0, 4) + "-" + start.substring(4, 6) + "-" + start.substring(6)),
 				endDate: new Date(end.substring(0, 4) + "-" + end.substring(4, 6) + "-" + end.substring(6)),
- 
 			}
-
 			result.push(meet);
 		}
-
 		callback(result);
 	});
 }
@@ -266,4 +262,3 @@ function download(filename, text) {
 
 $(() => onLoad());
 //window.addEventListener("load", onLoad);
-

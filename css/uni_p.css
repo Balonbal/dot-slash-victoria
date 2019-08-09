@@ -1,7 +1,0 @@
-.eventTime > input {
-	width: 60px;
-}
-
-.personRow:hover, .personRow:hover + .edit, .edit:hover, .teamRow:hover, .teamRow:hover + .edit {
-	background-color: #eff8ff;
-}

@@ -2,3 +2,7 @@
 test.html
 js/test.txt
 test/meetsetup.xml
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
