@@ -49,6 +49,7 @@ function MeetManager() {
 	this.meets = [];
 	this.activeMeet = undefined; 
 	this.selectors = [];
+	this.listeners = [];
 	this.importList = function (meets) {
 		const _this = this;
 		meets.forEach((meet) => {
@@ -103,7 +104,10 @@ function MeetManager() {
 			console.log(e);
 		}
 	}
-	this.showMeet = function(meet) {
+	this.selectMeet = function(meet) {
+		this.listeners["meetSelected"].forEach((fct) => {
+			fct(meet);
+		});
 		//Clear participants
 		$(".personRow, .teamRow, .edit").remove();
 		$("#noMeet").hide();
@@ -129,10 +133,14 @@ function MeetManager() {
 				if (selector.val() == "invalid") return;
 				_this.importMedleyMeet(parseInt(selector.val()), (meet) => {
 					if (!meet) return;
-					_this.showMeet(meet);
+					_this.selectMeet(meet);
 				});
 			}
 		});
+	}
+	this.attachListener = function(evt, fct) {
+		this.listeners[evt] = this.listeners[evt] || [];
+		this.listeners[evt].push(fct);
 	}
 }
 
@@ -176,7 +184,7 @@ function Participant(name, team = false, sex = SEX_MALE) {
 			const correctEvent = meet.findEvent(evt.style, evt.distance, sex);
 			if (!correctEvent) {
 				//TODO display error
-				console.log("[uni_p:Participant/correctSex] Event corresponding to " + evt + " not found for sex " + sexx + ", keeping old");
+				console.log("[uni_p:Participant/correctSex] Event corresponding to " + evt + " not found for sex " + sex + ", keeping old");
 				continue;
 			}
 			this.events[e] = correctEvent;
@@ -189,6 +197,7 @@ function ClubManager() {
 	this.clubs = [];
 	this.selectedClub;
 	this.selectors = [];
+	this.listeners = {};
 	this.attachSelector = function(selector) {
 		selector.on("click", () => {
 			if (selector.val() == "") return;
@@ -205,14 +214,17 @@ function ClubManager() {
 			button.on("click", () => {input.submit();});
 		}
 	}
+	this.addListener = function(evt, fct) {
+		this.listeners[evt] = this.listeners[evt] || [];
+		this.listeners[evt].push(fct);
+	}
 	this.selectClub = function(clubname) {
 		for (let i in this.clubs) {
 			const club = this.clubs[i];
 
 			if (club.name == clubname) {
 				this.selectedClub = club;
-				$("#participantsContainer").removeClass("hidden");
-				//tabBarManager.getBar("participantBar").enableTab("participantSingle");
+				this.listeners["selectClub"].forEach((fct) => { fct(club); });
 				return;
 
 			}
@@ -231,6 +243,24 @@ function ClubManager() {
 	}
 }
 
+function Editor(participantTemplate, teamTemplate, eventTemplate) {
+	this.singleTables = [];
+	this.teamTables = [];
+	this.club;
+	this.attachSingleTable = function(table) {
+		this.singleTables.push(table);
+	}
+	this.attachTeamTable = function(table) {
+		this.teamTables.push(table);
+	}
+	this.reset = function() {
+
+	}
+	this.setClub = function(club) {
+		this.club = club;
+	}
+}
+/*
 function updateClubSelection(clubName) {
 	document.getElementById("participantsContainer").classList.remove("hidden");
 	tabBarManager.getBar("participantBar").enableTab("participantSingle");
@@ -563,17 +593,28 @@ function appendParticipant(person) {
 
 	if (translator) translator.Translate();
 }
-
+*/
 // Attach listeners
 $(() => {
 
 	const meetManager = new MeetManager();
 	const clubManager = new ClubManager();
+	const editor = new Editor($("#participantDummy"), $("#teamDummy"), $("#eventDummy"));
 
 	meetManager.attachSelector($("#importMedley"));
+	meetManager.attachEditor(editor);
+	meetManager.attachListener("meetSelected", (meet) => {
+		if (meet.hasTeamEvent()) tabBarManager.getBar("participantBar").enableTab("participantTeam");
+		tabBarManager.getBar("participantBar").enableTab("participantSingle");
+	});
 	clubManager.attachSelector($("#clubList"));
 	clubManager.attachNewClubInput($("#clubName"), $("#addClub"));
-	clubManager.attachEditor($("#participantBar"));
+	clubManager.attachEditor(editor);
+	clubManager.attachListener("clubSelected", (club) => {
+		$("#participantsContainer").removeClass("hidden");
+		editor.reset();
+		editor.setClub(club);
+	});
 
 	/*
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });

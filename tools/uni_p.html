@@ -114,6 +114,33 @@
 							<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
 						</tr>
 					</table>
+					<h5>Add another</h5>
+					<form>
+						<div class="form-row">
+							<div class="form-group col-md-7">
+								<label for="addSingleName">Name</label>
+								<input class="form-control" type="text" id="addSingleName"/>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="addSingleBirth">Birth year</label>
+								<input class="form-control form-control" type="number" id="addSingleBirth"/>
+							</div>
+							<div class="form-group col-md-2">
+								<label for="addSingleSex">Sex</label>
+								<select class="form-control" name="addSingleSex">
+									<option>Male</option>
+									<option>Female</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="checkbox" id="addSingleHideBirth" disabled>
+								<label for="addSingleHideBirth" class="form-check-label">Hide YoB</label>
+							</div>
+						</div>
+						<button class="btn btn-success">Add</button>
+					</form>
 				</div>
 				<div id="participantTeam" data-text="Teams" data-disabled="true">
 					<h4 class="t">Teams</h4>
