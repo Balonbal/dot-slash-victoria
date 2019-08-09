@@ -159,9 +159,13 @@ function Club(name) {
 	}
 }
 
-function Participant(name, team = false, sex = SEX_MALE) {
+function Participant(name, team = false, sex = SEX_MALE, birthyear) {
+	if (!validateName(name)) throw "Invalid name";
+	if (!validateBirth(birth, team)) throw "Invalid birth";
+	if (!validateSex(sex, team)) throw "Invalid sex";
 	this.name = name;
 	this.team = team;
+	this.birthYear = birthYear;
 	this.sex = sex;
 	this.events = [];
 
@@ -213,7 +217,7 @@ function ClubManager() {
 			button.on("click", () => {input.submit();});
 		}
 	}
-	this.addListener = function(evt, fct) {
+	this.attachListener = function(evt, fct) {
 		this.listeners[evt] = this.listeners[evt] || [];
 		this.listeners[evt].push(fct);
 	}
@@ -223,7 +227,8 @@ function ClubManager() {
 
 			if (club.name == clubname) {
 				this.selectedClub = club;
-				this.listeners["selectClub"].forEach((fct) => { fct(club); });
+				this.listeners["clubSelected"].forEach((fct) => { fct(club); });
+				console.log(club);
 				return;
 
 			}
@@ -238,7 +243,6 @@ function ClubManager() {
 		this.selectors.forEach((selector) => { 
 			$("<option>").val(clubname).appendTo(selector);
 		});
-
 	}
 }
 
@@ -257,6 +261,52 @@ function Editor(participantTemplate, teamTemplate, eventTemplate) {
 	}
 	this.setClub = function(club) {
 		this.club = club;
+	}
+	this.addParticipant = function(participant) {
+		
+	}
+}
+
+function validateName(name) {
+	return true;
+}
+function validateBirth(birth) {
+	const now = new Date().getFullYear();
+	const min = now - 80;
+	const max = now - 3;
+	return birth > min && birth < max;
+}
+function validateSex(sex, team) {
+	if (team && sex == SEX_MIX) return true;
+	return sex == SEX_MALE || sex == SEX_FEMALE;
+}
+function ParticipantAddForm(editor, nameField, birthField, sexField, submitButton, team = false) {
+	this.name = nameField;
+	this.birth = birthField;
+	this.sex = sexField;
+	this.submit = submitButton;
+	this.editor = editor; 
+	this.team = team;
+	this.nameSuggester = function (name, birth, sex) {
+		return name;
+	}
+	this.suggestName = function () {
+		this.name.val(this.nameSuggester(this.name.val(), this.birth.val(), this.sex.val()));
+	}
+	this.name.on("change", () => { this.suggestName() });
+	this.birth.on("change", () => { this.suggestName() }); 
+	this.sex.on("change", () => { this.suggestName() });
+	this.submit.on("click", () => {
+		const name = this.name.val();
+		const birth = this.birth.val();
+		const sex = this.sex.val();
+
+		participant = new Participant(name, this.team, sex, birth);
+		this.editor.addParticipant(participant);
+
+	});
+	this.setNameSuggester = function(fct) {
+		this.nameSuggester = fct;
 	}
 }
 /*
@@ -599,16 +649,38 @@ $(() => {
 	const meetManager = new MeetManager();
 	const clubManager = new ClubManager();
 	const editor = new Editor($("#participantDummy"), $("#teamDummy"), $("#eventDummy"));
+	const singleForm = new ParticipantAddForm(editor, $("#addSingleName"), $("#addSingleBirth"), $("#addSingleSex"), $("#addSingleSubmit"));
+	const teamForm = new ParticipantAddForm(editor, $("#addTeamName"), $("#addTeamBirth"), $("#addTeamSex"), $("#addTeamSubmit"), true);
+	teamForm.setNameSuggester((fieldName, birth, sex) => {
+		// Get the lowest not-taken name
+		let i = 1;
+		let name, found;
+		do {
+			found = false;
+			// Construct name format "<club name> <G|J|Mix ><number> <class>"
+			name = clubManager.selectedClub.name + " ";
+			if (sex == SEX_MALE) name += "G";
+			if (sex == SEX_FEMALE) name += "J";
+			if (sex == SEX_MIX) name += "Mix ";
+			name += i++; 
+			name += " " + birth; 
+			clubManager.selectedClub.participants.forEach((participant) => {
+				if (participant.name == name) found = true;
+			});
+		} while (found);
+
+		return name;
+	});
 
 	meetManager.attachSelector($("#importMedley"));
-	meetManager.attachEditor(editor);
+//	meetManager.attachEditor(editor);
 	meetManager.attachListener("meetSelected", (meet) => {
 		if (meet.hasTeamEvent()) tabBarManager.getBar("participantBar").enableTab("participantTeam");
 		tabBarManager.getBar("participantBar").enableTab("participantSingle");
 	});
 	clubManager.attachSelector($("#clubList"));
 	clubManager.attachNewClubInput($("#clubName"), $("#addClub"));
-	clubManager.attachEditor(editor);
+//	clubManager.attachEditor(editor);
 	clubManager.attachListener("clubSelected", (club) => {
 		$("#participantsContainer").removeClass("hidden");
 		editor.reset();
