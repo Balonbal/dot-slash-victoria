@@ -33,7 +33,7 @@ function importMeet(data) {
 			for (let i in data.Events.Event) {
 				const evt = data.Events.Event[i];
 				const e = {
-					index: parseInt(getNode(evt, "EventNumber")), 
+					index: parseInt(getNode(evt, "EventNumber")),
 					distance: getNode(evt, "EventLength"),
 					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")), 
 					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
@@ -52,7 +52,7 @@ function importMeet(data) {
 
 	}
 	if (meetData.participants.length != 0) {
-		showModal("confirmationBox", 
+		showModal("confirmationBox",
 			document.createTextNode("You have entered participants to the selected meet, are you sure you want to change meet? All unsaved data will be discarded."),
 			function () { changeMeet(data); },
 			function () {},
@@ -142,7 +142,7 @@ function createUNIP(meetData) {
 			];
 			str += params.join(",") + "\n";
 		}
-				
+
 	}
 	return str;
 }
@@ -218,11 +218,11 @@ function initEditor(person, table, span) {
 		index.innerText = e.index;
 
 		name.innerText = e.distance + "m " + e.style;
-		
+
 		getE(time, "min").value = personEvent.min;
 		getE(time, "sec").value = personEvent.sec;
 		getE(time, "hun").value = personEvent.hun;
-		
+
 		const addTimeListener = function (name) {
 			const func = function() {
 				let value = parseInt(getE(time, name).value);
@@ -238,7 +238,7 @@ function initEditor(person, table, span) {
 				getT(willSwim, "input").dispatchEvent(evt);
 			}
 			const next = function() {
-				//Both numbers 
+				//Both numbers
 				if (getE(time, name).value.length == 2) {
 					if (name == "min") getE(time, "sec").focus();
 					if (name == "sec") getE(time, "hun").focus();
@@ -251,7 +251,7 @@ function initEditor(person, table, span) {
 			getE(time, name).addEventListener("change", func);
 			getE(time, name).addEventListener("keyup", next);
 			getE(time, name).addEventListener("focus", focus);
-			
+
 		}
 
 
@@ -271,7 +271,7 @@ function initEditor(person, table, span) {
 				if (typeof pos !== "undefined") person.events.splice(pos, 1);
 			}
 			person.events.sort(function (a,b) { return a.index - b.index; });
-			span.innerHTML = getEventString(person);	
+			span.innerHTML = getEventString(person);
 		});
 		span.innerHTML = getEventString(person);
 
@@ -297,7 +297,7 @@ function appendTeam(team) {
 	const cls = getE(node, "teamClass");
 	const sex = getE(node, "teamSex");
 	const events = getE(node, "teamEvents");
-	
+
 	sex.getElementsByTagName("option")[["M", "K", "MIX"].indexOf(team.sex)].selected = true;
 	cls.getElementsByTagName("option")[["JR", "SR"].indexOf(team.class)].selected = true;
 
@@ -384,7 +384,7 @@ function appendParticipant(person) {
 	});
 
 
-	
+
 	const editor = n.children[1];
 	node.addEventListener("click", function () {
 		hideEditors();
@@ -414,7 +414,7 @@ window.addEventListener("load", function() {
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
 	document.getElementById("makeUnip").addEventListener("click", function() {
 		const unip = createUNIP(meetData);
-		download("uni_p-" + meetData.name + "_" + club + ".txt", unip);
+		download(club + " uni_p.txt", unip);
 	});
 	document.getElementById("importFile").addEventListener("change", function(e) {
 		const file = e.target.files[0];
@@ -442,8 +442,8 @@ window.addEventListener("load", function() {
 			node.value = "invalid";
 			node.innerText = "Fetching list...";
 			document.getElementById("importMedley").appendChild(node);
-			getMedleyList(function (list) { 
-				addMeets(list); 
+			getMedleyList(function (list) {
+				addMeets(list);
 				node.innerText = "-- Select one --";
 			});
 		}
