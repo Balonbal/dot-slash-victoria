@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>UNI_p.txt generator</title>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="../js/uni_p.js"></script>
@@ -59,8 +59,8 @@
 					<label for="importFile" class="col-4 t">Import from XML</label>
 					<input type="file" accept=".xml" class="form-control-file col-8" id="importFile"/>
 				</div>
-				
-				
+
+
 				<div class="form-group row">
 					<label for="importMedley" class="col-4 t">Import from medley.no</label>
 					<select id="importMedley" class="form-control col-8"></select>
@@ -76,6 +76,9 @@
 		<div class="container" id="noMeet">
 			<div class="alert alert-danger t">You have not yet selected a meet</div>
 		</div>
+
+
+
 		<section id="clubSettings" class="container hidden">
 			<h3 class="t">Club settings</h3>
 			<div class="form-group row hidden" id="clubSelection">
@@ -87,13 +90,16 @@
 				<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
 				<div class="col-3"></div>
 				<button class="btn btn-success col-1 t" id="addClub">Add</button>
-				<button class="btn btn-warning col-3 hidden t" id="changeClub">Change name</button>
 			</div>
 			<div class="form-group row hidden" id="clubSelection">
 				<label for="activeClub" class="col-4 t">Selected club:</label>
 				<select class="form-control col-8" id="activeClub" disabled></select>
 			</div>
 		</section>
+
+
+
+
 		<div class="container hidden" id="participantsContainer">
 			<h3 class="t">Participants</h3>
 
@@ -109,7 +115,7 @@
 							<th class="t">Actions</th>
 						</tr>
 
-						<tr>
+						<tr id="addMoreAthletes">
 							<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
 						</tr>
 					</table>
@@ -124,7 +130,7 @@
 							<th class="t">Events</th>
 							<th class="t">Actions</th>
 						</tr>
-						<tr>
+						<tr id="addMoreTeams">
 							<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
 						</tr>
 					</table>
@@ -192,7 +198,11 @@
 				<td class="willSwim"><input type="checkBox"/></td>
 				<td class="eventId"></td>
 				<td class="eventName"></td>
-				<td class="eventTime"><input class="min" type="text" pattern="[0-5][0-9]"/><input type="text" pattern="[0-5][0-9]" class="sec"/><input type="text" pattern="[0-9][0-9]" class="hun"/></td>
+				<td class="eventTime">
+					<input class="min" type="text" pattern="[0-5][0-9]"/>
+					<input class="sec" type="text" pattern="[0-5][0-9]"/>
+					<input class="hun" type="text" pattern="[0-9][0-9]"/>
+				</td>
 			</tr>
 		</template>
 	</body>
