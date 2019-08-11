@@ -1,5 +1,5 @@
-const SEX_MALE = "M",
-      SEX_FEMALE = "K",
+const SEX_MALE = "MALE",
+      SEX_FEMALE = "FEMALE",
       SEX_MIX = "Mix";
 
 
@@ -10,10 +10,13 @@ function Event(index, distance, style, sex) {
 	this.sex = sex;
 	this.isTeamEvent = function () {
 		// Team Medley
-		if (evt.style == "LM") return true;
+		if (this.style == "LM") return true;
 		// e.g 4x25, 7x150 etc
-		if (evt.distance.match(/\d+\*\d{2,}/)) return true;
+		if (this.distance.match(/\d+\*\d{2,}/)) return true;
 		return false;
+	}
+	this.eventName = function () {
+		return this.distance + " " + this.style;
 	}
 }
 	
@@ -228,7 +231,6 @@ function ClubManager() {
 			if (club.name == clubname) {
 				this.selectedClub = club;
 				this.listeners["clubSelected"].forEach((fct) => { fct(club); });
-				console.log(club);
 				return;
 
 			}
@@ -252,27 +254,41 @@ function Editor(singleTemplate, teamTemplate, eventTemplate) {
 	this.singleTemplate = singleTemplate;
 	this.teamTemplate = teamTemplate;
 	this.eventTemplate = eventTemplate;
+	this.events = [];
 	this.club;
 	this.attachSingleTable = function(table) {
-		this.singleTables.push(table);
+		//Keep starting value for resetting
+		this.singleTables.push({base: table.html(), element: table});
 	}
 	this.attachTeamTable = function(table) {
-		this.teamTables.push(table);
+		this.teamTables.push({base: table.html(), element: table});
 	}
 	this.reset = function() {
-
+		//Reset all tables to default state
+		this.singleTables.forEach((table) => { table.element.html(table.base) });
+		this.teamTables.forEach((table) => { table.element.html(table.base) });
+	}
+	this.setEvents = function(events) {
+		this.events = events;
 	}
 	this.setClub = function(club) {
 		this.club = club;
 	}
 	this.addParticipant = function(participant) {
 		const template = $(participant.team ? this.teamTemplate.html() : this.singleTemplate.html());
-		console.log(participant);
 		template.find(".name").val(participant.name);
 		template.find(".birth").val(participant.birthYear);
 		template.find(".sex").val(participant.sex);
-		if (participant.team) this.teamTables.forEach((table) => { template.appendTo(table) });
-		else this.singleTables.forEach((table) => { template.appendTo(table) });
+		this.events.forEach((evt) => {
+			if (evt.isTeamEvent() != participant.team) return;
+			if (evt.sex != participant.sex) return;
+			const evtTemplate = $(this.eventTemplate.html());
+			evtTemplate.find(".eventId").text(evt.index);
+			evtTemplate.find(".eventName").text(evt.eventName());
+			evtTemplate.appendTo(template.find(".eventTable"));
+		})
+		if (participant.team) this.teamTables.forEach((table) => { template.appendTo(table.element) });
+		else this.singleTables.forEach((table) => { template.appendTo(table.element) });
 	}
 }
 
@@ -687,8 +703,11 @@ $(() => {
 	meetManager.attachSelector($("#importMedley"));
 //	meetManager.attachEditor(editor);
 	meetManager.attachListener("meetSelected", (meet) => {
-		if (meet.hasTeamEvent()) tabBarManager.getBar("participantBar").enableTab("participantTeam");
+		if (meet.hasTeamEvents()) tabBarManager.getBar("participantBar").enableTab("participantTeam");
 		tabBarManager.getBar("participantBar").enableTab("participantSingle");
+
+		editor.reset();
+		editor.setEvents(meet.events);
 	});
 	clubManager.attachSelector($("#clubList"));
 	clubManager.attachNewClubInput($("#clubName"), $("#addClub"));

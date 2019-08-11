@@ -90,8 +90,8 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 					<div class="form-group col-md-2">
 						<label for="addSingleSex">Sex</label>
 						<select class="form-control" id="addSingleSex">
-							<option value="M">Male</option>
-							<option value="K">Female</option>
+							<option value="MALE">Male</option>
+							<option value="FEMALE">Female</option>
 						</select>
 					</div>
 				</div>
@@ -126,9 +126,9 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 					<div class="form-group col-md-2">
 						<label for="addTeamSex">Sex</label>
 						<select class="form-control" id="addTeamSex">
-							<option value="M" selected>Male</option>
-							<option value="K">Female</option>
-							<option value="Mix">Mix</option>
+							<option value="MALE" selected>Male</option>
+							<option value="FEMALE">Female</option>
+							<option value="MIX">Mix</option>
 						</select>
 					</div>
 				</div>
@@ -149,7 +149,7 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 	<tr class="personRow">
 		<td><input type="text" class="name"/></td>
 		<td><input type="number" min="1920" max="2020"/ class="birth"></td>
-		<td><select class="sex"><option value="M">M</option><option value="K">F</option></td>
+		<td><select class="sex"><option value="MALE">M</option><option value="FEMALE">F</option></td>
 		<td class="events"></td>
 		<td>-</td>
 	</tr>
@@ -171,7 +171,7 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 <script id="teamTemplate" type="text/x-jQuery-templ">
 	<tr class="teamRow">
 		<td><select class="birth"><option value="JR" class="t">Junior</option><option value="SR" class="t">Senior</option></select></td>
-		<td><select class="sex"><option value="M" class="t">Male</option><option value="K" class="t">Female</option><option value="MIX" class="t">Mixed</option></select></td>
+		<td><select class="sex"><option value="MALE" class="t">Male</option><option value="FEMALE" class="t">Female</option><option value="MIX" class="t">Mixed</option></select></td>
 		<td><input type="text" class="name"/></td>
 		<td class="events"></td>
 		<td>-</td>
@@ -193,9 +193,9 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 <!-- Events editor -->
 <script id="eventTemplate" type="text/x-jQuery-templ">
 	<tr>
-		<td class="willSwim"><input type="checkBox"/></td>
+		<td><input type="checkBox" class="willSwim"/></td>
 		<td class="eventId"></td>
 		<td class="eventName"></td>
-		<td class="eventTime"><input class="min" type="text" pattern="[0-5][0-9]"/><input type="text" pattern="[0-5][0-9]" class="sec"/><input type="text" pattern="[0-9][0-9]" class="hun"/></td>
+		<td><input class="min" type="text" pattern="[0-5][0-9]"/><input type="text" pattern="[0-5][0-9]" class="sec"/><input type="text" pattern="[0-9][0-9]" class="hun" class="eventTime"/></td>
 	</tr>
 </script>
