@@ -159,13 +159,13 @@ function Club(name) {
 	}
 }
 
-function Participant(name, team = false, sex = SEX_MALE, birthyear) {
+function Participant(name, team = false, sex = SEX_MALE, birth) {
 	if (!validateName(name)) throw "Invalid name";
 	if (!validateBirth(birth, team)) throw "Invalid birth";
 	if (!validateSex(sex, team)) throw "Invalid sex";
 	this.name = name;
 	this.team = team;
-	this.birthYear = birthYear;
+	this.birthYear = birth;
 	this.sex = sex;
 	this.events = [];
 
@@ -246,9 +246,12 @@ function ClubManager() {
 	}
 }
 
-function Editor(participantTemplate, teamTemplate, eventTemplate) {
+function Editor(singleTemplate, teamTemplate, eventTemplate) {
 	this.singleTables = [];
 	this.teamTables = [];
+	this.singleTemplate = singleTemplate;
+	this.teamTemplate = teamTemplate;
+	this.eventTemplate = eventTemplate;
 	this.club;
 	this.attachSingleTable = function(table) {
 		this.singleTables.push(table);
@@ -263,7 +266,13 @@ function Editor(participantTemplate, teamTemplate, eventTemplate) {
 		this.club = club;
 	}
 	this.addParticipant = function(participant) {
-		
+		const template = $(participant.team ? this.teamTemplate.html() : this.singleTemplate.html());
+		console.log(participant);
+		template.find(".name").val(participant.name);
+		template.find(".birth").val(participant.birthYear);
+		template.find(".sex").val(participant.sex);
+		if (participant.team) this.teamTables.forEach((table) => { template.appendTo(table) });
+		else this.singleTables.forEach((table) => { template.appendTo(table) });
 	}
 }
 
@@ -309,6 +318,7 @@ function ParticipantAddForm(editor, nameField, birthField, sexField, submitButto
 		this.nameSuggester = fct;
 	}
 }
+
 /*
 function updateClubSelection(clubName) {
 	document.getElementById("participantsContainer").classList.remove("hidden");
@@ -643,12 +653,13 @@ function appendParticipant(person) {
 	if (translator) translator.Translate();
 }
 */
+
 // Attach listeners
 $(() => {
 
 	const meetManager = new MeetManager();
 	const clubManager = new ClubManager();
-	const editor = new Editor($("#participantDummy"), $("#teamDummy"), $("#eventDummy"));
+	const editor = new Editor($("#singleTemplate"), $("#teamTemplate"), $("#eventTemplate"));
 	const singleForm = new ParticipantAddForm(editor, $("#addSingleName"), $("#addSingleBirth"), $("#addSingleSex"), $("#addSingleSubmit"));
 	const teamForm = new ParticipantAddForm(editor, $("#addTeamName"), $("#addTeamBirth"), $("#addTeamSex"), $("#addTeamSubmit"), true);
 	teamForm.setNameSuggester((fieldName, birth, sex) => {
@@ -659,6 +670,7 @@ $(() => {
 			found = false;
 			// Construct name format "<club name> <G|J|Mix ><number> <class>"
 			name = clubManager.selectedClub.name + " ";
+			console.log(sex);
 			if (sex == SEX_MALE) name += "G";
 			if (sex == SEX_FEMALE) name += "J";
 			if (sex == SEX_MIX) name += "Mix ";
@@ -686,6 +698,9 @@ $(() => {
 		editor.reset();
 		editor.setClub(club);
 	});
+
+	editor.attachSingleTable($("#singleList"));
+	editor.attachTeamTable($("#teamList"));
 
 	/*
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
