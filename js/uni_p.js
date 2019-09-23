@@ -16,7 +16,7 @@ function Event(index, distance, style, sex) {
 		return false;
 	}
 	this.eventName = function () {
-		return this.distance + " " + this.style;
+		return this.distance + "m " + this.style;
 	}
 }
 	
@@ -256,6 +256,7 @@ function Editor(singleTemplate, teamTemplate, eventTemplate) {
 	this.eventTemplate = eventTemplate;
 	this.events = [];
 	this.club;
+	this.meet;
 	this.attachSingleTable = function(table) {
 		//Keep starting value for resetting
 		this.singleTables.push({base: table.html(), element: table});
@@ -274,11 +275,30 @@ function Editor(singleTemplate, teamTemplate, eventTemplate) {
 	this.setClub = function(club) {
 		this.club = club;
 	}
+	this.setMeet = function(meet) {
+		this.meet = meet;
+	}
+	this.verifyParticipant = function(participant, template) {
+		let error = false;
+		error |= !validateName(participant.name);
+		error |= !validateBirth(participant.birthYear);
+		error |= !validateSex(participant.sex, participant.team);
+		if (error) template.addClass("error");
+		else template.removeClass("error");
+	}
 	this.addParticipant = function(participant) {
+		this.club.addParticipant(participant);
 		const template = $(participant.team ? this.teamTemplate.html() : this.singleTemplate.html());
-		template.find(".name").val(participant.name);
-		template.find(".birth").val(participant.birthYear);
-		template.find(".sex").val(participant.sex);
+		template.find(".name").val(participant.name).on("keyup keypress change", () => {
+			participant.name = template.find(".name").val();
+		});
+		template.find(".birth").val(participant.birthYear).on("keyup keypress change", () => {
+			participant.birthYear = template.find(".name").val();
+		});
+		template.find(".sex").val(participant.sex).on("change", () => {
+			participant.correctSex(template.find(".sex").val,this.meet);
+		});
+		template.on("change", () => { this.verifyParticipant(participant, template); });
 		this.events.forEach((evt) => {
 			if (evt.isTeamEvent() != participant.team) return;
 			if (evt.sex != participant.sex) return;
