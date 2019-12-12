@@ -120,9 +120,7 @@ function onLoad() {
 	for (let i = 0; i < tabBars.length; i++){
 			generateTabBar(tabBars[i]);
 	}
-	if (window.localStorage.getItem("theme")){
-		setTheme(window.localStorage.getItem("theme"));    
-	}
+	
 }
 
 

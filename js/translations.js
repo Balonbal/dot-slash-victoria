@@ -7,8 +7,8 @@ const pages = {
 		"Language:": {"no": "Språk:" },
 		"Usage:": { "no": "Bruk:" },
 		"whereToDo": { "en": "where stuff-to-do is any of the following:", "no": "hvor stuff-to-do er hvilken som helst av følgende kommandoer:" },
-		"theme_default" : { "en": "Light (default)", "no": "Lys (standard)" },
-		"theme_dark": { "en": "Dark (by Pavel)", "no": "Mørkt (av Pavel)" },
+		"theme_light" : { "en": "Light", "no": "Lys" },
+		"theme_dark": { "en": "Dark", "no": "Mørk" },
 		"lang_en": { "en": "English", "no": "Engelsk" },
 		"lang_no": { "en": "Norwegian", "no": "Norsk" },
 
@@ -48,6 +48,8 @@ const pages = {
 		"Male": { "no": "Mann" },
 		"Female": { "no": "Kvinne" },
 		"Mixed": { "no": "Mixed" },
+	},"newMeet": {
+		
 	}
 }
 
