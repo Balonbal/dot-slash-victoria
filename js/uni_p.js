@@ -129,14 +129,14 @@ function createUNIP(meetData) {
 				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
 				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
 				"",
-				meetEvent.sex + person.team ? person.class :("" + person.birthYear).substring(2),
+				person.team ? "" + person.sex + person.class : "" + person.sex + ("" + person.birthYear).substring(2), 
 				person.team ? person.class : person.birthYear,
 				time,
 				"",
 				"",
 				"",
-				"",
 				"K",
+				"",
 				"",
 				""
 			];
