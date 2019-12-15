@@ -449,6 +449,7 @@ window.addEventListener("load", function() {
 		if (!file) return;
 		// parse csv
 		Papa.parse(file, {
+			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
 			complete: function(results, file) {
 				// on parse complete:
 				// console.log("Parsing complete:", results, file);
@@ -474,8 +475,7 @@ window.addEventListener("load", function() {
 					appendParticipant(person);
 
 				}
-			},
-			encoding: "ISO-8859-1" // needed for "æ", "ø" and "å"
+			}
 		})
 
 	});
