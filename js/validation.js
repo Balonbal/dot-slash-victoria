@@ -53,9 +53,9 @@ function validateName(name){
     // Set capital letter on first letter
     name[0] = name[0].toUpperCase();
 
-    // Set capital letter on first letter after each space
+    // Set capital letter on first letter after each space or dash
     for(i = 0; i < name.length - 2; i++){
-        if(name[i] == " "){
+        if(name[i] == " " || name[i] == "-"){
                 name[i+1] = name[i+1].toUpperCase();
         }
     }
