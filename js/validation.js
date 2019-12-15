@@ -13,11 +13,11 @@ function validateName(name){
     // - sets capital letter only on first letter and first letter after whitespace
 
     if(!name){
-        return;
+        return false;
     }
 
     if(name.length < 4){
-        return;
+        return false;
     }
 
     // check if name contains digits
@@ -25,7 +25,7 @@ function validateName(name){
         isNotNumber = isNaN(name[i]);
         isNumber = !isNotNumber;
         if(isNumber){
-            return;
+            return false;
         }
     }
 
@@ -59,6 +59,7 @@ function validateName(name){
                 name[i+1] = name[i+1].toUpperCase();
         }
     }
+    return name;
 }
 
 function isValidBirthYear(birthYear){
