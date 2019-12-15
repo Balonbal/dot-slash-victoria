@@ -1,7 +1,7 @@
 ---
 title: Uni_p.txt generator
 layout: default
-scripts: [uni_p, encoding-indexes, encoding, xmlParser]
+scripts: [papaparse.min, uni_p, encoding-indexes, encoding, xmlParser]
 ---
 <link rel="stylesheet" type="text/css" href="/css/tools/uni_p.css"></link>
 <div class="modal" id="confirmationBox" role="dialog">
@@ -27,8 +27,8 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 	<section id="meetSettings">
 
 		<div class="form-group row">
-			<label for="importFile" class="col-4 t">Import from XML</label>
-			<input type="file" accept=".xml" class="form-control-file col-8" id="importFile"/>
+			<label for="importFile-meetSetup" class="col-4 t">Import from XML</label>
+			<input type="file" accept=".xml" class="form-control-file col-8" id="importFile-meetSetup"/>
 		</div>
 		
 		
@@ -67,6 +67,12 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 </section>
 <div class="container hidden" id="participantsContainer">
 	<h3 class="t">Participants</h3>
+
+	<div class="form-group row">
+		<label for="importFile" class="col-4 t">Import from Tryggivann.no (csv)</label>
+		<input type="file" accept=".csv" class="form-control-file col-8" id="importFile-tryggivann"/>
+	</div>
+
 
 	<div id="participantBar" class="tabBar">
 		<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
