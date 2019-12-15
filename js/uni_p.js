@@ -425,7 +425,6 @@ function appendParticipant(person) {
 
 	if (translator) translator.Translate();
 }
-let pavel;
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
