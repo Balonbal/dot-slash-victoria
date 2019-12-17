@@ -470,6 +470,8 @@ window.addEventListener("load", function() {
 
 					let person = {};
 					person.name = results.data[i][0]
+					// person.name = validateName(results.data[i][0]);
+
 					results.data[i][4] == "G" ? person.sex = "M" : person.sex = "K"  
 					person.birthYear = results.data[i][5].substring(6)
 					appendParticipant(person);
