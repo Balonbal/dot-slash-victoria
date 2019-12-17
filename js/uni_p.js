@@ -117,6 +117,23 @@ function createUNIP(meetData) {
 	for (let i in meetData.participants) {
 		const person = meetData.participants[i];
 		let params = [];
+
+		// Check if the name has trailing whitespaces
+		nameChecked = false
+		while(!nameChecked){
+			nameChecked = true
+			// remove whitespace at the start of the name
+			if(person.name[0] == " "){
+				person.name = person.name.substring(1,length(person.name) - 1)
+				nameChecked = false
+			}
+			// remove whitespace at the end of the name
+			if(person.name[length(name) -1 ] == " "){
+				person.name = person.name.substring(0,length(person.name) - 2)
+				nameChecked = false
+			}
+		}
+
 		for (let j in person.events) {
 			const evt = person.events[j];
 			const meetEvent = getEvent(evt.index);
@@ -129,14 +146,14 @@ function createUNIP(meetData) {
 				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
 				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
 				"",
-				meetEvent.sex + person.team ? person.class :("" + person.birthYear).substring(2),
+				person.team ? "" + person.sex + person.class : "" + person.sex + ("" + person.birthYear).substring(2), 
 				person.team ? person.class : person.birthYear,
 				time,
 				"",
 				"",
 				"",
-				"",
 				"K",
+				"",
 				"",
 				""
 			];
@@ -408,7 +425,6 @@ function appendParticipant(person) {
 
 	if (translator) translator.Translate();
 }
-
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
@@ -416,7 +432,7 @@ window.addEventListener("load", function() {
 		const unip = createUNIP(meetData);
 		download(club + " uni_p.txt", unip);
 	});
-	document.getElementById("importFile").addEventListener("change", function(e) {
+	document.getElementById("importFile-meetSetup").addEventListener("change", function(e) {
 		const file = e.target.files[0];
 		if (!file) return;
 		const reader = new FileReader();
@@ -427,6 +443,45 @@ window.addEventListener("load", function() {
 		reader.readAsText(file);
 
 	});
+	document.getElementById("importFile-tryggivann").addEventListener("change", function(e) {
+		// Open file
+		const file = e.target.files[0];
+		if (!file) return;
+		// parse csv
+		Papa.parse(file, {
+			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
+			complete: function(results, file) {
+				// on parse complete:
+				// console.log("Parsing complete:", results, file);
+				let headerIndex;
+				// find the header index
+				for(i = 0; i < results.data.length -1; i++){
+					if(results.data[i][0] == "Navn"){
+						headerIndex = i;
+						break;
+					}
+				}
+				// for each line create a new person and add to participants list.
+				for(i = headerIndex + 1; (results.data.length - 1) - (headerIndex + 1); i++){
+					if(results.data[i][1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
+						// break out of last line
+						break;
+					}
+
+					let person = {};
+					person.name = results.data[i][0]
+					// person.name = validateName(results.data[i][0]);
+
+					results.data[i][4] == "G" ? person.sex = "M" : person.sex = "K"  
+					person.birthYear = results.data[i][5].substring(6)
+					appendParticipant(person);
+
+				}
+			}
+		})
+
+	});
+
 	document.getElementById("activeClub").addEventListener("change", function() {
 		club = document.getElementById("activeClub").value;
 		updateClubSelection(club);
