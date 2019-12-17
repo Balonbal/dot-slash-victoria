@@ -55,10 +55,6 @@ function validateName(name){
                 name = name.substring(0,i) + " " + name[i+1].toUpperCase() + name.substring(i+2);
         }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> validation now returns false on error and sanitized name
     return name;
 }
 
