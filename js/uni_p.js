@@ -443,28 +443,32 @@ window.addEventListener("load", function() {
 		reader.readAsText(file);
 
 	});
+	// Import csv file with entries
 	document.getElementById("importFile-tryggivann").addEventListener("change", function(e) {
 		// Open file
 		const file = e.target.files[0];
 		if (!file) return;
 		// parse csv
+		// Create a loading modal
+		$("#modal-import-csv").modal("toggle"); // opens the modal
+
 		Papa.parse(file, {
 			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
+			// On parse complete:
 			complete: function(results, file) {
-				// on parse complete:
-				// console.log("Parsing complete:", results, file);
-				let headerIndex;
 				// find the header index
+				let headerIndex;
 				for(i = 0; i < results.data.length -1; i++){
 					if(results.data[i][0] == "Navn"){
 						headerIndex = i;
 						break;
 					}
 				}
+
 				// for each line create a new person and add to participants list.
 				for(i = headerIndex + 1; (results.data.length - 1) - (headerIndex + 1); i++){
+					// break out of last line
 					if(results.data[i][1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
-						// break out of last line
 						break;
 					}
 
@@ -477,6 +481,7 @@ window.addEventListener("load", function() {
 					appendParticipant(person);
 
 				}
+				$("#modal-import-csv").modal("toggle"); // closes the modal
 			}
 		})
 
