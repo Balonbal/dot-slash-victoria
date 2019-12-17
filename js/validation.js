@@ -13,19 +13,17 @@ function validateName(name){
     // - sets capital letter only on first letter and first letter after whitespace
 
     if(!name){
-        return;
+        return false;
     }
 
     if(name.length < 4){
-        return;
+        return false;
     }
 
     // check if name contains digits
     for(i = 0; i < name.length - 1; i++){
-        isNotNumber = isNaN(name[i]);
-        isNumber = !isNotNumber;
-        if(isNumber){
-            return;
+        if(Number(name[i])){
+            return false;
         }
     }
 
@@ -38,27 +36,27 @@ function validateName(name){
             sanitized = false;
         }
         // removed spaces at the end of the name
-        if(name[name.length -1] == " "){
+        if(name[name.length - 1] == " "){
             name = name.substring(0, name.length - 1);
             sanitized = false;
         }
-        // remove double space in name
-        if(name.match("  ")){
-            name.replace("  ", " ");
-            sanitized = false;
-        }
-    }
+}
+    // compress multiple spaces into one space
+    name = name.replace(/\s+/g, ' ');
+
 
     name = name.toLowerCase();
     // Set capital letter on first letter
-    name[0] = name[0].toUpperCase();
+    name = name[0].toUpperCase() + name.substring(1);
 
     // Set capital letter on first letter after each space or dash
     for(i = 0; i < name.length - 2; i++){
         if(name[i] == " " || name[i] == "-"){
-                name[i+1] = name[i+1].toUpperCase();
+                name = name.substring(0,i) + " " + name[i+1].toUpperCase() + name.substring(i+2);
         }
     }
+
+    return name;
 }
 
 function isValidBirthYear(birthYear){
