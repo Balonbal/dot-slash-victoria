@@ -1,5 +1,5 @@
 
-function validateName(name){
+function sanitizeName(name){
     // retruns nothing if
     // - input is empty
     // - input contains digits
@@ -61,6 +61,21 @@ function validateName(name){
     }
     return name;
 }
+function isDiplicate(participants, person){
+    if(!participants){
+        return;
+    }
+    if(!person){
+        return;
+    }
+    for (i = 0; i < participants.length - 1; i++){
+        if(participants[i].name == person.name && participants[i].birthYear == person.birthYear){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 function isValidBirthYear(birthYear){
     // Returns false if age is below 4 year or above 100
