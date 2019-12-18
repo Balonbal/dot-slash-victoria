@@ -11,11 +11,17 @@ modals: [uni_p-change-meet.html, uni_p-importing.html]
 	<section id="meetSettings">
 
 		<div class="form-group row">
-			<label for="importFile-meetSetup" class="col-4 t">Import from XML</label>
-			<input type="file" accept=".xml" class="form-control-file col-8" id="importFile-meetSetup"/>
+			<div class="input-group">
+				<div class="col-4">
+					<label for="importFile-meetSetup">Import meetsetup from XML</label>
+				</div>
+				<div class="custom-file col-8">
+					<label class="custom-file-label">Choose file</label>
+					<input type="file" accept=".xml" class="custom-file-input t" id="importFile-meetSetup">
+				</div>
+			</div>
 		</div>
-		
-		
+
 		<div class="form-group row">
 			<label for="importMedley" class="col-4 t">Import from medley.no</label>
 			<select id="importMedley" class="form-control col-8"></select>
@@ -53,10 +59,16 @@ modals: [uni_p-change-meet.html, uni_p-importing.html]
 	<h3 class="t">Participants</h3>
 
 	<div class="form-group row">
-		<label for="importFile-tryggivann" class="col-4 t">Import from Tryggivann.no (csv)</label>
-		<input type="file" accept=".csv" class="form-control-file col-8" id="importFile-tryggivann"/>
+		<div class="input-group">
+			<div class="col-4">
+				<label for="importFile-tryggivann">Import enrolled from tryggivann.no</label>
+			</div>
+			<div class="custom-file col-8">
+				<label class="custom-file-label">Choose file</label>
+				<input type="file" accept=".csv" class="custom-file-input t" id="importFile-tryggivann">
+			</div>
+		</div>
 	</div>
-
 
 	<div id="participantBar" class="tabBar">
 		<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
@@ -127,8 +139,17 @@ modals: [uni_p-change-meet.html, uni_p-importing.html]
 <!-- Team Participant -->
 <template id="teamDummy">
 	<tr class="teamRow">
-		<td class="teamClass"><select><option value="JR" class="t">Junior</option><option value="SR" class="t">Senior</option></select></td>
-		<td class="teamSex"><select><option value="M" class="t">Male</option><option value="K" class="t">Female</option><option value="MIX" class="t">Mixed</option></select></td>
+		<td class="teamClass">
+			<select>
+				<option value="JR" class="t">Junior</option>
+				<option value="SR" class="t">Senior</option>
+			</select></td>
+		<td class="teamSex">
+			<select>
+				<option value="M" class="t">Male</option>
+				<option value="K" class="t">Female</option>
+				<option value="MIX" class="t">Mixed</option>
+			</select></td>
 		<td class="teamName"><input type="text"/></td>
 		<td class="teamEvents"></td>
 		<td>-</td>
@@ -153,6 +174,7 @@ modals: [uni_p-change-meet.html, uni_p-importing.html]
 		<td class="willSwim"><input type="checkBox"/></td>
 		<td class="eventId"></td>
 		<td class="eventName"></td>
-		<td class="eventTime"><input class="min" type="text" pattern="[0-5][0-9]"/><input type="text" pattern="[0-5][0-9]" class="sec"/><input type="text" pattern="[0-9][0-9]" class="hun"/></td>
+		<td class="eventTime"><input class="min" type="text" pattern="[0-5][0-9]"/><input type="text"
+				pattern="[0-5][0-9]" class="sec"/><input type="text" pattern="[0-9][0-9]" class="hun"/></td>
 	</tr>
 </template>
