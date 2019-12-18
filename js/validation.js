@@ -52,8 +52,11 @@ function sanitizeName(name){
 
     // Set capital letter on first letter after each space or dash
     for(let i = 0; i < name.length - 2; i++){
-        if(name[i] == " " || name[i] == "-"){
-                name = name.substring(0,i) + " " + name[i+1].toUpperCase() + name.substring(i+2);
+        if(name[i] == " "){
+            name = name.substring(0,i) + " " + name[i+1].toUpperCase() + name.substring(i+2);
+        }
+        if(name[i] == "-"){
+            name = name.substring(0,i) + "-" + name[i+1].toUpperCase() + name.substring(i+2);
         }
     }
 
@@ -73,7 +76,6 @@ function isDuplicate(participants, person){
     }
     return false;
 }
-
 
 function isValidBirthYear(birthYear){
     // Returns false if age is below 4 year or above 100
