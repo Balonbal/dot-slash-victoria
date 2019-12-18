@@ -71,3 +71,11 @@ span{
 th.t, td.eventId, td.eventName, td{
     color: white;
 }
+.autocomplete-suggestion{
+    background-color: #333333;
+    color: white;
+}
+.autocomplete-suggestion:hover{
+    background-color: #336699;
+    color: white;
+}

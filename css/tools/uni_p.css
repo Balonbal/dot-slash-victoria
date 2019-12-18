@@ -1,3 +1,8 @@
 .eventTime > input {
 	width: 60px;
 }
+.autocomplete-suggestion{
+	font: large;
+	padding: 10px;
+	border-radius: 1px;
+}

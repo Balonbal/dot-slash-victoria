@@ -4,9 +4,11 @@
     window.localStorage.setItem("theme", theme);
 
     if(theme == "dark"){
-      $(".darkStyleSheet").removeAttr("disabled")
+		$(".darkStyleSheet").removeAttr("disabled")
+		$(".lightStyleSheet").attr("disabled", "disabled")
     }else{
-      $(".darkStyleSheet").attr("disabled", "disabled")
+		$(".lightStyleSheet").removeAttr("disabled")
+		$(".darkStyleSheet").attr("disabled", "disabled")
     }
   }
 }

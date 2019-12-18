@@ -1,14 +1,13 @@
 function ce(i) { return document.createElement(i); }
 
 let meetData = {
-	events: [
-	],
+	events: [],
 	participants: [],
 }
 
 let club;
-
 let allMeets;
+let validClubs = [];
 
 function addMeets(meets) {
 	allMeets = meets;
@@ -519,4 +518,16 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 	});
+	$.getJSON( "/assets/clubs.json", function( data ) {
+		$.each( data, function( key, val ) {
+			validClubs.push(val)
+		});
+	});
+	$("#clubName").autocomplete({
+			lookup: validClubs,
+			lookupLimit: 5,
+			onSelect: (suggestion)=>{$("#clubName").val(suggestion)}
+		}
+	)
+
 });

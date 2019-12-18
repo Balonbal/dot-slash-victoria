@@ -1,10 +1,10 @@
 ---
 title: Uni_p.txt generator
 layout: default
-scripts: [papaparse.min, validation, uni_p, encoding-indexes, encoding, xmlParser]
+scripts: [papaparse.min, validation, uni_p, encoding-indexes, encoding, xmlParser, jquerry.autocomplete]
 modals: [uni_p-change-meet.html, uni_p-importing.html]
 ---
-<link rel="stylesheet" type="text/css" href="../css/uni_p.css"></link>
+<link rel="stylesheet" type="text/css" href="../css/tools/uni_p.css"></link>
 
 <div id="meetDetails" class="container">
 	<h2 class="t">Meet details</h2>
@@ -45,7 +45,7 @@ modals: [uni_p-change-meet.html, uni_p-importing.html]
 	</div>
 	<div class="form-group row">
 		<label for="clubName" class="col-4 t">Set club name:</label>
-		<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
+		<input type="text" name="clubName" id="clubName" autocomplete="off" class="form-control col-4"/>
 		<div class="col-3"></div>
 		<button class="btn btn-success col-1 t" id="addClub">Add</button>
 		<button class="btn btn-warning col-3 hidden t" id="changeClub">Change name</button>
