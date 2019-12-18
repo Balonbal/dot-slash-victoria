@@ -458,7 +458,7 @@ window.addEventListener("load", function() {
 			complete: function(results, file) {
 				// find the header index
 				let headerIndex;
-				for(i = 0; i < results.data.length -1; i++){
+				for(let i = 0; i < results.data.length -1; i++){
 					if(results.data[i][0] == "Navn"){
 						headerIndex = i;
 						break;
@@ -466,7 +466,7 @@ window.addEventListener("load", function() {
 				}
 
 				// for each line create a new person and add to participants list.
-				for(i = headerIndex + 1; (results.data.length - 1) - (headerIndex + 1); i++){
+				for(let i = headerIndex + 1; (results.data.length - 1) - (headerIndex + 1); i++){
 					// break out of last line
 					if(results.data[i][1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
 						break;
@@ -478,7 +478,9 @@ window.addEventListener("load", function() {
 
 					results.data[i][4] == "G" ? person.sex = "M" : person.sex = "K"  
 					person.birthYear = results.data[i][5].substring(6)
-					appendParticipant(person);
+					if(!isDuplicate(meetData.participants,person)){
+						appendParticipant(person);
+					}
 
 				}
 				$("#modal-import-csv").modal("toggle"); // closes the modal

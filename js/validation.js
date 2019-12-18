@@ -1,6 +1,6 @@
 
 function sanitizeName(name){
-    // retruns nothing if
+    // retruns false if
     // - input is empty
     // - input contains digits
     // - length of the name is less than 4 characters
@@ -21,7 +21,7 @@ function sanitizeName(name){
     }
 
     // check if name contains digits
-    for(i = 0; i < name.length - 1; i++){
+    for(let i = 0; i < name.length - 1; i++){
 
         if(Number(name[i])){
             return false;
@@ -51,7 +51,7 @@ function sanitizeName(name){
     name = name[0].toUpperCase() + name.substring(1);
 
     // Set capital letter on first letter after each space or dash
-    for(i = 0; i < name.length - 2; i++){
+    for(let i = 0; i < name.length - 2; i++){
         if(name[i] == " " || name[i] == "-"){
                 name = name.substring(0,i) + " " + name[i+1].toUpperCase() + name.substring(i+2);
         }
@@ -59,14 +59,14 @@ function sanitizeName(name){
 
     return name;
 }
-function isDiplicate(participants, person){
+function isDuplicate(participants, person){
     if(!participants){
         return;
     }
     if(!person){
         return;
     }
-    for (i = 0; i < participants.length - 1; i++){
+    for (let i = 0; i < participants.length; i++){
         if(participants[i].name == person.name && participants[i].birthYear == person.birthYear){
             return true;
         }
