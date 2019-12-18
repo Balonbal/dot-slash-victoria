@@ -54,20 +54,9 @@ a{
 .eventTable tr:hover, .personRow:hover{
     background-color: #336699;
 }
-
-.modal-content{
-    background-color: #333333;
-}
-.modal-body p{
+.modal-body p, div#confirmationBody, span{
     color:white;
 }
-div#confirmationBody{
-    color: white;
-}
-span{
-    color: white;
-}
-
 th.t, td.eventId, td.eventName, td{
     color: white;
 }
@@ -79,3 +68,8 @@ th.t, td.eventId, td.eventName, td{
     background-color: #336699;
     color: white;
 }
+.custom-file-label, #importMedley, #meetName, #clubName, input, select, input.min, input.sec, input.hun, .modal-content, #modal-add-club-info{
+    background-color:#333;
+    color: white;
+}
+

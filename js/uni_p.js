@@ -74,23 +74,11 @@ function hasTeamEvents() {
 	return false;
 }
 
+// Enables person registration
 function updateClubSelection(clubName) {
 	document.getElementById("participantsContainer").classList.remove("hidden");
 	enableTab("participantBar", "participantSingle", false);
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
-}
-
-function addClubSelection(clubName) {
-	const node = document.createElement("option");
-	node.selected = true;
-	node.innerText = clubName;
-	node.value = clubName;
-	document.getElementById("activeClub").appendChild(node);
-	document.getElementById("activeClub").disabled = false;
-	const evt = document.createEvent("HTMLEvents");
-	evt.initEvent("change", false, true);
-	document.getElementById("activeClub").dispatchEvent(evt);
-
 }
 
 function getEvent(index) {
@@ -116,21 +104,7 @@ function createUNIP(meetData) {
 		const person = meetData.participants[i];
 		let params = [];
 
-		// Check if the name has trailing whitespaces
-		nameChecked = false
-		while(!nameChecked){
-			nameChecked = true
-			// remove whitespace at the start of the name
-			if(person.name[0] == " "){
-				person.name = person.name.substring(1,length(person.name) - 1)
-				nameChecked = false
-			}
-			// remove whitespace at the end of the name
-			if(person.name[length(name) -1 ] == " "){
-				person.name = person.name.substring(0,length(person.name) - 2)
-				nameChecked = false
-			}
-		}
+		person.name = sanitizeName(person.name)
 
 		for (let j in person.events) {
 			const evt = person.events[j];
@@ -486,16 +460,6 @@ window.addEventListener("load", function() {
 				worker: true
 			})
 	});
-
-	document.getElementById("activeClub").addEventListener("change", function() {
-		club = document.getElementById("activeClub").value;
-		updateClubSelection(club);
-	});
-	document.getElementById("addClub").addEventListener("click", function() {
-		addClubSelection(document.getElementById("clubName").value);
-		document.getElementById("clubSelection").classList.remove("hidden");
-		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
-	});
 	document.getElementById("importMedley").addEventListener("click", function() {
 		if (typeof allMeets == "undefined") {
 			const node = document.createElement("option");
@@ -525,8 +489,25 @@ window.addEventListener("load", function() {
 	$("#clubName").autocomplete({
 			lookup: validClubs,
 			lookupLimit: 5,
-			onSelect: (suggestion)=>{$("#clubName").val(suggestion)}
+			onSelect: (suggestion)=>{
+				$("#clubName").val(suggestion)
+				club = $("#clubName").val()
+				updateClubSelection(club)
+				showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
+			}
 		}
 	)
+	$("#add-new-club-link").on("click",()=>{
+		$("#modal-add-club").modal("show");
+	})
+	$("#modal-add-club-button-success").on("click", ()=>{
+		let customCreatedClub = $("#modal-add-club-content").val()
+		$("#modal-add-club").modal("hide");
+		$("#clubName").val(customCreatedClub)
+		validClubs.push(customCreatedClub)
+		club = customCreatedClub;
+		updateClubSelection(customCreatedClub)
+		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
+	})
 
 });
