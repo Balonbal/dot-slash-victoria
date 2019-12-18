@@ -425,6 +425,7 @@ function appendParticipant(person) {
 
 	if (translator) translator.Translate();
 }
+
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
@@ -450,43 +451,42 @@ window.addEventListener("load", function() {
 		if (!file) return;
 		// parse csv
 		// Create a loading modal
-		$("#modal-import-csv").modal("toggle"); // opens the modal
+		$("#modal-import-csv").modal("show"); // opens the modal
+		let skippedLines = 0;
 
 		Papa.parse(file, {
 			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
 			// On parse complete:
-			complete: function(results, file) {
-				// find the header index
-				let headerIndex;
-				for(let i = 0; i < results.data.length -1; i++){
-					if(results.data[i][0] == "Navn"){
-						headerIndex = i;
-						break;
+			step: function(results, file) {
+				// skip the first 7 lines
+					if(skippedLines < 8){
+						skippedLines++;
+						return;
 					}
-				}
-
-				// for each line create a new person and add to participants list.
-				for(let i = headerIndex + 1; (results.data.length - 1) - (headerIndex + 1); i++){
 					// break out of last line
-					if(results.data[i][1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
-						break;
+					if(results.data[1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
+						file.abort();
 					}
 
 					let person = {};
-					person.name = results.data[i][0]
-					// person.name = validateName(results.data[i][0]);
+					person.name = sanitizeName(results.data[0])
+					if(!person.name){
+						// no name
+						return;
+					}
+					// person.name = results.data[0]
 
-					results.data[i][4] == "G" ? person.sex = "M" : person.sex = "K"  
-					person.birthYear = results.data[i][5].substring(6)
+					results.data[4] == "G" ? person.sex = "M" : person.sex = "K"
+					person.birthYear = results.data[5].substring(6)
 					if(!isDuplicate(meetData.participants,person)){
+						$("#modal-import-csv-body-status").text(String(person.name));
 						appendParticipant(person);
 					}
 
-				}
-				$("#modal-import-csv").modal("toggle"); // closes the modal
-			}
-		})
-
+				},
+				complete: ()=>{$("#modal-import-csv").modal("hide")}, // closes the modal
+				worker: true
+			})
 	});
 
 	document.getElementById("activeClub").addEventListener("change", function() {
