@@ -1,5 +1,3 @@
-function ce(i) { return document.createElement(i); }
-
 let meetData = {
 	events: [],
 	participants: [],
@@ -179,7 +177,6 @@ function getEventString(person) {
 	return s;
 }
 
-
 function initEditor(person, table, span) {
 	const t = document.getElementById("eventDummy");
 
@@ -242,7 +239,6 @@ function initEditor(person, table, span) {
 			getE(time, name).addEventListener("focus", focus);
 
 		}
-
 
 		addTimeListener("min");
 		addTimeListener("sec");
@@ -372,8 +368,6 @@ function appendParticipant(person) {
 		person.birthYear = getT(age, "input").value;
 	});
 
-
-
 	const editor = n.children[1];
 	node.addEventListener("click", function () {
 		hideEditors();
@@ -428,9 +422,9 @@ window.addEventListener("load", function() {
 
 		Papa.parse(file, {
 			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
-			// On parse complete:
+			worker: true,
 			step: function(results, file) {
-				// skip the first 7 lines
+				// skip the first 8 lines
 					if(skippedLines < 8){
 						skippedLines++;
 						return;
@@ -446,18 +440,16 @@ window.addEventListener("load", function() {
 						// no name
 						return;
 					}
-					// person.name = results.data[0]
 
 					results.data[4] == "G" ? person.sex = "M" : person.sex = "K"
 					person.birthYear = results.data[5].substring(6)
 					if(!isDuplicate(meetData.participants,person)){
-						$("#modal-import-csv-body-status").text(String(person.name));
+						$("#modal-import-csv-body-status").text(person.name);
 						appendParticipant(person);
 					}
 
 				},
-				complete: ()=>{$("#modal-import-csv").modal("hide")}, // closes the modal
-				worker: true
+				complete: ()=>{$("#modal-import-csv").modal("hide")} // closes the modal
 			})
 	});
 	document.getElementById("importMedley").addEventListener("click", function() {
