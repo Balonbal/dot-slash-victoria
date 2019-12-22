@@ -449,42 +449,35 @@ window.addEventListener("load", function() {
 		const file = e.target.files[0];
 		if (!file) return;
 		// parse csv
-		// Create a loading modal
-		$("#modal-import-csv").modal("toggle"); // opens the modal
-
+		let skippedLines = 0;
 		Papa.parse(file, {
 			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
-			// On parse complete:
-			complete: function(results, file) {
-				// find the header index
-				let headerIndex;
-				for(i = 0; i < results.data.length -1; i++){
-					if(results.data[i][0] == "Navn"){
-						headerIndex = i;
-						break;
-					}
+			worker: true,
+			step: function(results, file) {
+				// skip first 8 lines
+				if(spippedLines < 8){
+					skippedLines++;
+					return;
+				}
+				// break out of last line
+				if(results.data[1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
+					file.abort();
 				}
 
-				// for each line create a new person and add to participants list.
-				for(i = headerIndex + 1; (results.data.length - 1) - (headerIndex + 1); i++){
-					// break out of last line
-					if(results.data[i][1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
-						break;
-					}
+				let person = {};
+				person.name = sanitizeName(results.data[0])
+				if(!person.name){
+					// no name
+					return;
+				}
 
-					let person = {};
-					person.name = results.data[i][0]
-					// person.name = validateName(results.data[i][0]);
-
-					results.data[i][4] == "G" ? person.sex = "M" : person.sex = "K"  
-					person.birthYear = results.data[i][5].substring(6)
+				results.data[4] == "G" ? person.sex = "M" : person.sex = "K"
+				person.birthYear = results.data[5].substring(6)
+				if(!isDuplicate(meetData.participants,person)){
 					appendParticipant(person);
-
 				}
-				$("#modal-import-csv").modal("toggle"); // closes the modal
 			}
-		})
-
+		});
 	});
 
 	document.getElementById("activeClub").addEventListener("change", function() {

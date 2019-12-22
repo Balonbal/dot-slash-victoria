@@ -46,7 +46,7 @@ function sanitizeName(name){
     name = name[0].toUpperCase() + name.substring(1);
 
     // Set capital letter on first letter after each space or dash
-    for(i = 0; i < name.length - 2; i++){
+    for(let i = 0; i < name.length - 2; i++){
         if(name[i] == " " || name[i] == "-"){
                 name = name.substring(0,i) + " " + name[i+1].toUpperCase() + name.substring(i+2);
         }
@@ -60,7 +60,7 @@ function isDiplicate(participants, person){
     if(!person){
         return;
     }
-    for (i = 0; i < participants.length - 1; i++){
+    for (let i = 0; i < participants.length - 1; i++){
         if(participants[i].name == person.name && participants[i].birthYear == person.birthYear){
             return true;
         }
