@@ -117,6 +117,23 @@ function createUNIP(meetData) {
 	for (let i in meetData.participants) {
 		const person = meetData.participants[i];
 		let params = [];
+
+		// Check if the name has trailing whitespaces
+		nameChecked = false
+		while(!nameChecked){
+			nameChecked = true
+			// remove whitespace at the start of the name
+			if(person.name[0] == " "){
+				person.name = person.name.substring(1,length(person.name) - 1)
+				nameChecked = false
+			}
+			// remove whitespace at the end of the name
+			if(person.name[length(name) -1 ] == " "){
+				person.name = person.name.substring(0,length(person.name) - 2)
+				nameChecked = false
+			}
+		}
+
 		for (let j in person.events) {
 			const evt = person.events[j];
 			const meetEvent = getEvent(evt.index);
@@ -129,14 +146,14 @@ function createUNIP(meetData) {
 				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
 				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
 				"",
-				meetEvent.sex + person.team ? person.class :("" + person.birthYear).substring(2),
+				person.team ? "" + person.sex + person.class : "" + person.sex + ("" + person.birthYear).substring(2), 
 				person.team ? person.class : person.birthYear,
 				time,
 				"",
 				"",
 				"",
-				"",
 				"K",
+				"",
 				"",
 				""
 			];
