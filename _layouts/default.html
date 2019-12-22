@@ -24,11 +24,6 @@
 				<div class="langList dropdown-menu" aria-labelledby="languageDropwown"></div>
 			</div>
 		</nav>
-		{% if page.modals %}
-			{% for modal in page.modals %}
-				{% include {{modal}} %}
-			{% endfor %}
-		{% endif %}
 
 		{{ content }}
 
