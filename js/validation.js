@@ -28,23 +28,19 @@ function sanitizeName(name){
         }
     }
 
-    sanitized = false;
-    while(!sanitized){
-        sanitized = true
-        // removed spaces at the start of the name
-        if(name[0] == " "){
-            name = name.substring(1);
-            sanitized = false;
-        }
-        // removed spaces at the end of the name
-        if(name[name.length - 1] == " "){
-            name = name.substring(0, name.length - 1);
-            sanitized = false;
-        }
-}
     // compress multiple spaces into one space
     name = name.replace(/\s+/g, ' ');
 
+    // removed spaces at the start of the name
+    if(name[0] == " "){
+        name = name.substring(1);
+        sanitized = false;
+    }
+    // removed spaces at the end of the name
+    if(name[name.length - 1] == " "){
+        name = name.substring(0, name.length - 1);
+        sanitized = false;
+    }
 
     name = name.toLowerCase();
     // Set capital letter on first letter
