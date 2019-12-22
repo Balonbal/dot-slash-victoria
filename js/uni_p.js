@@ -425,7 +425,6 @@ function appendParticipant(person) {
 
 	if (translator) translator.Translate();
 }
-
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
@@ -433,7 +432,7 @@ window.addEventListener("load", function() {
 		const unip = createUNIP(meetData);
 		download(club + " uni_p.txt", unip);
 	});
-	document.getElementById("importFile").addEventListener("change", function(e) {
+	document.getElementById("importFile-meetSetup").addEventListener("change", function(e) {
 		const file = e.target.files[0];
 		if (!file) return;
 		const reader = new FileReader();
@@ -444,6 +443,7 @@ window.addEventListener("load", function() {
 		reader.readAsText(file);
 
 	});
+
 	document.getElementById("activeClub").addEventListener("change", function() {
 		club = document.getElementById("activeClub").value;
 		updateClubSelection(club);
