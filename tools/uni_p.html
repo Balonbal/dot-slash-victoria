@@ -1,8 +1,8 @@
 ---
 title: Uni_p.txt generator
 layout: default
-scripts: [validation, uni_p, encoding-indexes, encoding, xmlParser, jquerry.autocomplete]
-modals: [uni_p-change-meet.html, uni_p-add-club.html]
+scripts: [validation, uni_p, encoding-indexes, encoding, xmlParser, jquerry.autocomplete, papaparse.min]
+modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 ---
 <link rel="stylesheet" type="text/css" href="../css/tools/uni_p.css"></link>
 
@@ -48,6 +48,17 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html]
 <div class="container hidden" id="participantsContainer">
 	<h3 class="t">Participants</h3>
 
+	<div class="form-group row">
+		<div class="input-group">
+			<div class="col-4">
+				<label for="importFile-tryggivann">Import enrolled from tryggivann.no</label>
+			</div>
+			<div class="custom-file col-8">
+				<label class="custom-file-label">Choose file</label>
+				<input type="file" accept=".csv" class="custom-file-input t" id="importFile-tryggivann">
+			</div>
+		</div>
+	</div>
 
 	<div id="participantBar" class="tabBar">
 		<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
