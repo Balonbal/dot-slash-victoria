@@ -11,8 +11,15 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html]
 	<section id="meetSettings">
 
 		<div class="form-group row">
-			<label for="importFile-meetSetup" class="col-4 t">Import from XML</label>
-			<input type="file" accept=".xml" class="form-control-file col-8" id="importFile-meetSetup"/>
+			<div class="input-group">
+				<div class="col-4">
+					<label for="importFile-meetSetup">Import meetsetup from XML</label>
+				</div>
+				<div class="custom-file col-8">
+					<label class="custom-file-label">Choose file</label>
+					<input type="file" accept=".xml" class="custom-file-input t" id="importFile-meetSetup">
+				</div>
+			</div>
 		</div>
 		
 		
