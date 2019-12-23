@@ -1,1 +1,2 @@
 exclude: [package.json, yarn.lock, jest-puppeteer.config.js, node_modules, README.md, LICENSE]
+host: 0.0.0.0
