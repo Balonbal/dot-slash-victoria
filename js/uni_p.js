@@ -1,5 +1,3 @@
-function ce(i) { return document.createElement(i); }
-
 let meetData = {
 	events: [],
 	participants: [],
@@ -8,7 +6,9 @@ let meetData = {
 let club;
 let allMeets;
 let validClubs = [];
+const ENCODING = "ISO-8859-1";
 
+// list available meets from medley.no
 function addMeets(meets) {
 	allMeets = meets;
 	const select = document.getElementById("importMedley");
@@ -21,6 +21,7 @@ function addMeets(meets) {
 	}
 }
 
+// Import selected meet
 function importMeet(data) {
 	const changeMeet = function(data) {
 		try {
@@ -75,7 +76,7 @@ function hasTeamEvents() {
 }
 
 function updateClubSelection(clubName) {
-	document.getElementById("participantsContainer").classList.remove("hidden");
+	$("#participantsContainer").removeClass("hidden");
 	enableTab("participantBar", "participantSingle", false);
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
 }
@@ -105,9 +106,6 @@ function createUNIP(meetData) {
 		let params = [];
 
 		person.name = sanitizeName(person.name);
-		if(!person.name){
-			return;
-		}
 
 		for (let j in person.events) {
 			const evt = person.events[j];
@@ -171,6 +169,7 @@ function colChangeListener(node, func, type) {
 	getT(node, type).addEventListener("keyup", func);
 }
 
+// get name of the excersize e.g. 100m freestyle
 function getEventString(person) {
 	let s = "";
 	for (let i = 0; i < person.events.length; i++) {
@@ -257,11 +256,14 @@ function initEditor(person, table, span) {
 			for (let k = 0; k < person.events.length; k++) {
 				if (personEvent.index == person.events[k].index) pos = k;
 			}
+
 			if (getT(willSwim, "input").checked) {
 				if (typeof pos == "undefined") person.events.push(personEvent);
+
 			} else {
 				if (typeof pos !== "undefined") person.events.splice(pos, 1);
 			}
+
 			person.events.sort(function (a,b) { return a.index - b.index; });
 			span.innerHTML = getEventString(person);
 		});
@@ -309,6 +311,7 @@ function appendTeam(team) {
 		team.name = club + " " + gender + i + " " + team.class;
 		setFields(name, team.name);
 	}
+
 	suggestName();
 	colChangeListener(cls, function () {
 		team.class = getT(cls, "select").value;
@@ -375,8 +378,6 @@ function appendParticipant(person) {
 		person.birthYear = getT(age, "input").value;
 	});
 
-
-
 	const editor = n.children[1];
 	node.addEventListener("click", function () {
 		hideEditors();
@@ -400,37 +401,60 @@ function appendParticipant(person) {
 
 	if (translator) translator.Translate();
 }
+
+// When everyinging is loaded
 window.addEventListener("load", function() {
+
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
-	document.getElementById("makeUnip").addEventListener("click", function() {
+
+	$("#makeUnip").on("click", function() {
 		const unip = createUNIP(meetData);
 		download(club + " uni_p.txt", unip);
 	});
-	document.getElementById("importFile-meetSetup").addEventListener("change", function(e) {
+
+	// Import meet setup from XML
+	$("#importFile-meetSetup").on("change", function(e) {
 		const file = e.target.files[0];
 		if (!file) return;
+
+		// check if the file is a .xml file.
+		if(file.name.substring(file.name.length - 4) != ".xml"){
+			console.error("Cannot open non .xml files. File open attempt: " + file.name);
+			return;
+		}
+
 		const reader = new FileReader();
 		reader.addEventListener("load", function(e) {
 			const xml = parseXml(e.target.result);
 			importMeet(xml.MeetSetUp);
 		});
-		reader.readAsText(file);
+		reader.readAsText(file, ENCODING);
 
 	});
+
 	// Import csv file with entries
-	document.getElementById("importFile-tryggivann").addEventListener("change", function(e) {
+	$("#importFile-tryggivann").on("change", function(e) {
 		// Open file
 		const file = e.target.files[0];
 		if (!file) return;
-		// parse csv
-		// Create a loading modal
-		$("#modal-import-csv").modal("show"); // opens the modal
-		let skippedLines = 0;
 
+		// check if the file is a .csv file.
+		if(file.name.substring(file.name.length - 4) != ".csv"){
+			console.error("Cannot open non .csv files. File open attempt: " + file.name);
+			return;
+		}
+
+		// Open a loading modal
+		$("#modal-import-csv").modal("show");
+
+		// parse file
+		let skippedLines = 0;
 		Papa.parse(file, {
-			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
+			encoding: ENCODING,
 			worker: true,
+
+			// for each line do this:
 			step: function(results, file) {
 				// skip the first 8 lines
 					if(skippedLines < 8){
@@ -443,21 +467,29 @@ window.addEventListener("load", function() {
 					}
 
 					let person = {};
+
+					// set name
 					person.name = sanitizeName(results.data[0])
 					if(!person.name){
 						// no name
 						return;
 					}
 
+					// set gender
 					results.data[4] == "G" ? person.sex = "M" : person.sex = "K"
+
+					// set birthYear
 					person.birthYear = results.data[5].substring(6)
+
+					// add if not in list
 					if(!isDuplicate(meetData.participants,person)){
 						$("#modal-import-csv-body-status").text(person.name);
 						appendParticipant(person);
 					}
 
 				},
-				complete: ()=>{$("#modal-import-csv").modal("hide")} // closes the modal
+				// closes the modal
+				complete: ()=>{$("#modal-import-csv").modal("hide")}
 			})
 	});
 	document.getElementById("importMedley").addEventListener("click", function() {
@@ -481,6 +513,7 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 	});
+
 	// Eventlistener club settings
 	$.getJSON( "/assets/clubs.json", function( data ) {
 		$.each( data, function( key, val ) {
