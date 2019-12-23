@@ -42,7 +42,7 @@ function sanitizeName(name){
     }
 
     // check if name contains digits
-    for(i = 0; i < name.length - 1; i++){
+    for(let i = 0; i < name.length - 1; i++){
 
         if(Number(name[i])){
             return false;
