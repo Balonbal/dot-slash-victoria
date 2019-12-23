@@ -418,7 +418,48 @@ window.addEventListener("load", function() {
 		reader.readAsText(file);
 
 	});
+	// Import csv file with entries
+	document.getElementById("importFile-tryggivann").addEventListener("change", function(e) {
+		// Open file
+		const file = e.target.files[0];
+		if (!file) return;
+		// parse csv
+		// Create a loading modal
+		$("#modal-import-csv").modal("show"); // opens the modal
+		let skippedLines = 0;
 
+		Papa.parse(file, {
+			encoding: "ISO-8859-1", // needed for "æ", "ø" and "å"
+			worker: true,
+			step: function(results, file) {
+				// skip the first 8 lines
+					if(skippedLines < 8){
+						skippedLines++;
+						return;
+					}
+					// break out of last line
+					if(results.data[1] == "Uthevet fødselsdato betyr bursdag i kursperioden."){
+						file.abort();
+					}
+
+					let person = {};
+					person.name = sanitizeName(results.data[0])
+					if(!person.name){
+						// no name
+						return;
+					}
+
+					results.data[4] == "G" ? person.sex = "M" : person.sex = "K"
+					person.birthYear = results.data[5].substring(6)
+					if(!isDuplicate(meetData.participants,person)){
+						$("#modal-import-csv-body-status").text(person.name);
+						appendParticipant(person);
+					}
+
+				},
+				complete: ()=>{$("#modal-import-csv").modal("hide")} // closes the modal
+			})
+	});
 	document.getElementById("importMedley").addEventListener("click", function() {
 		if (typeof allMeets == "undefined") {
 			const node = document.createElement("option");

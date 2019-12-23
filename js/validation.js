@@ -20,14 +20,6 @@ function sanitizeName(name){
         return false;
     }
 
-    // check if name contains digits
-    for(i = 0; i < name.length - 1; i++){
-
-        if(Number(name[i])){
-            return false;
-        }
-    }
-
     // compress multiple spaces into one space
     name = name.replace(/\s+/g, ' ');
 
@@ -42,20 +34,31 @@ function sanitizeName(name){
         sanitized = false;
     }
 
+    // check if name contains digits
+    for(i = 0; i < name.length - 1; i++){
+
+        if(Number(name[i])){
+            return false;
+        }
+    }
+
     name = name.toLowerCase();
     // Set capital letter on first letter
     name = name[0].toUpperCase() + name.substring(1);
 
     // Set capital letter on first letter after each space or dash
     for(let i = 0; i < name.length - 2; i++){
-        if(name[i] == " " || name[i] == "-"){
+        if(name[i] == " "){
                 name = name.substring(0,i) + " " + name[i+1].toUpperCase() + name.substring(i+2);
         }
+        if(name[i] == "-"){
+            name = name.substring(0,i) + "-" + name[i+1].toUpperCase() + name.substring(i+2);
+    }
     }
 
     return name;
 }
-function isDiplicate(participants, person){
+function isDuplicate(participants, person){
     if(!participants){
         return;
     }
