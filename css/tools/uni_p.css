@@ -1,3 +1,17 @@
 .eventTime > input {
 	width: 60px;
 }
+.autocomplete-suggestion{
+	font: large;
+	padding: 10px;
+}
+.autocomplete-suggestion:last-of-type{
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.autocomplete-suggestions{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+input#meetName{
+	padding: 6px 12px;
+}

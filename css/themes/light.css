@@ -12,3 +12,11 @@ body{
 .eventTable tr:hover, .personRow:hover{
 	background-color: #eff8ff;
 }
+.autocomplete-suggestion{
+    background-color: #FFF;
+    color: black;
+}
+.autocomplete-suggestion:hover{
+    background-color: #f8f9fa;
+    color: black;
+}
