@@ -1,14 +1,13 @@
 function ce(i) { return document.createElement(i); }
 
 let meetData = {
-	events: [
-	],
+	events: [],
 	participants: [],
 }
 
 let club;
-
 let allMeets;
+let validClubs = [];
 
 function addMeets(meets) {
 	allMeets = meets;
@@ -81,18 +80,6 @@ function updateClubSelection(clubName) {
 	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
 }
 
-function addClubSelection(clubName) {
-	const node = document.createElement("option");
-	node.selected = true;
-	node.innerText = clubName;
-	node.value = clubName;
-	document.getElementById("activeClub").appendChild(node);
-	document.getElementById("activeClub").disabled = false;
-	const evt = document.createEvent("HTMLEvents");
-	evt.initEvent("change", false, true);
-	document.getElementById("activeClub").dispatchEvent(evt);
-
-}
 
 function getEvent(index) {
 	for (let i in meetData.events) {
@@ -432,15 +419,6 @@ window.addEventListener("load", function() {
 
 	});
 
-	document.getElementById("activeClub").addEventListener("change", function() {
-		club = document.getElementById("activeClub").value;
-		updateClubSelection(club);
-	});
-	document.getElementById("addClub").addEventListener("click", function() {
-		addClubSelection(document.getElementById("clubName").value);
-		document.getElementById("clubSelection").classList.remove("hidden");
-		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
-	});
 	document.getElementById("importMedley").addEventListener("click", function() {
 		if (typeof allMeets == "undefined") {
 			const node = document.createElement("option");
@@ -462,4 +440,37 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 	});
+	// Eventlistener club settings
+	$.getJSON( "/assets/clubs.json", function( data ) {
+		$.each( data, function( key, val ) {
+			validClubs.push(val)
+		});
+	});
+	$("#clubName").autocomplete({
+			lookup: validClubs,
+			lookupLimit: 5,
+			onSelect: (suggestion)=>{
+				$("#clubName").val(suggestion)
+				club = $("#clubName").val()
+				updateClubSelection(club)
+				showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
+			}
+		}
+	)
+	$("#add-new-club-link").on("click",()=>{
+		$("#modal-add-club").modal("show");
+	})
+	$("#modal-add-club-button-success").on("click", ()=>{
+		let customCreatedClub = $("#modal-add-club-content").val()
+		$("#modal-add-club").modal("hide");
+		$("#clubName").val(customCreatedClub)
+		validClubs.push(customCreatedClub)
+		club = customCreatedClub;
+		updateClubSelection(customCreatedClub)
+		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
+	})
+
+
+
+
 });

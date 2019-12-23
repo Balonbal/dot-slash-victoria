@@ -71,3 +71,15 @@ span{
 th.t, td.eventId, td.eventName, td{
     color: white;
 }
+.autocomplete-suggestion{
+    background-color: #333333;
+    color: white;
+}
+.autocomplete-suggestion:hover{
+    background-color: #336699;
+    color: white;
+}
+.custom-file-label, #importMedley, #meetName, #clubName, input, select, input.min, input.sec, input.hun, .modal-content, #modal-add-club-info{
+    background-color:#333;
+    color: white;
+}
