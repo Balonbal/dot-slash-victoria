@@ -27,7 +27,7 @@ const pages = {
 		"Add": { "no": "Legg til" },
 		"Change name": { "no": "Endre navn" },
 		"Participants": { "no": "Deltakere" },
-		"Individuals": { "no": "Individuelle Utøvere" },
+		"Individuals": { "no": "Individuelle utøvere" },
 		"Name": { "no": "Navn" },
 		"Year of birth (class)": {"no": "Fødselsår (klasse)" },
 		"Sex": { "no": "Kjønn" },
@@ -48,17 +48,22 @@ const pages = {
 		"Male": { "no": "Mann" },
 		"Female": { "no": "Kvinne" },
 		"Mixed": { "no": "Mixed" },
+		"Choose file": {"no": "Velg fil"},
+		"Choose club": {"no": "Velg klubb"},
+		"Don't see your club in the list?" : {"no" : "Ser du ikke klubben din i listen?"},
+		"Import enrolled from tryggivann.no" : {"no": "Importer påmeldte fra tryggivann.no"},
+		"Add club" : {"no" : "Legg til ny klubb"},
+		"Add a new club to the list. If this club excists in medley.no then send us a message and we will add i it to the list. Please dont use abbreviations":{"no":"Legg til en ny klubb i listen. Hvis klubben eksisterer på medley.no gi oss beskjed om det slik at vi får lagt den inn. Ikke bruk forkortelser"},
+		"Importing from tryggivann" : {"no" : "Importerer fra tryggivann"}
 	},"newMeet": {
 		
 	}
 }
 
 function Translator() {
-	let url = window.location.href; 
-	this.url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
-	this.path = url.substring(this.url.length);
-	this.page = this.path.substring(this.path.lastIndexOf("/") + 1);
-	if (this.page.indexOf(".") != -1) this.page = this.page.substring(this.page.lastIndexOf("."));
+	let url = new URL(window.location.href);
+	this.page = url.pathname.substring(url.pathname.lastIndexOf("/"))
+	this.page = this.page.substring(1,this.page.indexOf("."))
 	this.pages = pages;
 
 	this.LoadTranslation = function(page, language) {
