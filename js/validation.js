@@ -1,4 +1,3 @@
-
 function sanitizeName(name){
     // retruns nothing if
     // - input is empty
@@ -60,7 +59,7 @@ function sanitizeName(name){
         }
         if(name[i] == "-"){
             name = name.substring(0,i) + "-" + name[i+1].toUpperCase() + name.substring(i+2);
-    }
+        }
     }
     return name;
 }
@@ -79,23 +78,46 @@ function isDuplicate(participants, person){
     return false;
 }
 
-
 function isValidBirthYear(birthYear){
     // Returns false if age is below 4 year or above 100
-    // Returns true otherwise 
+    // Returns true otherwise
+    const minAge = 4;
+    const maxAge = 100;
 
     // get current year
     date = new Date;
-    currentYear = 2000;
-    currentYear += date.getYear();
-    // ranges
-    const minAge = 4; 
-    const maxAge = 100;
+    currentYear = 1900;
+    currentYear += date.getYear(); // getYear() returns 120 in 2020 because 99 is 1999, 100 is 2000 and 2010 is 110.
 
-    age = currentYear - birthYear;
+    if(birthYear < 100 && birthYear > 10){
+        // birthYear is in two digit format
 
-    if(age > maxAge || age < minAge){
+        // if adding 2000 to birthYear is above current year then it is not valid. Add 1900 in stead
+        if(currentYear < 2000 + birthYear){
+            birthYear = birthYear += 1900;
+        }else{
+            birthYear = birthYear += 2000;
+        }
+
+        age = currentYear - birthYear;
+
+        if(age > maxAge || age < minAge){
+            return false;
+        }
+        return true;
+
+    }else if(birthYear < 10000 && birthYear > 999){
+        // birthYear is in four digit format
+
+        age = currentYear - birthYear;
+
+        if(age > maxAge || age < minAge){
+            return false;
+        }
+        return true;
+
+    }else{
+        // input is not in four or two digit format. format is invalid.
         return false;
     }
-    return true;
 }

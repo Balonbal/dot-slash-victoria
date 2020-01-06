@@ -111,7 +111,9 @@ function createUNIP(meetData) {
 			const evt = person.events[j];
 			const meetEvent = getEvent(evt.index);
 			const time = (evt.min != "00" || evt.sec != "00" || evt.hun != "00") ? evt.min +":" + evt.sec + "." + evt.hun : "";
-
+			if(!isValidBirthYear(person.birthYear)){
+				console.log("[Warning]: " + person.name + "has an invalid birth year.\n birthYear: " + person.birthYear)
+			}
 			params = [
 				evt.index,
 				getEvent(evt.index).distance,
