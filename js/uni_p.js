@@ -2,6 +2,16 @@ const SEX_MALE = "MALE",
       SEX_FEMALE = "FEMALE",
       SEX_MIX = "Mix";
 
+function ParticipantEvent(evt) {
+	Event.call(this, evt.index, evt.distance, evt.style, evt.sex);
+	this.time = { minutes: 0, seconds: 0, hundreths: 0 };
+	this.timeString = function () {
+		if (this.time.minutes == 0 || this.time.seconds == 0) return "";
+		return this.time.minutes + ":" + String(this.time.seconds).padStart(2, '0') + "." + String(this.time.hundreths).padStart(2, '0');
+	}
+}
+
+
 
 function Event(index, distance, style, sex) {
 	this.index = index;
@@ -104,7 +114,7 @@ function MeetManager() {
 			return meet;
 		} catch (e) {
 
-			console.log(e);
+			console.log("[MeetManager:importMeet catch]: " + e);
 		}
 	}
 	this.selectMeet = function(meet) {
@@ -116,6 +126,7 @@ function MeetManager() {
 		$("#noMeet").hide();
 		$("#clubSettings").removeClass("hidden");
 		$("#meetName").text(meet.name);
+		this.activeMeet = meet;
 	}
 	this.attachSelector = function (selector) {
 		let fetched = false;
@@ -174,11 +185,51 @@ function Participant(name, team = false, sex = SEX_MALE, birth) {
 
 	this.serialize = function () {
 		let string = "";
-		//TODO
+		this.events.forEach((evt) => {
+			const firstname = this.team ? this.name : this.name.substring(this.name.lastIndexOf(" ") + 1); // Team name or first name
+			const lastname = this.team ? "" : this.name.substring(0, this.name.lastIndexOf(" ")); // Last name. Teams have no last name
+			const classString = this.sex + (this.team ? this.birthYear : ("" + this.birthYear).substring(2)); // Sex + class for teams, sex + birth year for individuals
+			const line = [
+				evt.index, // Event index
+				evt.distance, // Event distance
+				evt.style, // Event style
+				firstname,
+				lastname,
+				"", // IDK FIXME
+				classString,
+				this.birthYear, //Class for teams, birth year for individuals
+				evt.timeString(), // Event time
+				"", // IDK FIXME
+				"", // IDK FIXME
+				"", // IDK FIXME
+				"", // IDK FIXME
+				"K", // Short (K) / Long (?) Lane
+				"", // IDK FIXME
+				"", // IDK FIXME
+
+			];
+			string += line.join(",") + "\n";
+		});
 		return string;
 	}
 	this.participate = function (evt) {
+		console.log("[Participant:participate] Adding event: " + JSON.stringify(evt));
+		for (let i = 0; i < this.events.length; i++) {
+			if (this.events[i].index == evt.index) return;
+		}
 		this.events.push(evt);
+	}
+	this.resign = function (evt) {
+		let index = -1;
+		for (let i = 0; i < this.events.length; i++) {
+			if (this.events[i].index == evt.index) {
+				index = i;
+				break;
+			}
+		}
+		if (index == -1) return;
+		this.events = this.events.splice(index, 1);
+		
 	}
 	this.correctSex = function (sex, meet) {
 		this.sex = sex;
@@ -302,13 +353,52 @@ function Editor(singleTemplate, teamTemplate, eventTemplate) {
 		this.events.forEach((evt) => {
 			if (evt.isTeamEvent() != participant.team) return;
 			if (evt.sex != participant.sex) return;
-			const evtTemplate = $(this.eventTemplate.html());
-			evtTemplate.find(".eventId").text(evt.index);
-			evtTemplate.find(".eventName").text(evt.eventName());
-			evtTemplate.appendTo(template.find(".eventTable"));
+			this.createEvent(participant, new ParticipantEvent(evt))
+				.appendTo(template.find(".eventTable"));
+
+
 		})
 		if (participant.team) this.teamTables.forEach((table) => { template.appendTo(table.element) });
 		else this.singleTables.forEach((table) => { template.appendTo(table.element) });
+	}
+	this.createEvent = function(participant, evt) {
+		const evtTemplate = $(this.eventTemplate.html());
+		evtTemplate.find(".eventId").text(evt.index);
+		evtTemplate.find(".eventName").text(evt.eventName());
+		evtTemplate.find(".willSwim").on("change", function () {
+			if ($(this)[0].checked) {
+				participant.participate(evt);
+			} else {
+				participant.resign(evt);
+			}
+		});
+		evtTemplate.find(".min").on("change keyup keypress", function() {
+			participant.participate(evt);
+			let val = $(this).val();
+			let number = parseInt(val);
+			evt.time.minutes = number;
+			if (val.length > 1) {
+				evtTemplate.find(".sec").select();
+				if (number < 10) $(this).val("0" + number);
+			}
+		});
+		evtTemplate.find(".sec").on("change keyup keypress", function() {
+			participant.participate(evt);
+			let val = $(this).val();
+			let number = parseInt(val);
+			evt.time.seconds = number;
+			if (val.length > 1) {
+				evtTemplate.find(".hun").select();
+				if (number < 10) $(this).val("0" + number);
+			}
+		});
+		evtTemplate.find(".hun").on("change keyup keypress", function() {
+			participant.participate(evt);
+			let val = $(this).val();
+			let number = parseInt(val);
+			evt.time.hundreths = number;
+		});
+		return evtTemplate;
 	}
 }
 
@@ -706,7 +796,6 @@ $(() => {
 			found = false;
 			// Construct name format "<club name> <G|J|Mix ><number> <class>"
 			name = clubManager.selectedClub.name + " ";
-			console.log(sex);
 			if (sex == SEX_MALE) name += "G";
 			if (sex == SEX_FEMALE) name += "J";
 			if (sex == SEX_MIX) name += "Mix ";
@@ -744,10 +833,12 @@ $(() => {
 	/*
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
+	*/
 	document.getElementById("makeUnip").addEventListener("click", function() {
-		const unip = createUNIP(meetData);
-		download("uni_p-" + meetData.name + "_" + club + ".txt", unip);
+		const unip = clubManager.selectedClub.serialize();
+		download("uni_p-" + meetManager.activeMeet.name + "_" + clubManager.selectedClub.name + ".txt", unip);
 	});
+	/*
 	document.getElementById("importFile").addEventListener("change", function(e) {
 		const file = e.target.files[0];
 		if (!file) return;

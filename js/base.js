@@ -4,13 +4,11 @@ window.TextEncoder = window.TextDecoder = null;
 const medley_url = "https://olavbb.com/dot-slash-victoria/medley_reserver"; // For testing
 
 //Debug on local files
-const debug = window.location.href.indexOf("file:///") != -1;
+const debug = window.location.href.indexOf("127.0.0.1") != -1;
 const base_url = debug ? "" : "https://balonbal.github.io/dot-slash-victoria";
 
 const getResource = function (type, name) {
-	let url = window.location.href;
-	url = url.substring(0, url.indexOf("dot-slash-victoria") + "dot-slash-victoria".length);
-	return url + "/" + type + "/" + name;
+	return base_url + "/" + type + "/" + name;
 }
 const getImg = function(name) { return getResource("img", name); }
 
