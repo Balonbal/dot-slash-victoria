@@ -165,7 +165,7 @@ function Club(name) {
 		this.participants.push(p);
 	}
 	this.serialize = function () {
-		let string = "";
+		let string = this.name + "\n";
 		for (let p in this.participants) {
 			string += this.participants[p].serialize();
 		}
