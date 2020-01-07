@@ -1,6 +1,8 @@
 const SEX_MALE = "MALE",
       SEX_FEMALE = "FEMALE",
-      SEX_MIX = "Mix";
+      SEX_MIX = "Mix",
+      CLASS_JUNIOR = "JR",
+      CLASS_SENIOR = "SR";
 
 function ParticipantEvent(evt) {
 	Event.call(this, evt.index, evt.distance, evt.style, evt.sex);
@@ -186,6 +188,7 @@ function Participant(name, team = false, sex = SEX_MALE, birth) {
 	this.serialize = function () {
 		let string = "";
 		this.events.forEach((evt) => {
+			console.log(this);
 			const firstname = this.team ? this.name : this.name.substring(this.name.lastIndexOf(" ") + 1); // Team name or first name
 			const lastname = this.team ? "" : this.name.substring(0, this.name.lastIndexOf(" ")); // Last name. Teams have no last name
 			const classString = this.sex + (this.team ? this.birthYear : ("" + this.birthYear).substring(2)); // Sex + class for teams, sex + birth year for individuals
@@ -344,7 +347,7 @@ function Editor(singleTemplate, teamTemplate, eventTemplate) {
 			participant.name = template.find(".name").val();
 		});
 		template.find(".birth").val(participant.birthYear).on("keyup keypress change", () => {
-			participant.birthYear = template.find(".name").val();
+			participant.birthYear = template.find(".birth").val();
 		});
 		template.find(".sex").val(participant.sex).on("change", () => {
 			participant.correctSex(template.find(".sex").val,this.meet);
@@ -406,6 +409,8 @@ function validateName(name) {
 	return true;
 }
 function validateBirth(birth) {
+	if (birth == CLASS_JUNIOR) return true;
+	if (birth == CLASS_SENIOR) return true;
 	const now = new Date().getFullYear();
 	const min = now - 80;
 	const max = now - 3;
@@ -445,350 +450,8 @@ function ParticipantAddForm(editor, nameField, birthField, sexField, submitButto
 	}
 }
 
-/*
-function updateClubSelection(clubName) {
-	document.getElementById("participantsContainer").classList.remove("hidden");
-	tabBarManager.getBar("participantBar").enableTab("participantSingle");
-	if (hasTeamEvents()) tabBarManager.getBar("participantBar").enableTab("participantTeam");
-}
-
-function addClubSelection(clubName) {
-	const node = document.createElement("option");
-	node.selected = true;
-	node.innerText = clubName;
-	node.value = clubName;
-	document.getElementById("activeClub").appendChild(node);
-	document.getElementById("activeClub").disabled = false;
-	const evt = document.createEvent("HTMLEvents");
-	evt.initEvent("change", false, true);
-	document.getElementById("activeClub").dispatchEvent(evt);
-
-}
-
-function getEvent(index) {
-	for (let i in meetData.events) {
-		const evt = meetData.events[i];
-		if (evt.index == index) return evt;
-	}
-	return false;
-}
-
-function hideEditors() {
-	const editors = document.getElementsByClassName("edit");
-	for (let i = 0; i < editors.length; i++) {
-		editors[i].classList.add("hidden");
-	}
-}
-
-function createUNIP(meetData) {
-	meetData.participants.sort();
-
-	str = club + "\n";
-	for (let i in meetData.participants) {
-		const person = meetData.participants[i];
-		let params = [];
-		for (let j in person.events) {
-			const evt = person.events[j];
-			const meetEvent = getEvent(evt.index);
-			const time = (evt.min != "00" || evt.sec != "00" || evt.hun != "00") ? evt.min +":" + evt.sec + "." + evt.hun : "";
-
-			params = [
-				evt.index,
-				getEvent(evt.index).distance,
-				getEvent(evt.index).style,
-				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
-				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
-				"",
-				meetEvent.sex + person.team ? person.class :("" + person.birthYear).substring(2),
-				person.team ? person.class : person.birthYear,
-				time,
-				"",
-				"",
-				"",
-				"",
-				"K",
-				"",
-				""
-			];
-			str += params.join(",") + "\n";
-		}
-				
-	}
-	return str;
-}
-
-function fixSex(person) {
-	for (let i in person.events) {
-		const e = person.events[i];
-		for (let j in meetData.events) {
-			const candidate = meetData.events[j];
-			if (candidate.sex != person.sex) continue;
-			if (candidate.distance != e.distance) continue;
-			if (candidate.style != e.style) continue;
-			e.index = candidate.index;
-			break;
-		}
-	}
-}
-
-function getE(node, name) {
-	return node.querySelectorAll("." + name)[0];
-}
-
-function getT(node, name) {
-	return node.getElementsByTagName(name)[0];
-}
-
-function setFields(node, value) {
-	getT(node, "input").value = value;
-}
-
-function colChangeListener(node, func, type) {
-	type = type || "input";
-	getT(node, type).addEventListener("change", func);
-	getT(node, type).addEventListener("keyup", func);
-}
-
-function getEventString(person) {
-	let s = "";
-	for (let i = 0; i < person.events.length; i++) {
-		const e = person.events[i];
-		s += e.distance + "m " + e.style;
-		if (i != person.events.length -1) s += ", ";
-	}
-	if (s == "") s = "<a href='javascript:void(0)'>Add events...</a>";
-	return s;
-}
-
-
-function initEditor(person, table, span) {
-	const t = document.getElementById("eventDummy");
-
-	for (let i in meetData.events) {
-		const e = meetData.events[i];
-		if (e.sex != "Mix" && e.sex != person.sex) continue;
-		if (isTeamEvent(e) ^ person.team) continue;
-
-		const node = document.importNode(t.content, true);
-		const willSwim = getE(node, "willSwim");
-		const index = getE(node, "eventId");
-		const name = getE(node, "eventName");
-		const time = getE(node, "eventTime");
-
-		getT(willSwim, "input").checked = false;
-		let personEvent;
-		for (let j in person.events) {
-			const c = person.events[j];
-			if (c.index == e.index) {
-				personEvent = c;
-				getT(willSwim, "input").checked = true;
-			}
-		}
-		personEvent = personEvent || { index: e.index, distance: e.distance, style: e.style, min: "00", sec: "00", hun: "00" };
-		index.innerText = e.index;
-
-		name.innerText = e.distance + "m " + e.style;
-		
-		getE(time, "min").value = personEvent.min;
-		getE(time, "sec").value = personEvent.sec;
-		getE(time, "hun").value = personEvent.hun;
-		
-		const addTimeListener = function (name) {
-			const func = function() {
-				let value = parseInt(getE(time, name).value);
-				if (value < 0) value = 0;
-				if (value > 59 && name != "hun") value = 59;
-				if (value > 99) value = 99;
-				value = (value < 10 ? "0" : "") + value;
-				getE(time, name).value = value;
-				personEvent[name] = value;
-				getT(willSwim, "input").checked = true;
-				const evt = document.createEvent("HTMLEvents");
-				evt.initEvent("change", false, true);
-				getT(willSwim, "input").dispatchEvent(evt);
-			}
-			const next = function() {
-				//Both numbers 
-				if (getE(time, name).value.length == 2) {
-					if (name == "min") getE(time, "sec").focus();
-					if (name == "sec") getE(time, "hun").focus();
-					getE(time, name).blur();
-				}
-			}
-			const focus = function () {
-				getE(time, name).select();
-			}
-			getE(time, name).addEventListener("change", func);
-			getE(time, name).addEventListener("keyup", next);
-			getE(time, name).addEventListener("focus", focus);
-			
-		}
-
-
-		addTimeListener("min");
-		addTimeListener("sec");
-		addTimeListener("hun");
-
-		//Add event listeners
-		colChangeListener(willSwim, function() {
-			let pos;
-			for (let k = 0; k < person.events.length; k++) {
-				if (personEvent.index == person.events[k].index) pos = k;
-			}
-			if (getT(willSwim, "input").checked) {
-				if (typeof pos == "undefined") person.events.push(personEvent);
-			} else {
-				if (typeof pos !== "undefined") person.events.splice(pos, 1);
-			}
-			person.events.sort(function (a,b) { return a.index - b.index; });
-			span.innerHTML = getEventString(person);	
-		});
-		span.innerHTML = getEventString(person);
-
-		table.appendChild(node);
-	}
-}
-
-function appendTeam(team) {
-	team = team || {};
-	team.name = team.name || "";
-	team.sex = team.sex || "M";
-	team.class = team.class || "JR";
-	team.events = team.events || [];
-	team.club = team.club || club;
-	team.team = true;
-
-	hideEditors();
-	const t = document.getElementById("teamDummy");
-	const n = document.importNode(t.content, true);
-	const node = n.children[0];
-
-	const name = getE(node, "teamName");
-	const cls = getE(node, "teamClass");
-	const sex = getE(node, "teamSex");
-	const events = getE(node, "teamEvents");
-	
-	sex.getElementsByTagName("option")[["M", "K", "MIX"].indexOf(team.sex)].selected = true;
-	cls.getElementsByTagName("option")[["JR", "SR"].indexOf(team.class)].selected = true;
-
-	const suggestName = function () {
-		let i = 1;
-		for (let p in meetData.participants) {
-			const t = meetData.participants[p];
-			if (!t.team) continue;
-			if (t == team) break;
-			if (t.sex != team.sex) continue;
-			if (t.class != team.class) continue;
-			i++;
-		}
-		let gender = "Mix ";
-		if (team.sex == "M") gender = "G";
-		if (team.sex == "K") gender = "J";
-		team.name = club + " " + gender + i + " " + team.class;
-		setFields(name, team.name);
-	}
-	suggestName();
-	colChangeListener(cls, function () {
-		team.class = getT(cls, "select").value;
-		suggestName();
-	}, "select");
-	colChangeListener(sex, function () {
-		team.sex = getT(sex, "select").value;
-		fixSex(team);
-		const evs = getE(editor, "eventTable").firstElementChild;
-		getE(editor, "eventTable").innerHTML = "";
-		getE(editor, "eventTable").appendChild(evs);
-		initEditor(team, getE(editor, "eventTable"), events);
-
-		suggestName();
-	}, "select");
-	colChangeListener(name, function () {
-		team.name = getT(name, "input").value;
-	});
-
-	const editor = n.children[1];
-	initEditor(team, getE(editor, "eventTable"), events);
-
-	node.addEventListener("click", function() {
-		hideEditors();
-		if (editor.classList.contains("hidden")) editor.classList.remove("hidden");
-		else editor.classList.add("hidden");
-	});
-
-	meetData.participants.push(team);
-	const prev = document.getElementById("teamList").lastChild.lastElementChild;
-        document.getElementById("teamList").lastChild.insertBefore(node, prev);
-        document.getElementById("teamList").lastChild.insertBefore(editor, prev);
-
-	if (translator) translator.Translate();
-}
-
-function appendParticipant(person) {
-	person = person || {};
-	person.name = person.name || "";
-	person.sex = person.sex || "M";
-	person.birthYear = person.birthYear || new Date().getFullYear() - 14;
-	person.events = person.events || [];
-	person.club = person.club || club;
-
-	hideEditors();
-	const t = document.getElementById("participantDummy");
-	const n = document.importNode(t.content, true);;
-	const node = n.children[0];
-
-	const name = getE(node, "personName");
-	const age = getE(node, "age");
-	const sex = getE(node, "sex");
-	const events = getE(node, "events");
-
-	setFields(name, person.name);
-	setFields(age, person.birthYear);
-	sex.getElementsByTagName("option")[person.sex == "M" ? 0 : 1].selected = true;
-
-	colChangeListener(name, function() {
-		person.name = getT(name, "input").value;
-	});
-
-	colChangeListener(age, function () {
-		person.birthYear = getT(age, "input").value;
-	});
-
-
-	
-	const editor = n.children[1];
-	node.addEventListener("click", function () {
-		hideEditors();
-		if (editor.classList.contains("hidden")) editor.classList.remove("hidden");
-		else editor.classList.add("hidden");
-	});
-
-	initEditor(person, getE(editor, "eventTable"), events);
-	meetData.participants.push(person);
-	colChangeListener(sex, function () {
-		person.sex = getT(sex, "select").value;
-		fixSex(person);
-		const evs = getE(editor, "eventTable").firstElementChild;
-		getE(editor, "eventTable").innerHTML = "";
-		getE(editor, "eventTable").appendChild(evs);
-		initEditor(person, getE(editor, "eventTable"), events);
-	}, "select");
-	const prev = document.getElementById("participantList").lastChild.lastElementChild;
-	document.getElementById("participantList").lastChild.insertBefore(node, prev);
-	document.getElementById("participantList").lastChild.insertBefore(editor, prev);
-
-	if (translator) translator.Translate();
-}
-*/
-
-// Attach listeners
-$(() => {
-
-	const meetManager = new MeetManager();
-	const clubManager = new ClubManager();
-	const editor = new Editor($("#singleTemplate"), $("#teamTemplate"), $("#eventTemplate"));
-	const singleForm = new ParticipantAddForm(editor, $("#addSingleName"), $("#addSingleBirth"), $("#addSingleSex"), $("#addSingleSubmit"));
-	const teamForm = new ParticipantAddForm(editor, $("#addTeamName"), $("#addTeamBirth"), $("#addTeamSex"), $("#addTeamSubmit"), true);
-	teamForm.setNameSuggester((fieldName, birth, sex) => {
+function defaultNameSuggester(clubManager){
+	return function (fieldName, birth, sex) {
 		// Get the lowest not-taken name
 		let i = 1;
 		let name, found;
@@ -807,7 +470,18 @@ $(() => {
 		} while (found);
 
 		return name;
-	});
+	}
+}
+
+// Attach listeners
+$(() => {
+
+	const meetManager = new MeetManager();
+	const clubManager = new ClubManager();
+	const editor = new Editor($("#singleTemplate"), $("#teamTemplate"), $("#eventTemplate"));
+	const singleForm = new ParticipantAddForm(editor, $("#addSingleName"), $("#addSingleBirth"), $("#addSingleSex"), $("#addSingleSubmit"));
+	const teamForm = new ParticipantAddForm(editor, $("#addTeamName"), $("#addTeamBirth"), $("#addTeamSex"), $("#addTeamSubmit"), true);
+	teamForm.setNameSuggester(defaultNameSuggester(clubManager));
 
 	meetManager.attachSelector($("#importMedley"));
 //	meetManager.attachEditor(editor);
@@ -838,26 +512,4 @@ $(() => {
 		const unip = clubManager.selectedClub.serialize();
 		download("uni_p-" + meetManager.activeMeet.name + "_" + clubManager.selectedClub.name + ".txt", unip);
 	});
-	/*
-	document.getElementById("importFile").addEventListener("change", function(e) {
-		const file = e.target.files[0];
-		if (!file) return;
-		const reader = new FileReader();
-		reader.addEventListener("load", function(e) {
-			const xml = parseXml(e.target.result);
-			importMeet(xml.MeetSetUp);
-		});
-		reader.readAsText(file);
-
-	});
-	document.getElementById("activeClub").addEventListener("change", function() {
-		club = document.getElementById("activeClub").value;
-		updateClubSelection(club);
-	});
-	document.getElementById("addClub").addEventListener("click", function() {
-		addClubSelection(document.getElementById("clubName").value);
-		document.getElementById("clubSelection").classList.remove("hidden");
-		tabBarManager.getBar("participantBar").showTab("participantSingle");
-	});
-	*/
 });
