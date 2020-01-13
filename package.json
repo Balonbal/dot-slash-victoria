@@ -1,0 +1,10 @@
+{
+	"srcipts": {
+		"test": "jest"
+	},
+	"devDependencies": {
+		"jest": "^24.8.0",
+		"puppeteer": "^1.17.0"
+	}
+}
+
