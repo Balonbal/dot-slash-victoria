@@ -1,10 +1,11 @@
 {
 	"srcipts": {
-		"test": "jest"
+		"test:e2e": "jest"
 	},
 	"devDependencies": {
 		"jest": "^24.8.0",
-		"puppeteer": "^1.17.0"
+		"puppeteer": "^1.17.0",
+		"jest-puppeteer": "^4.4.0"
 	}
 }
 
