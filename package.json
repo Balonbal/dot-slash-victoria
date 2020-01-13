@@ -1,5 +1,6 @@
 {
-	"srcipts": {
+	"name": "dot-slash-victoria",
+	"scripts": {
 		"test:e2e": "jest"
 	},
 	"devDependencies": {
