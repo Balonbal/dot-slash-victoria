@@ -1,0 +1,24 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+      - name: Install deps
+        run: bundle install
+      - name: Build
+        run: bundle exec jekyll build
+      - name: Puppeteer setup
+        uses: ianwalter/puppeteer@v2.0.0
+        with:
+          args: yarn
+      - name: Test
+        uses: stefanoeb/jest-action@1.0.2
