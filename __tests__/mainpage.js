@@ -7,7 +7,7 @@ const routes = {
 //Setup
 let browser, page
 beforeAll(async () => {
-	browser = await puppeteer.launch();
+	browser = await puppeteer.launch({executeablePath: "google-chrome-unstable" });
 	page = await browser.newPage();
 	await page.goto(routes.mainpage);
 });
