@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-const appBase = "http://localhost:4000";
+const appBase = "http://localhost:5000";
 const routes = {
 	mainpage: appBase,
 };

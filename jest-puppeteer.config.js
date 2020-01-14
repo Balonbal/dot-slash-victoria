@@ -4,7 +4,7 @@ module.exports = {
 		args: [ "--no-sandbox" ]
 	},
 	server: {
-		command: "yarn run serve",
-		port: "4000"
+		command: "yarn serve _site",
+		port: "5000"
 	}
 };

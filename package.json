@@ -1,13 +1,12 @@
 {
 	"name": "dot-slash-victoria",
 	"scripts": {
-		"test:e2e": "jest",
-		"serve": "bundle exec jekyll serve"
+		"test:e2e": "jest"
 	},
 	"devDependencies": {
 		"jest": "^24.8.0",
+		"jest-puppeteer": "^4.4.0",
 		"puppeteer": "^1.17.0",
-		"jest-puppeteer": "^4.4.0"
+		"serve": "^11.3.0"
 	}
 }
-
