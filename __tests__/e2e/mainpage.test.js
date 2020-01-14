@@ -14,7 +14,7 @@ beforeAll(async() => {
 	}
 });
 
-describe("mainpage:navigation", () => {
+describe("Mainpage", () => {
 	describe("Mainpage links are visible", () => {
 		const links = [ 
 			{ id: "uni_pButton", text: "uni_p" } 
@@ -31,6 +31,3 @@ describe("mainpage:navigation", () => {
 	});
 });
 
-afterAll(() => {
-	if (!process.env.DEBUG) page.close();
-});

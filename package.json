@@ -1,7 +1,7 @@
 {
 	"name": "dot-slash-victoria",
 	"scripts": {
-		"test:e2e": "jest --config __tests__/jest.e2e.config.js",
+		"test:e2e": "jest --config __tests__/jest.e2e.config.js --verbose",
 		"test:unit": "jest --config __tests__/jest.unit.config.js"
 	},
 	"devDependencies": {
