@@ -1,18 +1,20 @@
 const puppeteer = require("puppeteer");
 
 const appBase = "http://localhost:5000";
+
 const routes = {
 	mainpage: appBase,
 };
 //Setup
 let browser, page
 beforeAll(async() => {
-	console.log("Starting");
-	browser = await puppeteer.launch({executablePath: "google-chrome-unstable" });
-	console.log(browser);
-	page = await browser.newPage();
-	console.log(page);
-	await page.goto(routes.mainpage);
+	try {
+		browser = await puppeteer.launch({executablePath: "google-chrome-unstable" });
+		page = await browser.newPage();
+		await page.goto(routes.mainpage);
+	} catch(err) {
+		console.log(err);
+	}
 });
 
 describe("mainpage:navigation", () => {
