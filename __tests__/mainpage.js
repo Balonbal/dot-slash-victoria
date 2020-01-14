@@ -9,7 +9,7 @@ const routes = {
 let browser, page
 beforeAll(async() => {
 	try {
-		browser = await puppeteer.launch({executablePath: "google-chrome-unstable" });
+		browser = await puppeteer.launch({executablePath: "google-chrome-unstable", args: ["--no-sandbox"] });
 		page = await browser.newPage();
 		await page.goto(routes.mainpage);
 	} catch(err) {
