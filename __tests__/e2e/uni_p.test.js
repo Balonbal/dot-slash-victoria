@@ -65,6 +65,10 @@ describe("uni_p", () => {
 			expect(meetName).toMatch(/Tr.ndersv.m 2020/);
 		});
 	});
+
+	describe("Club selection", () => {
+				
+	});
 	
 });
 
