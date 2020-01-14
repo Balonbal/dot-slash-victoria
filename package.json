@@ -1,7 +1,8 @@
 {
 	"name": "dot-slash-victoria",
 	"scripts": {
-		"test:e2e": "jest"
+		"test:e2e": "jest",
+		"serve": "bundle exec jekyll serve"
 	},
 	"devDependencies": {
 		"jest": "^24.8.0",

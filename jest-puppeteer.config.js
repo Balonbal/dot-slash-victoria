@@ -4,7 +4,7 @@ module.exports = {
 		args: [ "--no-sandbox" ]
 	},
 	server: {
-		command: "./startserver.sh",
+		command: "yarn run serve",
 		port: "4000"
 	}
 };
