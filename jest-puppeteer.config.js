@@ -4,7 +4,7 @@ module.exports = {
 		args: [ "--no-sandbox" ]
 	},
 	server: {
-		command: "bundle exec jekyll serve --trace",
+		command: "./startserver.sh",
 		port: "4000"
 	}
 };
