@@ -6,11 +6,8 @@ const routes = {
 	mainpage: appBase,
 };
 //Setup
-let browser, page
 beforeAll(async() => {
 	try {
-		browser = await puppeteer.launch({executablePath: "google-chrome-unstable", args: ["--no-sandbox"] });
-		page = await browser.newPage();
 		await page.goto(routes.mainpage);
 	} catch(err) {
 		console.log(err);
@@ -35,5 +32,5 @@ describe("mainpage:navigation", () => {
 });
 
 afterAll(() => {
-	if (!process.env.DEBUG) browser.close();
+	if (!process.env.DEBUG) page.close();
 });
