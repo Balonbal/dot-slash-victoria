@@ -75,43 +75,21 @@ function isDuplicate(participants, person){
 function isValidBirthYear(birthYear){
     // Returns false if age is below 4 year or above 100
     // Returns true otherwise
+    if(birthYear > 9999 || birthYear < 1000){
+        console.log("[Warning: birthYear is not in four digit format.]")
+        return;
+    }
+
     const minAge = 4;
     const maxAge = 100;
 
     // get current year
-    date = new Date;
-    currentYear = 1900;
-    currentYear += date.getYear(); // getYear() returns 120 in 2020 because 99 is 1999, 100 is 2000 and 2010 is 110.
+    currentYear = new Date().getFullYear();
 
-    if(birthYear < 100 && birthYear > 10){
-        // birthYear is in two digit format
+    age = currentYear - birthYear;
 
-        // if adding 2000 to birthYear is above current year then it is not valid. Add 1900 in stead
-        if(currentYear < 2000 + birthYear){
-            birthYear = birthYear += 1900;
-        }else{
-            birthYear = birthYear += 2000;
-        }
-
-        age = currentYear - birthYear;
-
-        if(age > maxAge || age < minAge){
-            return false;
-        }
-        return true;
-
-    }else if(birthYear < 10000 && birthYear > 999){
-        // birthYear is in four digit format
-
-        age = currentYear - birthYear;
-
-        if(age > maxAge || age < minAge){
-            return false;
-        }
-        return true;
-
-    }else{
-        // input is not in four or two digit format. format is invalid.
+    if(age > maxAge || age < minAge){
         return false;
     }
+    return true;
 }
