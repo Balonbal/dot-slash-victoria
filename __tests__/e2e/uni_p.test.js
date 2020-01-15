@@ -54,7 +54,7 @@ describe("uni_p", () => {
 			expect(options[index].text).toContain(meetName);
 		});
 
-		test("Can upload XML file", async () => {
+		test("can upload XML file", async () => {
 			const XMLFile = path.relative(process.cwd(), __dirname + "/event_test_file_ts2020.xml");
 			await page.waitForSelector("input[data-testid='importMeet']");
 			const input = await page.$("input[data-testid='importMeet']");
@@ -62,12 +62,29 @@ describe("uni_p", () => {
 			const files = await page.$eval('input[type="file"]', input => { return input.files });
 			const meetName = await page.$eval("input[data-testid='meetDisplay']", input => { return input.value; });
 
+			// FIXME Should import xml to correct encoding
 			expect(meetName).toMatch(/Tr.ndersv.m 2020/);
 		});
 	});
 
 	describe("Club selection", () => {
-				
+		let input, select, button;
+		beforeAll(async () => {
+			input = await page.$("input[data-testid='clubInput']");
+			select = await page.$("select[data-testid='clubSelect']");
+			button = await page.$("button[data-testid='clubButton']");
+		});
+
+		test("can add a club", async() => {
+			const clubname = "NTNUI-Svømming";
+			await input.click();
+			await page.keyboard.type(clubname);
+			await button.click();
+
+			const clubtexts = await select.$eval("option", node => { return node.innerText});
+			expect(clubtexts).toBe(clubname);
+		});
+		
 	});
 	
 });

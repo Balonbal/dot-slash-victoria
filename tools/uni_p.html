@@ -51,13 +51,13 @@ scripts: [uni_p, encoding-indexes, encoding, xmlParser]
 	<h3 class="t">Club settings</h3>
 	<div class="form-group row hidden" id="clubSelection">
 		<label for="activeClub" class="col-4 t">Selected club:</label>
-		<select class="form-control col-8" id="activeClub" disabled></select>
+		<select class="form-control col-8" id="activeClub" disabled data-testid="clubSelect"></select>
 	</div>
 	<div class="form-group row">
 		<label for="clubName" class="col-4 t">Set club name:</label>
-		<input type="text" name="clubName" id="clubName" class="form-control col-4"/>
+		<input type="text" name="clubName" id="clubName" class="form-control col-4" data-testid="clubInput"/>
 		<div class="col-3"></div>
-		<button class="btn btn-success col-1 t" id="addClub">Add</button>
+		<button class="btn btn-success col-1 t" id="addClub" data-testid="clubButton">Add</button>
 		<button class="btn btn-warning col-3 hidden t" id="changeClub">Change name</button>
 	</div>
 	<div class="form-group row hidden" id="clubSelection">
