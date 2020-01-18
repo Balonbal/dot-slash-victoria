@@ -9,5 +9,8 @@
 		"jest-puppeteer": "^4.4.0",
 		"puppeteer": "^1.17.0",
 		"serve": "^11.3.0"
+	},
+	"dependencies": {
+		"faker": "^4.1.0"
 	}
 }
