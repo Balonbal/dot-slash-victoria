@@ -125,7 +125,7 @@ function MeetManager() {
 		$(".personRow, .teamRow, .edit").remove();
 		$("#noMeet").hide();
 		$("#clubSettings").removeClass("hidden");
-		$("#meetName").val(meet.name);
+		$("#meetName").text(meet.name);
 		this.activeMeet = meet;
 	}
 	this.attachSelector = function (selector) {
@@ -263,14 +263,11 @@ function ClubManager() {
 		})
 		this.selectors.push(selector);
 	}
-	this.attachNewClubInput = function(input, button) {
-		input.on("submit", () => {
+	this.attachNewClubInput = function(input) {
+		input.on("keyup change", () => {
 			if (input.val() == "") return;
 			this.selectClub(input.val());
-		})
-		if (typeof button != "undefined") {
-			button.on("click", () => {input.submit();});
-		}
+		});
 	}
 	this.attachListener = function(evt, fct) {
 		this.listeners[evt] = this.listeners[evt] || [];
@@ -283,7 +280,7 @@ function ClubManager() {
 			if (club.name == clubname) {
 				this.selectedClub = club;
 				this.listeners["clubSelected"].forEach((fct) => { fct(club); });
-				$("#activeClub").val(this.selectedClub.name);
+				$("#activeClub").text(this.selectedClub.name);
 				return;
 
 			}
@@ -503,7 +500,7 @@ $(() => {
 
 	});
 	clubManager.attachSelector($("#clubList"));
-	clubManager.attachNewClubInput($("#clubName"), $("#addClub"));
+	clubManager.attachNewClubInput($("#clubName"));
 	clubManager.attachListener("clubSelected", (club) => {
 		$("#participantsContainer").removeClass("hidden");
 		editor.reset();

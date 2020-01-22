@@ -51,7 +51,7 @@ describe("uni_p", () => {
 			await page.select("select[data-testid='meetSelect']", options[index].value);
 
 			await page.waitFor(2000);
-			const meetName = await page.$eval("input[data-testid='meetDisplay']", input => { return input.value; });
+			const meetName = await page.$eval("strong[data-testid='meetDisplay']", input => { return input.innerText; });
 			expect(meetName.length).toBeGreaterThan(0);
 			expect(options[index].text).toContain(meetName.replace(/\d+/, "").trim());
 		});
@@ -62,7 +62,7 @@ describe("uni_p", () => {
 			const input = await page.$("input[data-testid='importMeet']");
 			await input.uploadFile(XMLFile);
 			const files = await page.$eval('input[type="file"]', input => { return input.files });
-			const meetName = await page.$eval("input[data-testid='meetDisplay']", input => { return input.value; });
+			const meetName = await page.$eval("strong[data-testid='meetDisplay']", input => { return input.innerText; });
 
 			// FIXME Should import xml to correct encoding
 			expect(meetName).toMatch(/Tr.ndersv.m 2020/);
@@ -73,17 +73,15 @@ describe("uni_p", () => {
 		let input, select, button;
 		beforeAll(async () => {
 			input = await page.$("input[data-testid='clubInput']");
-			display = await page.$("input[data-testid='clubDisplay']");
-			button = await page.$("button[data-testid='clubButton']");
+			display = await page.$("strong[data-testid='clubDisplay']");
 		});
 
 		test("can add a club", async() => {
 			const clubname = "NTNUI-Svømming";
 			await input.click();
 			await page.keyboard.type(clubname);
-			await button.click();
 
-			const clubtexts = await display.evaluate(d => d.value);
+			const clubtexts = await display.evaluate(d => d.innerText);
 			expect(clubtexts).toBe(clubname);
 		});
 		
