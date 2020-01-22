@@ -283,6 +283,7 @@ function ClubManager() {
 			if (club.name == clubname) {
 				this.selectedClub = club;
 				this.listeners["clubSelected"].forEach((fct) => { fct(club); });
+				$("#activeClub").val(this.selectedClub.name);
 				return;
 
 			}
@@ -489,9 +490,20 @@ $(() => {
 		editor.reset();
 		editor.setEvents(meet.events);
 	});
+	document.getElementById("importFile").addEventListener("change", function(e) {
+		const file = e.target.files[0];
+		if (!file) return;
+		const reader = new FileReader();
+		reader.addEventListener("load", function(e) {
+			const xml = parseXml(e.target.result);
+			const meet = meetManager.importXmlMeet(xml);
+			meetManager.selectMeet(meet);
+		});
+		reader.readAsText(file);
+
+	});
 	clubManager.attachSelector($("#clubList"));
 	clubManager.attachNewClubInput($("#clubName"), $("#addClub"));
-//	clubManager.attachEditor(editor);
 	clubManager.attachListener("clubSelected", (club) => {
 		$("#participantsContainer").removeClass("hidden");
 		editor.reset();
@@ -500,7 +512,6 @@ $(() => {
 
 	editor.attachSingleTable($("#singleList"));
 	editor.attachTeamTable($("#teamList"));
-	//document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
 	document.getElementById("makeUnip").addEventListener("click", function() {
 		const unip = clubManager.selectedClub.serialize();

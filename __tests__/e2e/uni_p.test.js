@@ -73,7 +73,7 @@ describe("uni_p", () => {
 		let input, select, button;
 		beforeAll(async () => {
 			input = await page.$("input[data-testid='clubInput']");
-			select = await page.$("select[data-testid='clubSelect']");
+			display = await page.$("input[data-testid='clubDisplay']");
 			button = await page.$("button[data-testid='clubButton']");
 		});
 
@@ -83,7 +83,7 @@ describe("uni_p", () => {
 			await page.keyboard.type(clubname);
 			await button.click();
 
-			const clubtexts = await select.$eval("option", node => { return node.innerText});
+			const clubtexts = await display.evaluate(d => d.value);
 			expect(clubtexts).toBe(clubname);
 		});
 		
