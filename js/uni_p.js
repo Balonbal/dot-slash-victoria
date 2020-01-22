@@ -13,8 +13,6 @@ function ParticipantEvent(evt) {
 	}
 }
 
-
-
 function Event(index, distance, style, sex) {
 	this.index = index;
 	this.distance = distance;
@@ -440,7 +438,6 @@ function ParticipantAddForm(editor, nameField, birthField, sexField, submitButto
 		const name = this.name.val();
 		const birth = this.birth.val();
 		const sex = this.sex.val();
-
 		participant = new Participant(name, this.team, sex, birth);
 		this.editor.addParticipant(participant);
 
@@ -503,11 +500,8 @@ $(() => {
 
 	editor.attachSingleTable($("#singleList"));
 	editor.attachTeamTable($("#teamList"));
-
-	/*
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
-	*/
 	document.getElementById("makeUnip").addEventListener("click", function() {
 		const unip = clubManager.selectedClub.serialize();
 		download("uni_p-" + meetManager.activeMeet.name + "_" + clubManager.selectedClub.name + ".txt", unip);
