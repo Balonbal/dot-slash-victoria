@@ -34,7 +34,6 @@ describe("uni_p", () => {
 		const testOptions = [ 1, 2, 3];
 
 		test("fetches meet dropdown", async () => {
-			await page.click("select[data-testid='meetSelect']");
 			do  {
 				options = await page.$$eval("select[data-testid='meetSelect'] > option",
 					opts => { 
@@ -50,8 +49,11 @@ describe("uni_p", () => {
 		test.each(testOptions)("selecting meet from dropdown changes meet", async (index) => {
 			expect(options.length).toBeGreaterThan(index);
 			await page.select("select[data-testid='meetSelect']", options[index].value);
+
+			await page.waitFor(2000);
 			const meetName = await page.$eval("input[data-testid='meetDisplay']", input => { return input.value; });
-			expect(options[index].text).toContain(meetName);
+			expect(meetName.length).toBeGreaterThan(0);
+			expect(options[index].text).toContain(meetName.replace(/\d+/, "").trim());
 		});
 
 		test("can upload XML file", async () => {

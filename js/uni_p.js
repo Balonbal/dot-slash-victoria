@@ -125,37 +125,37 @@ function MeetManager() {
 		$(".personRow, .teamRow, .edit").remove();
 		$("#noMeet").hide();
 		$("#clubSettings").removeClass("hidden");
-		$("#meetName").text(meet.name);
+		$("#meetName").val(meet.name);
 		this.activeMeet = meet;
 	}
 	this.attachSelector = function (selector) {
 		let fetched = false;
 		this.selectors.push(selector);
 		_this = this;
-		selector.on({
-			click: () => {
-				if (fetched) return;
-				const dummy = $("<option>")
-					.text("Fetching list...")
-					.attr("value", "invalid")
-					.appendTo(selector);
-				_this.importMedleyList(() => {
-					dummy.text("-- Select one --");
-					fetched = true;
-				});
-			}, change: () => {
-				if (selector.val() == "invalid") return;
-				_this.importMedleyMeet(parseInt(selector.val()), (meet) => {
-					if (!meet) return;
-					_this.selectMeet(meet);
-				});
-			}
+		const dummy = $("<option>")
+			.text(" -- Click to fetch -- ")
+			.attr("value", "invalid")
+			.appendTo(selector);
+
+		selector.change(() => {
+			if (selector.val() == "invalid") return;
+			_this.importMedleyMeet(parseInt(selector.val()), (meet) => {
+				if (!meet) return;
+				_this.selectMeet(meet);
+			});
+		});
+		if (fetched) return;
+		dummy.text("Fetching...");
+		_this.importMedleyList(() => {
+			dummy.text("-- Select one --");
+			fetched = true;
 		});
 	}
 	this.attachListener = function(evt, fct) {
 		this.listeners[evt] = this.listeners[evt] || [];
 		this.listeners[evt].push(fct);
 	}
+
 }
 
 function Club(name) {
@@ -500,7 +500,7 @@ $(() => {
 
 	editor.attachSingleTable($("#singleList"));
 	editor.attachTeamTable($("#teamList"));
-	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
+	//document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
 	document.getElementById("makeUnip").addEventListener("click", function() {
 		const unip = clubManager.selectedClub.serialize();
