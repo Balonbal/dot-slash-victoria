@@ -121,7 +121,9 @@ function createUNIP(meetData) {
 			const evt = person.events[j];
 			const meetEvent = getEvent(evt.index);
 			const time = (evt.min != "00" || evt.sec != "00" || evt.hun != "00") ? evt.min +":" + evt.sec + "." + evt.hun : "";
-
+			let sexAge = person.sex;
+			if (person.team) sexAge += person.class;
+			else sexAge += ("" + person.birthYear).substring(2);
 			params = [
 				evt.index,
 				getEvent(evt.index).distance,
@@ -129,7 +131,7 @@ function createUNIP(meetData) {
 				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
 				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
 				"",
-				meetEvent.sex + person.team ? person.class :("" + person.birthYear).substring(2),
+				sexAge,
 				person.team ? person.class : person.birthYear,
 				time,
 				"",
@@ -360,6 +362,7 @@ function appendParticipant(person) {
 	person.birthYear = person.birthYear || new Date().getFullYear() - 14;
 	person.events = person.events || [];
 	person.club = person.club || club;
+	person.team = person.team || false;
 
 	hideEditors();
 	const t = document.getElementById("participantDummy");
