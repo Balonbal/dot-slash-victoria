@@ -56,7 +56,7 @@ const pages = {
 		"Add a new club to the list. If this club excists in medley.no then send us a message and we will add i it to the list. Please dont use abbreviations":{"no":"Legg til en ny klubb i listen. Hvis klubben eksisterer på medley.no gi oss beskjed om det slik at vi får lagt den inn. Ikke bruk forkortelser"},
 		"Importing from tryggivann" : {"no" : "Importerer fra tryggivann"}
 	},"newMeet": {
-		
+
 	}
 }
 

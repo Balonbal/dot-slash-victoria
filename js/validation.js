@@ -3,7 +3,7 @@ function sanitizeName(name){
     // - input is empty
     // - input contains digits
     // - length of the name is less than 4 characters
-    // 
+    //
     // Removes:
     // - double whitespaces
     // - whitescpace in front of the name

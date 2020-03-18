@@ -79,6 +79,13 @@ function enableTab(barName, tabName) {
 	button.disabled = false;
 }
 
+function disableTab(barName, tabName) {
+	const button = document.getElementById("tabButton" + tabName);
+	button.classList.add("btn-outline-disabled");
+	button.classList.remove("btn-outline-primary");
+	button.disabled = true;
+}
+
 function showTab(tabs, tab, disableTabs = true) {
 	const children = tabs.children;
 	for (let i = 1; i < children.length; i++) {

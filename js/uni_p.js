@@ -35,7 +35,7 @@ function importMeet(data) {
 				const e = {
 					index: parseInt(getNode(evt, "EventNumber")),
 					distance: getNode(evt, "EventLength"),
-					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")), 
+					style: getStyle(getNode(evt, "Eventart") || getNode(evt, "EventArt")),
 					sex: getNode(evt, "Sex") == "MALE" ? "M" : (getNode(evt, "Sex") == "FEMALE" ? "K" : "Mix"),
 				}
 				meet.events.push(e);
@@ -46,6 +46,7 @@ function importMeet(data) {
 			$(".personRow, .teamRow, .edit").remove();
 			document.getElementById("clubSettings").classList.remove("hidden");
 			document.getElementById("meetName").value = meetData.name;
+			updateClubSelection();
 
 		} catch (e) { console.log(e) };
 
@@ -75,10 +76,14 @@ function hasTeamEvents() {
 	return false;
 }
 
-function updateClubSelection(clubName) {
+function updateClubSelection() {
 	$("#participantsContainer").removeClass("hidden");
 	enableTab("participantBar", "participantSingle", false);
-	if (hasTeamEvents()) enableTab("participantBar", "participantTeam");
+	if (hasTeamEvents()){
+		enableTab("participantBar", "participantTeam");
+	}else{
+		disableTab("participantBar", "participantTeam");
+	}
 }
 
 
@@ -121,7 +126,7 @@ function createUNIP(meetData) {
 				person.team ? person.name : person.name.substring(person.name.lastIndexOf(" ") + 1),
 				person.team ? "" : person.name.substring(0, person.name.lastIndexOf(" ")),
 				"",
-				person.team ? "" + person.sex + person.class : "" + person.sex + ("" + person.birthYear).substring(2), 
+				person.team ? "" + person.sex + person.class : "" + person.sex + ("" + person.birthYear).substring(2),
 				person.team ? person.class : person.birthYear,
 				time,
 				"",
@@ -478,10 +483,10 @@ window.addEventListener("load", function() {
 					}
 
 					// set gender
-					results.data[4] == "G" ? person.sex = "M" : person.sex = "K"
+					results.data[4] == "G" ? person.sex = "M" : person.sex = "K";
 
 					// set birthYear
-					person.birthYear = results.data[5].substring(6)
+					person.birthYear = results.data[5].substring(6);
 
 					// add if not in list
 					if(!isDuplicate(meetData.participants,person)){
@@ -514,21 +519,22 @@ window.addEventListener("load", function() {
 			const xml = parseXml(text);
 			importMeet(xml.MeetSetUp);
 		});
+		updateClubSelection();
 	});
 
 	// Eventlistener club settings
 	$.getJSON( "/assets/clubs.json", function( data ) {
 		$.each( data, function( key, val ) {
-			validClubs.push(val)
+			validClubs.push(val);
 		});
 	});
 	$("#clubName").autocomplete({
 			lookup: validClubs,
 			lookupLimit: 5,
 			onSelect: (suggestion)=>{
-				$("#clubName").val(suggestion)
-				club = $("#clubName").val()
-				updateClubSelection(club)
+				$("#clubName").val(suggestion);
+				club = $("#clubName").val();
+				updateClubSelection();
 				showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 			}
 		}
@@ -539,10 +545,10 @@ window.addEventListener("load", function() {
 	$("#modal-add-club-button-success").on("click", ()=>{
 		let customCreatedClub = $("#modal-add-club-content").val()
 		$("#modal-add-club").modal("hide");
-		$("#clubName").val(customCreatedClub)
-		validClubs.push(customCreatedClub)
+		$("#clubName").val(customCreatedClub);
+		validClubs.push(customCreatedClub);
 		club = customCreatedClub;
-		updateClubSelection(customCreatedClub)
+		updateClubSelection();
 		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 	})
 
