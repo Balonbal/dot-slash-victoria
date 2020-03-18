@@ -120,7 +120,6 @@ function onLoad() {
 	for (let i = 0; i < tabBars.length; i++){
 			generateTabBar(tabBars[i]);
 	}
-	
 }
 
 
