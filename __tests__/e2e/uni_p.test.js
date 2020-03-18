@@ -68,21 +68,21 @@ describe("uni_p", () => {
 	});
 
 	describe("Club selection", () => {
-		let input, select, button;
+		let input, select, button, suggestions;
 		beforeAll(async () => {
 			input = await page.$("input[data-testid='clubInput']");
-			select = await page.$("select[data-testid='clubSelect']");
-			button = await page.$("button[data-testid='clubButton']");
+			// select = await page.$("select[data-testid='clubSelect']");
+			suggestions = await page.$(".autocomplete-suggestions");
 		});
 
-		test("can add a club", async() => {
+		test("can select a club", async() => {
 			const clubname = "NTNUI-Svømming";
-			await input.click();
-			await page.keyboard.type(clubname);
-			await button.click();
 
-			const clubtexts = await select.$eval("option", node => { return node.innerText});
-			expect(clubtexts).toBe(clubname);
+			await input.click();
+			await page.keyboard.type(clubname.substring(0,4));
+			const suggestion = suggestions.children()[0];
+
+			expect(suggestion).toBe(clubname);
 		});
 		
 	});

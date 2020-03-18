@@ -9,14 +9,24 @@ body{
     color: white;
 }
 
-.eventTable tr:hover, .personRow:hover{
+/* dropdown selectors:*/
+.dropdown-menu{
+    background-color: white;
+}
+.dropdown-item:hover{
+    background-color: #eff8ff;
+}
+
+/* UNI_P */
+.eventTable tr:hover, .personRow:hover, tr.teamRow:hover{
 	background-color: #eff8ff;
 }
+/*team suggestions*/
 .autocomplete-suggestion{
-    background-color: #FFF;
+    background-color: white;
     color: black;
 }
 .autocomplete-suggestion:hover{
-    background-color: #f8f9fa;
+    background-color: #eff8ff;
     color: black;
 }
