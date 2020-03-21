@@ -67,7 +67,8 @@ describe("uni_p", () => {
 		});
 	});
 
-	describe("Club selection", () => {
+
+	describe.skip("Club selection", () => {
 		let input, select, button, suggestions;
 		beforeAll(async () => {
 			input = await page.$("input[data-testid='clubInput']");
@@ -86,6 +87,6 @@ describe("uni_p", () => {
 		});
 		
 	});
-	
+
 });
 
