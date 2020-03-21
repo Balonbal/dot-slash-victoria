@@ -11,13 +11,13 @@ html {
 }
 
 body {
+	font-family: "Roboto","Segoe UI";
 	margin-bottom: 60px;
+	font-weight: 100;
 }
 
 
 .selector{
-	font-family: "Roboto","Segoe UI";
-	font-weight: bold;
 	padding: 5px;
 	position: fixed;
 	top: 10px;
@@ -26,26 +26,15 @@ body {
 
 .selector option{
 	font-size: 20px;	
-	font-family: "Roboto", "Segoe UI";
-	font-weight: 400;
 	text-align: inherit;
 	line-height: 1.5;
-}
-
-input {
-	font-size: large;
-	font-family: sans-serif;
-	text-align: center;
-	/*border-radius: .25rem;*/
 }
 
 select{
 	border-width: 1px;
 	border-radius: 1px;
-	font-size: large;
 	width: 55%;
 	padding: 0.1em;
-
 }
 
 #theme-selector{
@@ -68,4 +57,9 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+input.delete-athlete {
+    border: none;
+    background: none;
 }

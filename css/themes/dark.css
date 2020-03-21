@@ -46,7 +46,7 @@ a{
 
 /*UNI_P*/
 
-.eventTable tr:hover, .personRow:hover{
+.eventTable tr:hover, .personRow:hover, .teamRow:hover{
     background-color: #336699;
 }
 
@@ -74,7 +74,15 @@ th.t, td.eventId, td.eventName, td{
     background-color: #336699;
     color: white;
 }
-.custom-file-label, #importMedley, #meetName, #clubName, input, select, .modal-content, #modal-add-club-info{
+.custom-file-label, #importMedley, #meetName, #clubName, input, .modal-content, #modal-add-club-info{
     background-color:#333;
     color: white;
+}
+
+select{
+    color: white;
+}
+option{
+    color : white;
+    background-color: #333333;
 }
