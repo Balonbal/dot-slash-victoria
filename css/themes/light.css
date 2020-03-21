@@ -1,13 +1,9 @@
 /*Light theme. Add only colors to this file*/
 
 body{
-    background-color: white;
+    background-color: #F9F9F9;
 }
 
-.topper {
-    background-color: #404040;
-    color: white;
-}
 
 /* dropdown selectors:*/
 .dropdown-menu{
@@ -26,7 +22,11 @@ body{
     background-color: white;
     color: black;
 }
-.autocomplete-suggestion:hover{
+.autocomplete-suggestion:hover, .autocomplete-selected{
     background-color: #eff8ff;
     color: black;
+}
+#clubName{
+    background-color: white;
+    border: 1px solid #999;
 }

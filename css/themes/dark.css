@@ -13,11 +13,6 @@ select#theme-selector{
     color: white;
 }
 
-.topper {
-    background-color: #404040;
-    color: white;
-}
-
 .theme-selector{
     color: white;
     background-color: #202020;
@@ -75,11 +70,11 @@ th.t, td.eventId, td.eventName, td{
     background-color: #333333;
     color: white;
 }
-.autocomplete-suggestion:hover{
+.autocomplete-suggestion:hover, .autocomplete-selected{
     background-color: #336699;
     color: white;
 }
-.custom-file-label, #importMedley, #meetName, #clubName, input, select, input.min, input.sec, input.hun, .modal-content, #modal-add-club-info{
+.custom-file-label, #importMedley, #meetName, #clubName, input, select, .modal-content, #modal-add-club-info{
     background-color:#333;
     color: white;
 }

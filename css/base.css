@@ -13,26 +13,7 @@ html {
 body {
 	margin-bottom: 60px;
 }
-footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 60px;
-	background-color: #eee;
-	text-align: center;
-}
 
-.topper {
-  	position: fixed;
-  	left: 0;
-  	top: 0;
-  	width: 100%;
-	display: block;
-}
-
-.topper select{
-	border-radius: 5px;
-}
 
 .selector{
 	font-family: "Roboto","Segoe UI";
@@ -55,12 +36,15 @@ input {
 	font-size: large;
 	font-family: sans-serif;
 	text-align: center;
-	border-radius: .25rem;
+	/*border-radius: .25rem;*/
 }
 
 select{
-    	border-width: 1px;
-    	border-radius: 1px;
+	border-width: 1px;
+	border-radius: 1px;
+	font-size: large;
+	width: 55%;
+	padding: 0.1em;
 
 }
 
@@ -69,4 +53,19 @@ select{
 	width: 5%;
 	min-width: 150px;
 	top: 4px;
+}
+
+input[type="text"], input[type="number"], select{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: none;
+    width: auto;
+}
+
+/* remove scroll bar on number inputs*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
