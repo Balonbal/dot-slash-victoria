@@ -410,6 +410,23 @@ function appendParticipant(person) {
 	if (translator) translator.Translate();
 }
 
+function deleteAthlete(buttonObject){
+	// extract the name
+	const name = buttonObject.parentNode.parentNode.children[0].children[0].value;
+
+	// delete the DOM objects
+	buttonObject.parentNode.parentNode.nextSibling.remove();
+	buttonObject.parentNode.parentNode.remove();
+
+	// delete from meetData
+	for( i = 0; i < meetData.participants.length; i++){
+		if(meetData.participants[i].name == name){
+			meetData.participants.splice(i, 1);
+			return;
+		}
+	}
+}
+
 // When everyinging is loaded
 window.addEventListener("load", function() {
 
@@ -436,6 +453,7 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 		updateClubSelection();
+		$("#clubName").focus();
 	});
 
 	// Eventlisteners for new athletes / "Add more..." links

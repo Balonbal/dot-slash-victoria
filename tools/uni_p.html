@@ -25,7 +25,7 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 		
 		<div class="form-group row">
 			<label for="importMedley" class="col-4 t">Import from medley.no</label>
-			<select id="importMedley" class="form-control col-8" data-testid="meetSelect"></select>
+			<select id="importMedley" class="form-control col-8" data-testid="meetSelect" autofocus></select>
 		</div>
 
 		<div class="form-group row">
@@ -35,7 +35,7 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 	</section>
 
 </div>
-<section id="clubSettings" class="container hidden">
+<section id="clubSettings" class="container">
 	<h3 class="t">Club settings</h3>
 	<div class="form-group row">
 		<label for="clubName" class="col-4 t">Choose Club</label>
@@ -108,9 +108,9 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 	<tr class="personRow">
 		<td class="personName"><input type="text"/></td>
 		<td class="age"><input type="number" min="1920" max="2020"/></td>
-		<td class="sex"><select><option value="M">M</option><option value="K">F</option></td>
+		<td class="sex"><select><option value="M">Male</option><option value="K">Female</option></td>
 		<td class="events"></td>
-		<td>-</td>
+		<td class="actions"><input type="button" value="delete" class="delete-athlete" onclick="deleteAthlete(this)"/></td>
 	</tr>
 	<tr class="edit">
 		<td colspan="5">
