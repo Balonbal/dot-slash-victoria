@@ -355,6 +355,7 @@ function appendTeam(team) {
 	if (translator) translator.Translate();
 }
 
+// Please rewrite me
 function appendParticipant(person) {
 	person = person || {};
 	person.name = person.name || "";
@@ -412,9 +413,36 @@ function appendParticipant(person) {
 // When everyinging is loaded
 window.addEventListener("load", function() {
 
-	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
-	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
+	// load meets from medley server
+	if (typeof allMeets == "undefined") {
+		const node = document.createElement("option");
+		node.value = "invalid";
+		node.innerText = "Loading...";
+		$("#importMedley").append(node);
+		getMedleyList(function (list) {
+			addMeets(list);
+			node.innerText = "-- Select one --";
+		});
+	}
 
+	// Meet change eventlistener
+	$("#importMedley").on("change", () => {
+		if ($("#importMedley").val() == "invalid") return;
+		$("#importMedley option:first").remove();
+		const meet = allMeets[$("#importMedley").val()];
+		console.log("Fetching " + meet.url);
+		getMedleyMeet(meet.url, function (text) {
+			const xml = parseXml(text);
+			importMeet(xml.MeetSetUp);
+		});
+		updateClubSelection();
+	});
+
+	// Eventlisteners for new athletes / "Add more..." links
+	$("#participantList tr:last-child").children().last().on("click", () => {appendParticipant();});
+	$("#teamList tr:last-child").children().last().on("click", () => {appendTeam();});
+
+	// Make uni_p.txt button
 	$("#makeUnip").on("click", function() {
 		const unip = createUNIP(meetData);
 		download(club + " uni_p.txt", unip);
@@ -431,6 +459,7 @@ window.addEventListener("load", function() {
 			return;
 		}
 
+		// parse and import meet
 		const reader = new FileReader();
 		reader.addEventListener("load", function(e) {
 			const xml = parseXml(e.target.result);
@@ -499,28 +528,6 @@ window.addEventListener("load", function() {
 				complete: ()=>{$("#modal-import-csv").modal("hide")}
 			})
 	});
-	document.getElementById("importMedley").addEventListener("click", function() {
-		if (typeof allMeets == "undefined") {
-			const node = document.createElement("option");
-			node.value = "invalid";
-			node.innerText = "Fetching list...";
-			document.getElementById("importMedley").appendChild(node);
-			getMedleyList(function (list) {
-				addMeets(list);
-				node.innerText = "-- Select one --";
-			});
-		}
-	});
-	document.getElementById("importMedley").addEventListener("change", function() {
-		if (document.getElementById("importMedley").value == "invalid") return;
-		const meet = allMeets[document.getElementById("importMedley").value];
-		console.log("Fetching " + meet.url);
-		getMedleyMeet(meet.url, function (text) {
-			const xml = parseXml(text);
-			importMeet(xml.MeetSetUp);
-		});
-		updateClubSelection();
-	});
 
 	// Eventlistener club settings
 	$.getJSON( "/assets/clubs.json", function( data ) {
@@ -528,6 +535,8 @@ window.addEventListener("load", function() {
 			validClubs.push(val);
 		});
 	});
+
+	// Set up suggestions for club names
 	$("#clubName").autocomplete({
 			lookup: validClubs,
 			lookupLimit: 5,
@@ -538,10 +547,13 @@ window.addEventListener("load", function() {
 				showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 			}
 		}
-	)
+	);
+
+	// add new club event listener
 	$("#add-new-club-link").on("click",()=>{
 		$("#modal-add-club").modal("show");
-	})
+	});
+
 	$("#modal-add-club-button-success").on("click", ()=>{
 		let customCreatedClub = $("#modal-add-club-content").val()
 		$("#modal-add-club").modal("hide");
@@ -550,9 +562,6 @@ window.addEventListener("load", function() {
 		club = customCreatedClub;
 		updateClubSelection();
 		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
-	})
-
-
-
+	});
 
 });
