@@ -21,6 +21,11 @@
 		border: none;
 		font-weight: 100;
 	}
+
+	#importFile-meetSetup, #importMedley, #meetName, #clubName{
+		margin: auto;
+	}
+
 /* UNI_P Club Settings */
 
 	.autocomplete-suggestion{
@@ -84,12 +89,27 @@
 	}
 	#participantList > tbody > tr > td > table > tbody > tr > th{
 		font-weight: 500;
+	}
+	#teamList > tbody > tr:nth-child(1) > th{
+		font-weight: 500;
+	}
+	#teamList > tbody > tr.edit > td > table > tbody > tr > th{
+		font-weight: 500;
+	}
 
+	.overscroll{
+		overflow-x: scroll;
 	}
 
 /* UNI_P Summary */
 
+	#summary{
+		margin-top: 50px;
+		margin: auto;
+		bottom: 5%;
+	}
+
 	#makeUnip{
-		/*hack. makes it possible to scroll down a bit*/
-		margin-bottom: 500px;
+		max-width: 300px;
+		margin: auto;
 	}

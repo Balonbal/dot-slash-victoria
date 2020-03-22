@@ -5,96 +5,109 @@ scripts: [validation, uni_p, encoding-indexes, encoding, xmlParser, jquerry.auto
 modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 ---
 <link rel="stylesheet" type="text/css" href="../css/tools/uni_p.css"></link>
-
-<section class="container">
-	<h2 class="t">Meet details</h2>
-
-			<div class="row">
-				<label for="importFile-meetSetup" class="t col-4">Import meetsetup from XML</label>
-				<div class="custom-file col-8">
-					<label class="custom-file-label t">Choose file</label>
-					<input type="file" accept=".xml" class="custom-file-input" id="importFile-meetSetup" data-testid="importMeet">
+	<section class="container">
+		<h2 class="t">Meet details</h2>
+			<div class="d-none d-md-block">
+				<div class="row">
+					<label for="importFile-meetSetup" class="t col-4">Import meetsetup from XML</label>
+					<div class="col-8">
+						<label class="custom-file-label t">Choose file</label>
+						<input type="file" accept=".xml" class="custom-file-input" id="importFile-meetSetup" data-testid="importMeet">
+					</div>
 				</div>
 			</div>
 			<div class="row">
-				<label for="importMedley" class="col-4 t">Import from medley.no</label>
+				<div class="d-none d-md-block col-4" style="margin: 0; padding: 0;">
+					<label for="importMedley" class="col-auto t">Import from medley.no</label>
+				</div>
 				<select id="importMedley" class="form-control col-8" data-testid="meetSelect" autofocus></select>
 			</div>
-			<div class="row">
-				<label for="meetName" class="col-4 t">Meet name</label>
-				<input type="text" id="meetName" class="col-8" readonly data-testid="meetDisplay"/>
+			<div class="d-none d-md-block">
+				<div class="row">
+					<label for="meetName" class="col-4 t">Meet name</label>
+					<input type="text" id="meetName" class="col-8" readonly data-testid="meetDisplay"/>
+				</div>
 			</div>
-</section>
+	</section>
 
-<section id="clubSettings" class="container">
-	<h2 class="t">Club settings</h2>
+	<section id="clubSettings" class="container">
+		<h2 class="t">Club settings</h2>
+				<div class="row">
+					<div class="col-4 d-none d-md-block">
+						<label for="clubName" class=" t">Choose club</label>
+					</div>
+					<input type="text" name="clubName" id="clubName" autocomplete="off" class="form-control col-8" data-testid="clubInput"/>
+				</div>
+			<div class="d-none d-md-block">
+				<div class="row">
+					<a href="#" class="streshed-link col-auto t" id="add-new-club-link">Don't see your club in the list?</a>
+				</div>
+			</div>
+	</section>
 
+	<section id="section-TivImport" class="container d-none d-md-block">
+		<h2 class="t">Import enrolled</h2>
 		<div class="row">
-			<label for="clubName" class="col-4 t">Choose club</label>
-			<input type="text" name="clubName" id="clubName" autocomplete="off" class="form-control col-8" data-testid="clubInput"/>
+			<label for="importFile-tryggivann" class="t col-4">Import enrolled from tryggivann.no</label>
+			<div class="custom-file col-8">
+				<label class="custom-file-label t">Choose file</label>
+				<input type="file" accept=".csv" class="custom-file-input" id="importFile-tryggivann">
+			</div>
 		</div>
-		<div class="row">
-			<a href="#" class="streshed-link col-auto t" id="add-new-club-link">Don't see your club in the list?</a>
+	</section>
+
+	<section id="participantsContainer" class="container hidden">
+		<h2 class="t">Participants</h2>
+		<div id="participantBar" class="tabBar">
+			<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
+				<h3 class="t">Individuals</h3>
+				<div class="overscroll">
+
+					<table id="participantList" class="table">
+						<tr>
+							<th class="t">Name</th>
+							<th class="t">Year of birth (class)</th>
+							<th class="t">Sex</th>
+							<th class="t d-none d-md-block">Events</th>
+							<th class="t">Actions</th>
+						</tr>
+						<tr>
+							<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="participantTeam" data-text="Teams" data-disabled="true">
+				<h3 class="t">Teams</h3>
+				<div class="overscroll">
+					<table id="teamList" class="table">
+						<tr>
+							<th class="t">Team name</th>
+							<th class="t">Class</th>
+							<th class="t">Sex</th>
+							<th class="t d-none d-md-block">Events</th>
+							<th class="t">Actions</th>
+						</tr>
+						<tr>
+							<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
+	</section>
 
-</section>
-
-<section id="section-TivImport" class="container">
-	<h2 class="t">Import enrolled</h2>
-	<div class="row">
-		<label for="importFile-tryggivann" class="t col-4">Import enrolled from tryggivann.no</label>
-		<div class="custom-file col-8">
-			<label class="custom-file-label t">Choose file</label>
-			<input type="file" accept=".csv" class="custom-file-input" id="importFile-tryggivann">
+	<section id="summary" class="container">
+		<h2 class="t">Summary</h2>
+		<div id="individualsSummary"></div>
+		<div class="container" id="download">
+			<div class="row">
+				<div class="col-2"style="width:100%"></div>
+				<button id="makeUnip" class="btn btn-primary t col-8">Make uni_p.txt</button>
+				<div class="col-2"style="width:100%"></div>
+			</div>
 		</div>
-	</div>
-</section>
-
-<section id="participantsContainer" class="container hidden">
-	<h2 class="t">Participants</h2>
-
-	<div id="participantBar" class="tabBar">
-		<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
-			<h3 class="t">Individuals</h3>
-
-			<table id="participantList" class="table">
-				<tr>
-					<th class="t">Name</th>
-					<th class="t">Year of birth (class)</th>
-					<th class="t">Sex</th>
-					<th class="t">Events</th>
-					<th class="t">Actions</th>
-				</tr>
-				<tr>
-					<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
-				</tr>
-			</table>
-		</div>
-		<div id="participantTeam" data-text="Teams" data-disabled="true">
-			<h3 class="t">Teams</h3>
-
-			<table id="teamList" class="table">
-				<tr>
-					<th class="t">Team name</th>
-					<th class="t">Class</th>
-					<th class="t">Sex</th>
-					<th class="t">Events</th>
-					<th class="t">Actions</th>
-				</tr>
-				<tr>
-					<td colspan="5"><a class="t" href="javascript:void(0)">Add more...</a></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-</section>
-
-<section id="summary" class="container">
-	<h2 class="t">Summary</h2>
-	<div id="individualsSummary"></div>
-	<button id="makeUnip" class="btn btn-primary t">Make uni_p.txt</button>
-</section>
-
+	</section>
 <!-- Templates -->
 <!-- Single participant -->
 <template id="participantDummy">
@@ -102,7 +115,7 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 		<td class="personName"><input type="text"/></td>
 		<td class="age"><input type="number" min="1920" max="2020"/></td>
 		<td class="sex"><select><option value="M" class="t">Male</option><option value="K" class="t">Female</option></td>
-		<td class="events"></td>
+		<td class="events d-none d-md-block"></td>
 		<td class="actions"><input type="button" class="delete-athlete t" value="Delete" onclick="deleteAthlete(this)"/></td>
 	</tr>
 	<tr class="edit">
@@ -126,7 +139,7 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 		<td class="teamClass"><select><option value="JR" class="t">Junior</option><option value="SR" class="t">Senior</option></select></td>
 		<td class="teamSex"><select><option value="M" class="t">Male</option><option value="K" class="t">Female</option><option value="MIX" class="t">Mixed</option></select></td>
 		<td class="teamEvents"></td>
-		<td>-</td>
+		<td class="d-none d-md-block">-</td>
 	</tr>
 	<tr class="edit">
 		<td colspan="5">

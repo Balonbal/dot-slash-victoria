@@ -50,12 +50,12 @@
 
 /* UNKNOWN */
 
-input[type="text"], input[type="number"], td.sex select {
-	border: none;
-	outline: none;
-    background: transparent;
-    width: auto;
-}
+	input[type="text"], input[type="number"], td.sex select, td.teamClass select, td.teamSex select{
+		border: none;
+		outline: none;
+		background: transparent;
+		width: auto;
+	}
 
 #navbar{
 	margin-bottom: 30px;
@@ -73,7 +73,7 @@ input[type="text"], input[type="number"], td.sex select {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #333;
+	background-color: #222222;
 	text-align: center;
 }
 
@@ -86,6 +86,7 @@ input[type="text"], input[type="number"], td.sex select {
 	height: 30vh;
 	position: relative;
 }
+
 #loading h1{
 	color: white;
 	margin: 0;
