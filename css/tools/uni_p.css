@@ -52,20 +52,6 @@
 
 /* UNI_P Participants */
 
-	#participantsContainer{
-		/* hack */
-		padding-right: 0;
-	}
-
-	#participantsContainer > div.form-group.row > div > div.custom-file.col-8 > label{
-		border: none;
-		font-weight: 100;
-		border-radius: .2em;
-
-		/* hack */
-		margin-right: 15px;
-	}
-
 	.personRow:hover, .teamRow:hover, .eventTable tr:hover{
 		transition: 0.3s;
 	}
@@ -76,7 +62,13 @@
 
 	input.delete-athlete {
 		border: none;
+		outline: none;
 		background: none;
+		padding: 0;
+	}
+
+	td.events a{
+		outline: none;
 	}
 
 	.eventTable tbody tr th{
@@ -86,6 +78,15 @@
 	#participantList > tbody > tr.edit > td{
 		padding-top: 0px;
 	}
+
+	#participantList > tbody > tr:nth-child(1) > th{
+		font-weight: 500;
+	}
+	#participantList > tbody > tr > td > table > tbody > tr > th{
+		font-weight: 500;
+
+	}
+
 /* UNI_P Summary */
 
 	#makeUnip{

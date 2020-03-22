@@ -3,11 +3,11 @@
 /*
     COLOR CHEMA
 
-    #ffffff - text
-    #000000 - text secondary
-    #222222 - background
-    #1793d1 - theme color. Top nav bar. Button color
-    #333333 - secondary theme color. Hover effects
+    #ffffff   - text
+    #000000   - text secondary
+    #222222   - background
+    #1793d1   - theme color. Top nav bar. Button color
+    #1793d157 - secondary theme color. Hover effects
 
     Missing:
     - color for links on hover
@@ -42,7 +42,7 @@
     }
 
     .dropdown-item:hover{
-        background-color: #1793d1;
+        background-color: #1793d157;
         color: #ffffff;
     }
 
@@ -90,7 +90,7 @@
     }
 
     .autocomplete-suggestion:hover, .autocomplete-selected{
-        background-color: #1793d1;
+        background-color: #1793d157;
         color: #ffffff;
     }
 
@@ -103,7 +103,7 @@
     }
 
     #tabButtonparticipantSingle:hover, #tabButtonparticipantTeam:hover{
-        background-color: #1793d1 !important;
+        background-color: #1793d157 !important;
         color: #ffffff !important;
     }
 
@@ -121,14 +121,14 @@
     }
 
     .personRow:hover, .teamRow:hover, .eventTable tr:hover{
-        background-color: #1793d1;
+        background-color: #1793d157;
     }
 
     .personName input:focus, .age input:focus, .sex select:focus{
         border-bottom: 1px solid#1793d1;
     }
 
-    .teamName input:focus, .teamClass select:focus, .teamSex select:focus{
+    .teamName input:focus, .teamClass select:focus, .teamSex select:focus, input.delete-athlete:focus, td.events a:focus{
         border-bottom: 1px solid#1793d1;
     }
 

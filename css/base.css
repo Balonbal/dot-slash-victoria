@@ -18,7 +18,7 @@
 		display: none !important;
 	}
 
-	h2, h3,h4{
+	h1, h2, h3,h4{
 		margin-top: 30px;
 		margin-bottom: 30px;
 		font-weight: 100;
@@ -33,6 +33,11 @@
 		border-radius: .2em !important;
 	}
 
+	.row{
+		margin-top:15px;
+		margin-bottom:15px;
+	}
+
 /* NAVBAR */
 
 	#themeDropdown, #languageDropdown{
@@ -45,11 +50,10 @@
 
 /* UNKNOWN */
 
-input[type="text"], input[type="number"], select{
-    border: 0;
-    outline: 0;
+input[type="text"], input[type="number"], td.sex select {
+	border: none;
+	outline: none;
     background: transparent;
-    border-bottom: none;
     width: auto;
 }
 

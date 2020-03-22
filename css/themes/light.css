@@ -125,10 +125,13 @@
         border-bottom: 1px solid #4078c0
     }
 
-    .teamName input:focus, .teamClass select:focus, .teamSex select:focus{
-        border-bottom: 1px solid#4078c0;
+    input.delete-athlete{
+        color: #007bff !important;
     }
 
+    .teamName input:focus, .teamClass select:focus, .teamSex select:focus, input.delete-athlete:focus, td.events a:focus{
+        border-bottom: 1px solid#4078c0;
+    }
 
 /* UNI_P Summary */
 
