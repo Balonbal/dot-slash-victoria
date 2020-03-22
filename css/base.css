@@ -65,3 +65,30 @@ input[type="text"], input[type="number"], td.sex select {
 	padding-left: 0px !important;
 	padding-right: 0px !important;
 }
+
+#loading{
+	z-index: 2;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #333;
+	text-align: center;
+}
+
+#loading-logo{
+	transition: 4s;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: auto;
+	width: 40%;
+	height: 30vh;
+	position: relative;
+}
+#loading h1{
+	color: white;
+	margin: 0;
+	position: relative;
+	top: 0px;
+}

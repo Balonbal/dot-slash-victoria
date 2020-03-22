@@ -47,6 +47,9 @@
     }
 
 /* TOOLS */
+    body > div.container > small > span{
+        color: #ffffff;
+    }
 
     #toolList{
         background-color: #333333;

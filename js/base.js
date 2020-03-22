@@ -125,8 +125,9 @@ function addClickToEdit(element, display, field) {
 function onLoad() {
 	const tabBars = document.getElementsByClassName("tabBar");
 	for (let i = 0; i < tabBars.length; i++){
-			generateTabBar(tabBars[i]);
+		generateTabBar(tabBars[i]);
 	}
+	$("#loading").delay(500).fadeOut(600,() =>$("#loader").remove());
 }
 
 
