@@ -143,17 +143,19 @@ function createUNIP(meetData) {
 	}
 	return str;
 }
+// Find and det correct index for person when gender has been changed
+function fixSex(person) { // updateEventIndexes update
+	for(let person_event = 0; person_event < person.events.length; person_event++){
+		for(let meet_event = 0; meet_event < meetData.events.length; meet_event++){
 
-function fixSex(person) {
-	for (let i in person.events) {
-		const e = person.events[i];
-		for (let j in meetData.events) {
-			const candidate = meetData.events[j];
-			if (candidate.sex != person.sex) continue;
-			if (candidate.distance != e.distance) continue;
-			if (candidate.style != e.style) continue;
-			e.index = candidate.index;
+			if (meet_event.sex != person.sex) continue;
+			if (meet_event.distance != person_event.distance) continue;
+			if (meet_event.style != person_event.style) continue;
+
+			// correct event has been found. Set event index to person
+			person_event.index = meet_event.index;
 			break;
+
 		}
 	}
 }
@@ -161,9 +163,9 @@ function fixSex(person) {
 function getE(node, name) {
 	return node.querySelectorAll("." + name)[0];
 }
-
-function getT(node, name) {
-	return node.getElementsByTagName(name)[0];
+// get first element with tag name
+function getT(node, tagName) {
+	return node.getElementsByTagName(tagName)[0];
 }
 
 function setFields(node, value) {
@@ -184,7 +186,7 @@ function getEventString(person) {
 		s += e.distance + "m " + e.style;
 		if (i != person.events.length -1) s += ", ";
 	}
-	if (s == "") s = "<a href='javascript:void(0)'>Add events...</a>";
+	if (s == "") s = "<a href='javascript:void(0)' class='t'>Add events...</a>";
 	return s;
 }
 
@@ -357,6 +359,7 @@ function appendTeam(team) {
 
 // Please rewrite me
 function appendParticipant(person) {
+	// use input or standard
 	person = person || {};
 	person.name = person.name || "";
 	person.sex = person.sex || "M";
@@ -365,37 +368,27 @@ function appendParticipant(person) {
 	person.club = person.club || club;
 
 	hideEditors();
-	const t = document.getElementById("participantDummy");
-	const n = document.importNode(t.content, true);;
-	const node = n.children[0];
 
-	const name = getE(node, "personName");
-	const age = getE(node, "age");
-	const sex = getE(node, "sex");
-	const events = getE(node, "events");
+	// make a copy of template
+	const personRow = document.importNode(document.getElementById("participantDummy").content, true).children[0];
+	const editor = document.importNode(document.getElementById("participantDummy").content, true).children[1];
 
+	// get DOM objects from the copy
+	const name = getE(personRow, "personName");
+	const age = getE(personRow, "age");
+	const sex = getE(personRow, "sex");
+	const events = getE(personRow, "events");
+
+	// Set name, age and gender to the new copy
 	setFields(name, person.name);
 	setFields(age, person.birthYear);
 	sex.getElementsByTagName("option")[person.sex == "M" ? 0 : 1].selected = true;
 
-	colChangeListener(name, function() {
-		person.name = getT(name, "input").value;
-	});
-
-	colChangeListener(age, function () {
-		person.birthYear = getT(age, "input").value;
-	});
-
-	const editor = n.children[1];
-	node.addEventListener("click", function () {
-		hideEditors();
-		if (editor.classList.contains("hidden")) editor.classList.remove("hidden");
-		else editor.classList.add("hidden");
-	});
-
-	initEditor(person, getE(editor, "eventTable"), events);
-	meetData.participants.push(person);
-	colChangeListener(sex, function () {
+	// on change update meet participants
+	colChangeListener(name, () => { person.name = getT(name, "input").value; });
+	colChangeListener(age , () => { person.birthYear = getT(age, "input").value; });
+	colChangeListener(sex , () => {
+		// get new value from table
 		person.sex = getT(sex, "select").value;
 		fixSex(person);
 		const evs = getE(editor, "eventTable").firstElementChild;
@@ -403,9 +396,27 @@ function appendParticipant(person) {
 		getE(editor, "eventTable").appendChild(evs);
 		initEditor(person, getE(editor, "eventTable"), events);
 	}, "select");
+
+	// editor eventlistener
+	personRow.addEventListener("click", function () {
+		hideEditors();
+		if (editor.classList.contains("hidden")){
+			editor.classList.remove("hidden");
+		}else{
+			editor.classList.add("hidden");
+		}
+	});
+
+	initEditor(person, getE(editor, "eventTable"), events);
+	meetData.participants.push(person);
+
+
+
 	const prev = document.getElementById("participantList").lastChild.lastElementChild;
-	document.getElementById("participantList").lastChild.insertBefore(node, prev);
+	document.getElementById("participantList").lastChild.insertBefore(personRow, prev);
 	document.getElementById("participantList").lastChild.insertBefore(editor, prev);
+
+
 
 	if (translator) translator.Translate();
 }

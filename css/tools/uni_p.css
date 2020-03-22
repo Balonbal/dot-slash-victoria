@@ -1,17 +1,94 @@
-.eventTime > input {
-	width: 20px;
-}
-.autocomplete-suggestion{
-	font: large;
-	padding: 10px;
-}
-.autocomplete-suggestion:last-of-type{
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-}
-.autocomplete-suggestions{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-input#meetName{
-	padding: 6px 12px;
-}
+/* GENERAL */
+
+	/* remove scroll bar on number inputs */
+	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+/* UNI_P Meet Details */
+
+	#meetName{
+		padding: 6px 12px;
+		border-radius: .2em !important;
+	}
+
+	#meetName:hover, #importMedley:hover{
+		transition: 0.3s;
+	}
+
+	.custom-file-label, #importMedley{
+		border: none;
+		font-weight: 100;
+	}
+/* UNI_P Club Settings */
+
+	.autocomplete-suggestion{
+		font: large;
+		padding: 10px;
+	}
+
+	.autocomplete-suggestion:hover, .autocomplete-selected{
+		transition: 0.1s;
+	}
+
+	.autocomplete-suggestion:last-of-type{
+		border-bottom-left-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+
+	.autocomplete-suggestions{
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+
+	#clubName{
+		font-weight:100;
+	}
+
+	#modal-add-club-content{
+		font-weight: 100;
+		margin-top: 15px;
+	}
+
+/* UNI_P Participants */
+
+	#participantsContainer{
+		/* hack */
+		padding-right: 0;
+	}
+
+	#participantsContainer > div.form-group.row > div > div.custom-file.col-8 > label{
+		border: none;
+		font-weight: 100;
+		border-radius: .2em;
+
+		/* hack */
+		margin-right: 15px;
+	}
+
+	.personRow:hover, .teamRow:hover, .eventTable tr:hover{
+		transition: 0.3s;
+	}
+
+	.eventTime > input {
+		width: 20px;
+	}
+
+	input.delete-athlete {
+		border: none;
+		background: none;
+	}
+
+	.eventTable tbody tr th{
+		border-top: none;
+	}
+
+	#participantList > tbody > tr.edit > td{
+		padding-top: 0px;
+	}
+/* UNI_P Summary */
+
+	#makeUnip{
+		/*hack. makes it possible to scroll down a bit*/
+		margin-bottom: 500px;
+	}

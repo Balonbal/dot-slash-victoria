@@ -3,7 +3,7 @@ const pages = {
 		"title": { "en": "./victoria" },
 		"header": { "en": "./victoria - helper tools for swimmers", "no": "./victoria - hjelpeverktøy for svømmere" },
 		"unfinished": { "en": "(unfinished)", "no": "(uferdig)" },
-		"Theme:" : {"no": "Fargetema:" },
+		"Theme" : {"no": "Fargetema" },
 		"Language:": {"no": "Språk:" },
 		"Usage:": { "no": "Bruk:" },
 		"whereToDo": { "en": "where stuff-to-do is any of the following:", "no": "hvor stuff-to-do er hvilken som helst av følgende kommandoer:" },
@@ -18,7 +18,7 @@ const pages = {
 		"Cancel": { "no": "Avbryt" },
 		"Confirm": { "no": "Bekreft" },
 		"Meet name": { "no": "Stevnenavn" },
-		"Import from XML": { "no": "Importer fra XML-fil" },
+		"Import meetsetup from XML": { "no": "Importer fra XML-fil" },
 		"Import from medley.no": { "no": "Importer fra medley.no" },
 		"You have not yet selected a meet": { "no": "Du har ikke valgt et stevne enda" },
 		"Club settings": { "no": "Klubbinstillinger" },
@@ -38,7 +38,7 @@ const pages = {
 		"Class": { "no": "Aldersklasse" },
 		"Team name": { "no": "Lagnavn" },
 		"Summary": { "no": "Sammendrag" },
-		"Make uni_p.txt": { "no": "Lag uni_p.txt" },
+		"Make uni_p.txt": { "no": "Generer påmelding" },
 		"Will swim?": { "no": "Skal svømme?" },
 		"Event id": { "no": "Øvelsesnummer" },
 		"Event": { "no": "Øvelse" },
@@ -54,7 +54,10 @@ const pages = {
 		"Import enrolled from tryggivann.no" : {"no": "Importer påmeldte fra tryggivann.no"},
 		"Add club" : {"no" : "Legg til ny klubb"},
 		"Add a new club to the list. If this club excists in medley.no then send us a message and we will add i it to the list. Please dont use abbreviations":{"no":"Legg til en ny klubb i listen. Hvis klubben eksisterer på medley.no gi oss beskjed om det slik at vi får lagt den inn. Ikke bruk forkortelser"},
-		"Importing from tryggivann" : {"no" : "Importerer fra tryggivann"}
+		"Importing from tryggivann" : {"no" : "Importerer fra tryggivann"},
+		"Importing" : {"no" : "Importerer"},
+		"Delete" : {"no" : "Slett"},
+		"Add events..." : {"no" : "Legg til øvelser ..."}
 	},"newMeet": {
 
 	}

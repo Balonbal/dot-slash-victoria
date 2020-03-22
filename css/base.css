@@ -1,48 +1,49 @@
 /*Add size, margin and other non-style spesific things in this file*/
 
-/*All files*/
-.hidden {
-	display: none !important;
-}
+/* GENERAL */
+	*{
+		font-weight: 100;
+	}
 
-html {
-	position: relative;
-	min-height: 100%;
-}
+	html {
+		position: relative;
+		min-height: 100%;
+	}
 
-body {
-	font-family: "Roboto","Segoe UI";
-	margin-bottom: 60px;
-	font-weight: 100;
-}
+	body {
+		font-family: "Roboto","Segoe UI";
+	}
 
+	.hidden {
+		display: none !important;
+	}
 
-.selector{
-	padding: 5px;
-	position: fixed;
-	top: 10px;
-	right: 20px;
-}
+	h2, h3,h4{
+		margin-top: 30px;
+		margin-bottom: 30px;
+		font-weight: 100;
+	}
 
-.selector option{
-	font-size: 20px;	
-	text-align: inherit;
-	line-height: 1.5;
-}
+	.custom-file-label::after{
+		/* Remove browse button */
+		content: none !important;
+	}
 
-select{
-	border-width: 1px;
-	border-radius: 1px;
-	width: 55%;
-	padding: 0.1em;
-}
+	.custom-file-label{
+		border-radius: .2em !important;
+	}
 
-#theme-selector{
-	margin: 0px;
-	width: 5%;
-	min-width: 150px;
-	top: 4px;
-}
+/* NAVBAR */
+
+	#themeDropdown, #languageDropdown{
+		border:  none;
+	}
+
+	.langList, .themeList{
+		box-shadow: 0px 0px 0.1rem 0.1rem rgba(0,0,0,0.2)
+	}
+
+/* UNKNOWN */
 
 input[type="text"], input[type="number"], select{
     border: 0;
@@ -52,14 +53,11 @@ input[type="text"], input[type="number"], select{
     width: auto;
 }
 
-/* remove scroll bar on number inputs*/
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+#navbar{
+	margin-bottom: 30px;
 }
 
-input.delete-athlete {
-    border: none;
-    background: none;
+.navbar:not(#navbar){
+	padding-left: 0px !important;
+	padding-right: 0px !important;
 }
