@@ -1,7 +1,7 @@
 /* GENERAL */
 
 body{
-    background-color: var(--theme-background-color-primary);
+    background: var(--theme-background-color-primary);
 }
 
 h1, h2, h3, h4, h5, h6, i, label, a{
@@ -16,7 +16,7 @@ option{
 /* NAVBAR */
 
 #navbar{
-    background-color: var(--theme-color);
+    background: var(--theme-color);
 }
 
 .navbar-brand{
@@ -42,7 +42,7 @@ option{
 }
 
 .dropdown-item:hover{
-    background-color: var(--theme-color-hover-2);
+    background: var(--theme-color-hover-2);
     color: var(--theme-text-primary);
 }
 
@@ -99,7 +99,7 @@ body > div.container > small > span{
 }
 
 .autocomplete-suggestion:hover, .autocomplete-selected{
-    background-color: var(--theme-color-hover-2);
+    background: var(--theme-color-hover-2);
     color: var(--theme-text-primary);
 }
 
@@ -129,7 +129,7 @@ body > div.container > small > span{
 }
 
 .personRow:hover, .teamRow:hover, .eventTable tr:hover{
-    background-color: var(--theme-color-hover-2);
+    background: var(--theme-color-hover-2);
 }
 
 .personName input:hover, .age input:hover, .sex select:hover{

@@ -1,24 +1,29 @@
-/*Add size, margin and other non-style spesific things in this file*/
+/*Add size, margin and other non-theme spesific things in this file */
 
 /* GENERAL */
+
+	:root{
+		--transition-time: 0.3s;
+	}
+
 	*{
 		font-weight: 100;
 	}
 
-	html {
+	html{
 		position: relative;
 		min-height: 100%;
 	}
 
-	body {
+	body{
 		font-family: "Roboto","Segoe UI";
 	}
 
-	.hidden {
+	.hidden{
 		display: none !important;
 	}
 
-	h1, h2, h3,h4{
+	h1, h2, h3{
 		margin-top: 30px;
 		margin-bottom: 30px;
 		font-weight: 100;
@@ -48,6 +53,12 @@
 		box-shadow: 0px 0px 0.1rem 0.1rem rgba(0,0,0,0.2)
 	}
 
+
+/* TOOLS*/
+
+	small.note{
+		padding: 5px;
+	}
 /* UNKNOWN */
 
 	input[type="text"], input[type="number"], td.sex select, td.teamClass select, td.teamSex select{

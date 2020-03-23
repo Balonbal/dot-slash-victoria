@@ -1,7 +1,7 @@
 /* GENERAL */
 
 	/* remove scroll bar on number inputs */
-	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
 		-webkit-appearance: none;
 		margin: 0;
 	}
@@ -14,7 +14,7 @@
 	}
 
 	#meetName:hover, #importMedley:hover{
-		transition: 0.3s;
+		transition: var(--transition-time);
 	}
 
 	.custom-file-label, #importMedley{
@@ -34,7 +34,7 @@
 	}
 
 	.autocomplete-suggestion:hover, .autocomplete-selected{
-		transition: 0.1s;
+		transition: var(--transition-time);
 	}
 
 	.autocomplete-suggestion:last-of-type{
@@ -66,10 +66,10 @@
 		background: transparent;
 	}
 	.personRow:hover, .teamRow:hover, .eventTable tr:hover{
-		transition: 0.3s;
+		transition: var(--transition-time);
 	}
 
-	.eventTime > input {
+	.eventTime > input{
 		width: 20px;
 	}
 
@@ -95,12 +95,15 @@
 	#participantList > tbody > tr:nth-child(1) > th{
 		font-weight: 500;
 	}
+
 	#participantList > tbody > tr > td > table > tbody > tr > th{
 		font-weight: 500;
 	}
+
 	#teamList > tbody > tr:nth-child(1) > th{
 		font-weight: 500;
 	}
+
 	#teamList > tbody > tr.edit > td > table > tbody > tr > th{
 		font-weight: 500;
 	}
