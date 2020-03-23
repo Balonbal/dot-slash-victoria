@@ -37,7 +37,7 @@ function generateTabBar(base) {
 		button.addEventListener("click", function () {
 			showTab(base, child);
 		});
-		button.classList.add("t", "btn", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
+		button.classList.add("t", "btn", "tabButton", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
 		button.innerText = child.getAttribute("data-text");
 		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
 		button.id = "tabButton" + child.id;
