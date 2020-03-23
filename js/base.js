@@ -127,7 +127,6 @@ function onLoad() {
 	for (let i = 0; i < tabBars.length; i++){
 		generateTabBar(tabBars[i]);
 	}
-	$("#loading").delay(500).fadeOut(600,() =>$("#loader").remove());
 }
 
 
