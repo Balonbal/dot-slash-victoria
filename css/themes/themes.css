@@ -82,7 +82,7 @@ body > div.container > small > span{
     color: var(--theme-text-primary);
 }
 
-#meetName:hover, label.custom-file-label:hover, #importMedley:hover{
+#meetName:hover, label.custom-file-label:hover, #importMedley:hover, .hover{
     background: var(--theme-color-hover-2);
     color: var(--theme-text-primary);
 }

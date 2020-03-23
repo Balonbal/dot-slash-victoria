@@ -453,6 +453,23 @@ window.addEventListener("load", function() {
 		});
 	}
 
+	// add hover effect to file inputs
+	$("#importFile-meetSetup").on("mouseenter",() => {
+		$("#importFile-meetSetup").prev().addClass("hover");
+	});
+
+	$("#importFile-meetSetup").on("mouseleave",() => {
+		$("#importFile-meetSetup").prev().removeClass("hover");
+	});
+
+	$("#importFile-tryggivann").on("mouseenter",() => {
+		$("#importFile-tryggivann").prev().addClass("hover");
+	});
+
+	$("#importFile-tryggivann").on("mouseleave",() => {
+		$("#importFile-tryggivann").prev().removeClass("hover");
+	});
+
 	// Meet change eventlistener
 	$("#importMedley").on("change", () => {
 		if ($("#importMedley").val() == "invalid") return;
