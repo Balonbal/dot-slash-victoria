@@ -1,12 +1,12 @@
 /* Light theme. */
 
 :root{
-    --theme-color: #4078c0;
-    --theme-color-text: #ffffff;
-    --theme-color-hover: #3664a1;
-    --theme-color-hover-2: #dceaff;
-    --theme-text-primary: #000000;
-    --theme-text-secondary: #ffffff;
-    --theme-background-color-primary: #caccd1;
-    --theme-background-color-secondary: #ffffff;
+    --theme-color : #4078c0 ;
+    --theme-color-text : #ffffff ;
+    --theme-color-hover : #3664a1 ;
+    --theme-color-hover-2 : #dceaff ;
+    --theme-text-primary : #000000 ;
+    --theme-text-secondary : #ffffff ;
+    --theme-background-color-primary : #caccd1 ;
+    --theme-background-color-secondary : #ffffff ;
 }

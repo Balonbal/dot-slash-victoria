@@ -1,12 +1,12 @@
 /* Dark theme. */
 
-:root{
-    --theme-color: #1793d1;
-    --theme-color-text: #ffffff;
-    --theme-color-hover: #137aad;
-    --theme-color-hover-2: #1793d157;
-    --theme-text-primary: #ffffff;
-    --theme-text-secondary: #000000;
-    --theme-background-color-primary: #222222;
-    --theme-background-color-secondary: #333333;
+:root {
+    --theme-color : #1793d1 ;
+    --theme-color-text : #ffffff ;
+    --theme-color-hover : #137aad ;
+    --theme-color-hover-2 : #1793d157 ;
+    --theme-text-primary : #ffffff ;
+    --theme-text-secondary : #000000 ;
+    --theme-background-color-primary : #222222 ;
+    --theme-background-color-secondary : #333333 ;
 }

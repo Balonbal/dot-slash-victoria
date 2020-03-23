@@ -1,165 +1,165 @@
 /* GENERAL */
 
-body{
-    background: var(--theme-background-color-primary);
+body {
+    background : var(--theme-background-color-primary) ;
 }
 
-h1, h2, h3, h4, h5, h6, i, label, a{
-    color: var(--theme-text-primary);
+h1, h2, h3, h4, h5, h6, i, label, a {
+    color : var(--theme-text-primary) ;
 }
 
-option{
-    background: var(--theme-background-color-secondary) !important;
-    color: var(--theme-text-primary) !important;
+option {
+    background : var(--theme-background-color-secondary) !important ;
+    color : var(--theme-text-primary) !important ;
 }
 
 /* NAVBAR */
 
-#navbar{
-    background: var(--theme-color);
+#navbar {
+    background : var(--theme-color) ;
 }
 
-.navbar-brand{
-    color: var(--theme-color-text);
+.navbar-brand {
+    color : var(--theme-color-text) ;
 }
 
-.navbar-brand:hover{
-    color: var(--theme-color-text);
+.navbar-brand:hover {
+    color : var(--theme-color-text) ;
 }
 
-.dropdown-toggle{
-    background: var(--theme-background-color-secondary);
-    color: var(--theme-text-primary);
+.dropdown-toggle {
+    background : var(--theme-background-color-secondary) ;
+    color : var(--theme-text-primary) ;
 }
 
-.dropdown-toggle:hover{
+.dropdown-toggle:hover {
 
 }
 
-.dropdown-menu, .dropdown-item{
-    background: var(--theme-background-color-secondary);
-    color: var(--theme-text-primary);
+.dropdown-menu, .dropdown-item {
+    background : var(--theme-background-color-secondary) ;
+    color : var(--theme-text-primary) ;
 }
 
-.dropdown-item:hover{
-    background: var(--theme-color-hover-2);
-    color: var(--theme-text-primary);
+.dropdown-item:hover {
+    background : var(--theme-color-hover-2) ;
+    color : var(--theme-text-primary) ;
 }
 
 /* TOOLS */
 
-body > div.container > small > span{
-    color: var(--theme-text-primary);
+body > div.container > small > span {
+    color : var(--theme-text-primary) ;
 }
 
-#toolList{
-    background: var(--theme-background-color-secondary);
+#toolList {
+    background : var(--theme-background-color-secondary) ;
 }
 
 /* UNI_P Modal import from TIV */
 
-.modal-content{
-    background: var(--theme-background-color-primary);
-    color: var(--theme-text-primary);
+.modal-content {
+    background : var(--theme-background-color-primary) ;
+    color : var(--theme-text-primary) ;
 }
 
 /* UNI_P Modal add new club*/
 
-#modal-add-club-info, #modal-add-club-info:focus, .modal-content{
-    background: var(--theme-background-color-primary);
-    color: var(--theme-text-primary);
+#modal-add-club-info, #modal-add-club-info:focus, .modal-content {
+    background : var(--theme-background-color-primary) ;
+    color : var(--theme-text-primary) ;
 }
 
-#modal-add-club-content{
-    background: var(--theme-background-color-secondary);
-    color: var(--theme-text-primary);
+#modal-add-club-content {
+    background : var(--theme-background-color-secondary) ;
+    color : var(--theme-text-primary) ;
 }
 
 /* UNI_P Meet Details */
 
-#meetName, .custom-file-label, #importMedley{
-    background: var(--theme-background-color-secondary);
-    color: var(--theme-text-primary);
+#meetName, .custom-file-label, #importMedley {
+    background : var(--theme-background-color-secondary) ;
+    color : var(--theme-text-primary) ;
 }
 
-#meetName:hover, label.custom-file-label:hover, #importMedley:hover, .hover{
-    background: var(--theme-color-hover-2);
-    color: var(--theme-text-primary);
+#meetName:hover, label.custom-file-label:hover, #importMedley:hover, .hover {
+    background : var(--theme-color-hover-2) ;
+    color : var(--theme-text-primary) ;
 }
 
 /* UNI_P Club Settings */
 
-.autocomplete-suggestions{
-    background: var(--theme-background-color-secondary);
+.autocomplete-suggestions {
+    background : var(--theme-background-color-secondary) ;
 }
 
-.autocomplete-suggestion, #clubName{
-    background: var(--theme-background-color-secondary);
-    color: var(--theme-text-primary);
+.autocomplete-suggestion, #clubName {
+    background : var(--theme-background-color-secondary) ;
+    color : var(--theme-text-primary) ;
 }
 
-.autocomplete-suggestion:hover, .autocomplete-selected{
-    background: var(--theme-color-hover-2);
-    color: var(--theme-text-primary);
+.autocomplete-suggestion:hover, .autocomplete-selected {
+    background : var(--theme-color-hover-2) ;
+    color : var(--theme-text-primary) ;
 }
 
 /* UNI_P Participants */
 
-.tabButton{
-    background: var(--theme-color);
-    color: var(--theme-color-text);
+.tabButton {
+    background : var(--theme-color) ;
+    color : var(--theme-color-text) ;
 }
 
-.tabButton:hover{
-    background: var(--theme-color-hover);
-    color: var(--theme-color-text);
+.tabButton:hover {
+    background : var(--theme-color-hover) ;
+    color : var(--theme-color-text) ;
 }
 
-.tabButton .disabled, .tabButton:disabled{
-    border: 1px solid var(--theme-color);
-    color: var(--theme-text-primary);
+.tabButton .disabled, .tabButton:disabled {
+    border : 1px solid var(--theme-color) ;
+    color : var(--theme-text-primary) ;
 }
 
-#participantList, .personRow td input, .personRow td select, .eventTable, .eventTime input[type="text"]{
-    color: var(--theme-text-primary);
+#participantList, .personRow td input, .personRow td select, .eventTable, .eventTime input[type="text"] {
+    color : var(--theme-text-primary) ;
 }
 
-#teamList, .teamRow td input, .teamRow td select{
-    color: var(--theme-text-primary);
+#teamList, .teamRow td input, .teamRow td select {
+    color : var(--theme-text-primary) ;
 }
 
-.personRow:hover, .teamRow:hover, .eventTable tr:hover{
-    background: var(--theme-color-hover-2);
+.personRow:hover, .teamRow:hover, .eventTable tr:hover {
+    background : var(--theme-color-hover-2) ;
 }
 
-.personName input:hover, .age input:hover, .sex select:hover{
-    border-bottom: 1px solid var(--theme-color);
+.personName input:hover, .age input:hover, .sex select:hover {
+    border-bottom : 1px solid var(--theme-color) ;
 }
 
-.personName input:focus, .age input:focus, .sex select:focus{
-    border-bottom: 1px solid var(--theme-color);
+.personName input:focus, .age input:focus, .sex select:focus {
+    border-bottom : 1px solid var(--theme-color) ;
 }
 
-.teamName input:focus, .teamClass select:focus, .teamSex select:focus, input.delete-athlete:focus{
-    border-bottom: 1px solid var(--theme-color);
+.teamName input:focus, .teamClass select:focus, .teamSex select:focus, input.delete-athlete:focus {
+    border-bottom : 1px solid var(--theme-color) ;
 }
 
-.teamName input:hover, .teamClass select:hover, .teamSex select:hover, input.delete-athlete:hover{
-    border-bottom: 1px solid var(--theme-color);
+.teamName input:hover, .teamClass select:hover, .teamSex select:hover, input.delete-athlete:hover {
+    border-bottom : 1px solid var(--theme-color) ;
 }
 
-input.delete-athlete{
-    color: var(--theme-text-primary) !important;
+input.delete-athlete {
+    color : var(--theme-text-primary) !important ;
 }
 
 /* UNI_P Summary */
 
-#makeUnip{
-    background: var(--theme-color);
-    color: var(--theme-color-text);
+#makeUnip {
+    background : var(--theme-color) ;
+    color : var(--theme-color-text) ;
 }
 
-#makeUnip:hover{
-    background: var(--theme-color-hover);
-    color: var(--theme-color-text);
+#makeUnip:hover {
+    background : var(--theme-color-hover) ;
+    color : var(--theme-color-text) ;
 }

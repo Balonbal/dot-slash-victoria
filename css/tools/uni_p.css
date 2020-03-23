@@ -1,127 +1,127 @@
 /* GENERAL */
 
 	/* remove scroll bar on number inputs */
-	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
-		-webkit-appearance: none;
-		margin: 0;
+	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+		-webkit-appearance : none ;
+		margin : 0 ;
 	}
 
 /* UNI_P Meet Details */
 
-	#meetName{
-		padding: 6px 12px;
-		border-radius: .2em !important;
+	#meetName {
+		padding : 6px 12px ;
+		border-radius : .2em !important ;
 	}
 
-	#meetName:hover, #importMedley:hover{
-		transition: var(--transition-time);
+	#meetName :hover, #importMedley :hover {
+		transition : var(--transition-time) ;
 	}
 
-	.custom-file-label, #importMedley{
-		border: none;
-		font-weight: 100;
+	.custom-file-label, #importMedley {
+		border : none ;
+		font-weight : 100 ;
 	}
 
-	#importFile-meetSetup, #importMedley, #meetName, #clubName{
-		margin: auto;
+	#importFile-meetSetup, #importMedley, #meetName, #clubName {
+		margin : auto ;
 	}
 
 /* UNI_P Club Settings */
 
-	.autocomplete-suggestion{
-		font: large;
-		padding: 10px;
+	.autocomplete-suggestion {
+		font : large ;
+		padding : 10px ;
 	}
 
-	.autocomplete-suggestion:hover, .autocomplete-selected{
-		transition: var(--transition-time);
+	.autocomplete-suggestion:hover, .autocomplete-selected {
+		transition : var(--transition-time) ;
 	}
 
-	.autocomplete-suggestion:last-of-type{
-		border-bottom-left-radius: 4px;
-		border-bottom-right-radius: 4px;
+	.autocomplete-suggestion:last-of-type {
+		border-bottom-left-radius : 4px ;
+		border-bottom-right-radius : 4px ;
 	}
 
-	.autocomplete-suggestions{
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	.autocomplete-suggestions {
+		box-shadow : 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) ;
 	}
 
-	#clubName{
-		font-weight:100;
+	#clubName {
+		font-weight : 100 ;
 	}
 
-	#modal-add-club-content{
-		font-weight: 100;
-		margin-top: 15px;
+	#modal-add-club-content {
+		font-weight : 100 ;
+		margin-top : 15px ;
 	}
 
 /* UNI_P Participants */
 
-	.tabButton{
-		font-weight: 300;
-		border: none;
+	.tabButton {
+		font-weight : 300 ;
+		border : none ;
 	}
 
-	.tabButton .disabled, .tabButton:disabled{
-		background: transparent;
+	.tabButton.disabled, .tabButton:disabled {
+		background : transparent ;
 	}
-	.personRow:hover, .teamRow:hover, .eventTable tr:hover{
-		transition: var(--transition-time);
-	}
-
-	.eventTime > input{
-		width: 20px;
+	.personRow:hover, .teamRow:hover, .eventTable tr:hover {
+		transition : var(--transition-time) ;
 	}
 
-	input.delete-athlete {
-		border: none;
-		outline: none;
-		background: none;
-		padding: 0;
+	.eventTime > input {
+		width : 20px ;
 	}
 
-	td.events a{
-		outline: none;
+	input.delete-athlete  {
+		border : none ;
+		outline : none ;
+		background : none ;
+		padding : 0 ;
 	}
 
-	.eventTable tbody tr th{
-		border-top: none;
+	td.events a {
+		outline : none ;
 	}
 
-	#participantList > tbody > tr.edit > td{
-		padding-top: 0px;
+	.eventTable tbody tr th {
+		border-top : none ;
 	}
 
-	#participantList > tbody > tr:nth-child(1) > th{
-		font-weight: 500;
+	#participantList > tbody > tr.edit > td {
+		padding-top : 0px ;
 	}
 
-	#participantList > tbody > tr > td > table > tbody > tr > th{
-		font-weight: 500;
+	#participantList > tbody > tr :nth-child(1) > th {
+		font-weight : 500 ;
 	}
 
-	#teamList > tbody > tr:nth-child(1) > th{
-		font-weight: 500;
+	#participantList > tbody > tr > td > table > tbody > tr > th {
+		font-weight : 500 ;
 	}
 
-	#teamList > tbody > tr.edit > td > table > tbody > tr > th{
-		font-weight: 500;
+	#teamList > tbody > tr :nth-child(1) > th {
+		font-weight : 500 ;
 	}
 
-	.overscroll{
-		overflow-x: scroll;
+	#teamList > tbody > tr.edit > td > table > tbody > tr > th {
+		font-weight : 500 ;
+	}
+
+	.overscroll {
+		overflow-x : scroll ;
 	}
 
 /* UNI_P Summary */
 
-	#summary{
-		margin-top: 50px;
-		margin: auto;
-		bottom: 5%;
+	#summary {
+		margin-top : 50px ;
+		margin : auto ;
+		bottom : 5% ;
 	}
 
-	#makeUnip{
-		max-width: 300px;
-		margin: auto;
-		border: none;
+	#makeUnip {
+		max-width : 300px ;
+		margin : auto ;
+		border : none ;
 	}
