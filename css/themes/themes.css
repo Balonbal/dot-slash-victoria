@@ -89,6 +89,10 @@ body > div.container > small > span {
 
 /* UNI_P Club Settings */
 
+#clubName:hover {
+    background : var(--theme-color-hover-2) ;
+}
+
 .autocomplete-suggestions {
     background : var(--theme-background-color-secondary) ;
 }

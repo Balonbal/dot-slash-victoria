@@ -13,7 +13,7 @@
 		border-radius : .2em !important ;
 	}
 
-	#meetName :hover, #importMedley :hover {
+	#meetName:hover, #importMedley:hover , #clubName:hover {
 		transition : var(--transition-time) ;
 	}
 
