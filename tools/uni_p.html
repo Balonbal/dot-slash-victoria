@@ -30,7 +30,7 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 			</div>
 	</section>
 
-	<section id="clubSettings" class="container">
+	<section id="clubSettings" class="container hidden">
 		<h2 class="t">Club settings</h2>
 				<div class="row">
 					<div class="col-4 d-none d-md-block">
@@ -45,7 +45,7 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 			</div>
 	</section>
 
-	<section id="section-TivImport" class="container d-none d-md-block">
+	<section id="section-TivImport" class="container d-none d-md-block hidden">
 		<h2 class="t">Import enrolled</h2>
 		<div class="row">
 			<label for="importFile-tryggivann" class="t col-4">Import enrolled from tryggivann.no</label>
@@ -58,7 +58,13 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 
 	<section id="participantsContainer" class="container hidden">
 		<h2 class="t">Participants</h2>
-		<div id="participantBar" class="tabBar">
+		<div id="participantBar">
+
+			<div class="tabMenu navbar">
+				<button id="participantIndividualButton" class="t button disabled">Individuals</button>
+				<button id="participantTeamButton" class="t button disabled">Teams</button>
+			</div>
+
 			<div id="participantSingle" data-text="Individuals" data-disabled="true" class="content">
 				<h3 class="t">Individuals</h3>
 				<div class="overscroll">
@@ -97,7 +103,7 @@ modals: [uni_p-change-meet.html, uni_p-add-club.html, uni_p-importing.html]
 		</div>
 	</section>
 
-	<section id="summary" class="container">
+	<section id="summary" class="container hidden">
 		<h2 class="t">Summary</h2>
 		<div id="individualsSummary"></div>
 		<div class="container" id="download">
