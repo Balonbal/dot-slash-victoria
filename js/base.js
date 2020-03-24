@@ -177,6 +177,8 @@ function download(filename, text) {
 	document.body.removeChild(element);
 }
 
+$( () => onLoad() );
+
 function onLoad() {
 	const tabBars = document.getElementsByClassName("tabBar");
 	for (let i = 0; i < tabBars.length; i++){

@@ -1,9 +1,8 @@
 /* GENERAL */
 
 	/* remove scroll bar on number inputs */
-	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+	input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button, .overscroll::-webkit-scrollbar {
 		-webkit-appearance : none ;
-		margin : 0 ;
 	}
 
 /* UNI_P Meet Details */

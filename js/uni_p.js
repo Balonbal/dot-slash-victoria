@@ -45,9 +45,22 @@ function importMeet(data) {
 
 			$(".personRow, .teamRow, .edit").remove();
 			$("#clubSettings").removeClass("hidden");
-			$("#meetName").val() = meetData.name;
+			$("#meetName").val(meetData.name);
+
 			if(typeof club !== "undefined"){
-				updateClubSelection();
+				showParticipantsTable();
+				showImportSection();
+				showSummary();
+			}
+
+			if(hasIndividualEvents()){
+				openIndividual();
+				return;
+			}
+
+			if(hasTeamEvents()){
+				openTeam();
+				return;
 			}
 
 		} catch (e) { console.log(e) };
@@ -78,16 +91,71 @@ function hasTeamEvents() {
 	return false;
 }
 
-function updateClubSelection() {
-	$("#participantsContainer").removeClass("hidden");
-	enableTab("participantSingle");
-	if (hasTeamEvents()){
-		enableTab("participantTeam");
-	}else{
-		disableTab("participantTeam");
-	}
+function showSummary(){
+	$("#summary").removeClass("hidden");
 }
 
+function showImportSection(){
+	$("#section-TivImport").removeClass("hidden");
+}
+
+function hasIndividualEvents(){
+	for (let i in meetData.events) {
+		const e = meetData.events[i];
+		if (!isTeamEvent(e)) return true;
+	}
+	return false;
+}
+
+function showParticipantsTable(){
+	$("#participantsContainer").removeClass("hidden");
+}
+
+function disableButton(button){
+	$("#" + button).addClass("disabled");
+}
+
+function enableButton(button){
+	$("#" + button).removeClass("disabled");
+}
+
+function openIndividual(){
+	disableButton("participantIndividualButton");
+	showIndividual();
+	hideTeam();
+	if(hasTeamEvents()){
+		enableButton("participantTeamButton");
+		return;
+	}
+	disableButton("participantTeamButton");
+}
+
+function openTeam(){
+	disableButton("participantTeamButton");
+	showTeam();
+	hideIndividual();
+	if(hasIndividualEvents()){
+		enableButton("participantIndividualButton");
+		return;
+	}
+	disableButton("participantIndividualButton");
+}
+
+function showIndividual(){
+	$("#participantSingle").removeClass("hidden");
+}
+
+function showTeam(){
+	$("#participantTeam").removeClass("hidden");
+}
+
+function hideIndividual(){
+	$("#participantSingle").addClass("hidden");
+}
+
+function hideTeam(){
+	$("#participantTeam").addClass("hidden");
+}
 
 function getEvent(index) {
 	for (let i in meetData.events) {
@@ -455,6 +523,21 @@ window.addEventListener("load", function() {
 		});
 	}
 
+	// add event listeners for participant table
+	$("#participantIndividualButton").on("click", () => {
+		if($("#participantIndividualButton").hasClass("disabled")){
+			return;
+		}
+		openIndividual();
+	});
+
+	$("#participantTeamButton").on("click", () => {
+		if( $("#participantTeamButton").hasClass("disabled") ){
+			return;
+		}
+		openTeam();
+	});
+
 	// add hover effect to file inputs
 	$("#importFile-meetSetup").on("mouseenter",() => {
 		$("#importFile-meetSetup").prev().addClass("hover");
@@ -474,17 +557,27 @@ window.addEventListener("load", function() {
 
 	// Meet change eventlistener
 	$("#importMedley").on("change", () => {
+		// validate input
 		if ($("#importMedley").val() == "invalid") return;
-		$("#importMedley option:first").remove();
+		if ( $("#importMedley option:first").val() == "invalid"){
+			$("#importMedley option:first").remove();
+		}
+
+		// load meet
 		const meet = allMeets[$("#importMedley").val()];
 		console.log("Fetching " + meet.url);
 		getMedleyMeet(meet.url, function (text) {
 			const xml = parseXml(text);
 			importMeet(xml.MeetSetUp);
 		});
+
+		// open editor if club is already set
 		if(typeof club === "undefined"){
 			$("#clubName").focus();
+			return;
 		}
+		showParticipantsTable();
+		showSummary();
 	});
 
 	// Eventlisteners for new athletes / "Add more..." links
@@ -595,7 +688,20 @@ window.addEventListener("load", function() {
 			onSelect: (suggestion)=>{
 				$("#clubName").val(suggestion);
 				club = $("#clubName").val();
-				updateClubSelection();
+
+				showParticipantsTable();
+				showImportSection();
+				showSummary();
+
+				if(hasIndividualEvents()){
+					openIndividual();
+					return;
+				}
+
+				if(hasTeamEvents()){
+					openTeam();
+					return;
+				}
 			}
 		}
 	);
@@ -611,7 +717,6 @@ window.addEventListener("load", function() {
 		$("#clubName").val(customCreatedClub);
 		validClubs.push(customCreatedClub);
 		club = customCreatedClub;
-		updateClubSelection();
 	});
 
 });
