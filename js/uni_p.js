@@ -352,6 +352,15 @@ function initEditor(person, table, span) {
 	}
 }
 
+function nameExists(name){
+	for(let i = 0; i < meetData.participants.length; i++){
+		if (name == meetData.participants[i].name){
+			return true;
+		}
+	}
+	return false;
+}
+
 function appendTeam(team) {
 	team = team || {};
 	team.name = team.name || "";
