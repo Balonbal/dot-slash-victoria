@@ -56,14 +56,6 @@
 
 /* UNI_P Participants */
 
-	.tabButton {
-		font-weight : 300 ;
-		border : none ;
-	}
-
-	.tabButton.disabled, .tabButton:disabled {
-		background : transparent ;
-	}
 	.personRow:hover, .teamRow:hover, .eventTable tr:hover {
 		transition : var(--transition-time) ;
 	}
@@ -116,5 +108,4 @@
 	#makeUnip {
 		max-width : 300px ;
 		margin : auto ;
-		border : none ;
 	}

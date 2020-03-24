@@ -44,9 +44,11 @@ function importMeet(data) {
 			meetData = meet;
 
 			$(".personRow, .teamRow, .edit").remove();
-			document.getElementById("clubSettings").classList.remove("hidden");
-			document.getElementById("meetName").value = meetData.name;
-			updateClubSelection();
+			$("#clubSettings").removeClass("hidden");
+			$("#meetName").val() = meetData.name;
+			if(typeof club !== "undefined"){
+				updateClubSelection();
+			}
 
 		} catch (e) { console.log(e) };
 
@@ -78,11 +80,11 @@ function hasTeamEvents() {
 
 function updateClubSelection() {
 	$("#participantsContainer").removeClass("hidden");
-	enableTab("participantBar", "participantSingle", false);
+	enableTab("participantSingle");
 	if (hasTeamEvents()){
-		enableTab("participantBar", "participantTeam");
+		enableTab("participantTeam");
 	}else{
-		disableTab("participantBar", "participantTeam");
+		disableTab("participantTeam");
 	}
 }
 
@@ -480,8 +482,9 @@ window.addEventListener("load", function() {
 			const xml = parseXml(text);
 			importMeet(xml.MeetSetUp);
 		});
-		updateClubSelection();
-		$("#clubName").focus();
+		if(typeof club === "undefined"){
+			$("#clubName").focus();
+		}
 	});
 
 	// Eventlisteners for new athletes / "Add more..." links
@@ -490,8 +493,8 @@ window.addEventListener("load", function() {
 
 	// Make uni_p.txt button
 	$("#makeUnip").on("click", function() {
-		const unip = createUNIP(meetData);
-		download(club + " uni_p.txt", unip);
+			const unip = createUNIP(meetData);
+			download(club + " uni_p.txt", unip);
 	});
 
 	// Import meet setup from XML
@@ -512,7 +515,10 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 		reader.readAsText(file, ENCODING);
-
+		
+		if(typeof club === "undefined"){
+			$("#clubName").focus();
+		}
 	});
 
 	// Import csv file with entries
@@ -575,7 +581,7 @@ window.addEventListener("load", function() {
 			})
 	});
 
-	// Eventlistener club settings
+	// Import predefined clubs into options
 	$.getJSON( "/assets/clubs.json", function( data ) {
 		$.each( data, function( key, val ) {
 			validClubs.push(val);
@@ -585,12 +591,11 @@ window.addEventListener("load", function() {
 	// Set up suggestions for club names
 	$("#clubName").autocomplete({
 			lookup: validClubs,
-			lookupLimit: 5,
+			lookupLimit: 6,
 			onSelect: (suggestion)=>{
 				$("#clubName").val(suggestion);
 				club = $("#clubName").val();
 				updateClubSelection();
-				showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 			}
 		}
 	);
@@ -607,7 +612,6 @@ window.addEventListener("load", function() {
 		validClubs.push(customCreatedClub);
 		club = customCreatedClub;
 		updateClubSelection();
-		showTab(document.getElementById("participantBar"), document.getElementById("participantSingle"), false);
 	});
 
 });

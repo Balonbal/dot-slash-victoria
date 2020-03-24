@@ -46,6 +46,24 @@
 		margin-top : 5vh ;
 		margin-bottom : 5vh ;
 	}
+
+	.button {
+		font-weight : 300 ;
+		border-radius : .25rem ;
+		padding: .375rem .75rem ;
+	}
+
+	.button.disabled {
+		background : transparent ;
+		opacity: 50% ;
+		cursor: default ;
+	}
+
+	.button.disabled:hover {
+		background : transparent ;
+		opacity: 50% ;
+		cursor: default ;
+	}
 	
 /* NAVBAR */
 
@@ -62,7 +80,7 @@
 		box-shadow : 0px 0px 0.1rem 0.1rem rgba(0,0,0,0.2)
 	}
 
-/* TOOLS*/
+/* TOOLS */
 
 	small.note {
 		padding : 5px ;

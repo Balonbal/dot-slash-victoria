@@ -87,10 +87,20 @@ body > div.container > small > span {
     color : var(--theme-text-primary) ;
 }
 
+#meetName:focus, label.custom-file-label:focus, #importMedley:focus {
+    box-shadow : none ;
+    outline : none ;
+}
+
 /* UNI_P Club Settings */
 
 #clubName:hover {
     background : var(--theme-color-hover-2) ;
+}
+
+#clubName:focus {
+    box-shadow : none ;
+    outline : none ;
 }
 
 .autocomplete-suggestions {
@@ -109,19 +119,25 @@ body > div.container > small > span {
 
 /* UNI_P Participants */
 
-.tabButton {
+.button {
     background : var(--theme-color) ;
     color : var(--theme-color-text) ;
+    border : 1px solid var(--theme-color) ;
 }
 
-.tabButton:hover {
+.button:hover {
     background : var(--theme-color-hover) ;
     color : var(--theme-color-text) ;
+    border : 1px solid var(--theme-color-hover) ;
 }
 
-.tabButton .disabled, .tabButton:disabled {
-    border : 1px solid var(--theme-color) ;
+.button.disabled {
+    border : 1px solid var(--theme-color-hover) ;
     color : var(--theme-text-primary) ;
+}
+
+.button:focus {
+    outline : none ;
 }
 
 #participantList, .personRow td input, .personRow td select, .eventTable, .eventTime input[type="text"] {

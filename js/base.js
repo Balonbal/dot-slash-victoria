@@ -34,12 +34,13 @@ function generateTabBar(base) {
 		const child = children[i];
 		if (i != 0) child.classList.add("hidden");
 		const button = document.createElement("button");
-		button.addEventListener("click", function () {
-			showTab(base, child);
+		button.addEventListener("click", (event) => {
+			if(!event.target.classList.contains("disabled")){
+				showTab(base, child, false);
+			}
 		});
-		button.classList.add("t", "btn", "tabButton", "btn-outline-" + (child.getAttribute("data-disabled") == "true" ? "disabled" : "primary"));
+		button.classList.add("t", "button");
 		button.innerText = child.getAttribute("data-text");
-		button.disabled = i == 0 || child.getAttribute("data-disabled") == "true";
 		button.id = "tabButton" + child.id;
 		tabMenu.appendChild(button);
 	}
@@ -72,18 +73,14 @@ function showModal(id, body, cb_confirm, cb_cancel, options) {
 	return modal;
 }	
 
-function enableTab(barName, tabName) {
+function enableTab(tabName) {
 	const button = document.getElementById("tabButton" + tabName);
-	button.classList.remove("btn-outline-disabled");
-	button.classList.add("btn-outline-primary");
-	button.disabled = false;
+	button.classList.remove("disabled");
 }
 
-function disableTab(barName, tabName) {
+function disableTab(tabName) {
 	const button = document.getElementById("tabButton" + tabName);
-	button.classList.add("btn-outline-disabled");
-	button.classList.remove("btn-outline-primary");
-	button.disabled = true;
+	button.classList.add("disabled");
 }
 
 function showTab(tabs, tab, disableTabs = true) {
@@ -103,8 +100,7 @@ function showTab(tabs, tab, disableTabs = true) {
 	const buttons = children[0].children;
 	for (let i = 0; i < buttons.length; i++) {
 		const button = buttons[i];
-		const active = button.innerText == tab.getAttribute("data-text");
-		button.disabled = active;
+		button.classList.add("disabled");
 	}
 }
 
@@ -119,14 +115,6 @@ function addClickToEdit(element, display, field) {
 		display.element.classList.remove("hidden");
 		field.classList.add("hidden");
 	});
-}
-
-
-function onLoad() {
-	const tabBars = document.getElementsByClassName("tabBar");
-	for (let i = 0; i < tabBars.length; i++){
-		generateTabBar(tabBars[i]);
-	}
 }
 
 
@@ -189,5 +177,9 @@ function download(filename, text) {
 	document.body.removeChild(element);
 }
 
-$(() => onLoad());
-//window.addEventListener("load", onLoad);
+function onLoad() {
+	const tabBars = document.getElementsByClassName("tabBar");
+	for (let i = 0; i < tabBars.length; i++){
+		generateTabBar(tabBars[i]);
+	}
+}
