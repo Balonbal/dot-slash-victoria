@@ -52,7 +52,6 @@
 
 	#modal-add-club-content {
 		font-weight : 100 ;
-		margin-top : 15px ;
 	}
 
 /* UNI_P Participants */
@@ -113,12 +112,6 @@
 	}
 
 /* UNI_P Summary */
-
-	#summary {
-		margin-top : 50px ;
-		margin : auto ;
-		bottom : 5% ;
-	}
 
 	#makeUnip {
 		max-width : 300px ;

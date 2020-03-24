@@ -17,6 +17,7 @@
 
 	body {
 		font-family : "Roboto","Segoe UI" ;
+		height: 100vh ;
 	}
 
 	.hidden {
@@ -24,8 +25,6 @@
 	}
 
 	h1, h2, h3 {
-		margin-top : 30px ;
-		margin-bottom : 30px ;
 		font-weight : 100 ;
 	}
 
@@ -39,15 +38,16 @@
 	}
 
 	.row {
-		margin-top :15px ;
-		margin-bottom :15px ;
+		margin-top : 2vh ;
+		margin-bottom : 2vh ;
 	}
 
+	section {
+		margin-top : 5vh ;
+		margin-bottom : 5vh ;
+	}
+	
 /* NAVBAR */
-
-	#navbar {
-		margin-bottom : 30px ;
-	}
 
 	.navbar:not(#navbar) {
 		padding-left : 0px !important ;
