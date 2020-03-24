@@ -353,13 +353,34 @@ function initEditor(person, table, span) {
 }
 
 function nameExists(name){
+	let count = 0;
 	for(let i = 0; i < meetData.participants.length; i++){
 		if (name == meetData.participants[i].name){
-			return true;
+			count++;
+			if(count > 1){return true;}
 		}
 	}
 	return false;
 }
+
+function nameWritten(sender){
+	if(nameExists(sender.value)){
+		sender.classList.add("warning");
+		return;
+	}
+	sender.classList.remove("warning");
+}
+
+function checkYear(sender){
+	
+	if(!isValidBirthYear(sender.value)){
+		sender.classList.add("warning");
+		return;
+	}
+	sender.classList.remove("warning");
+}
+
+
 
 function appendTeam(team) {
 	team = team || {};
@@ -545,6 +566,10 @@ window.addEventListener("load", function() {
 			return;
 		}
 		openTeam();
+	});
+
+	$(".personName input").on("change", (object) => {
+		console.log(object);
 	});
 
 	// add hover effect to file inputs
