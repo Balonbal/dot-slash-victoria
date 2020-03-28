@@ -48,7 +48,7 @@ option {
 
 /* TOOLS */
 
-body > div.container > small > span {
+body > section.container > small > span {
     color : var(--theme-text-primary) ;
 }
 
