@@ -460,4 +460,7 @@ window.addEventListener("load", function() {
 			importMeet(xml.MeetSetUp);
 		});
 	});
+	$(window).on("beforeunload", () => {
+		return "Are you sure you want to navigate away";
+	});
 });
