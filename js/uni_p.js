@@ -117,6 +117,23 @@ function createUNIP(meetData) {
 	for (let i in meetData.participants) {
 		const person = meetData.participants[i];
 		let params = [];
+
+		// Check if the name has trailing whitespaces
+		nameChecked = false
+		while(!nameChecked){
+			nameChecked = true
+			// remove whitespace at the start of the name
+			if(person.name[0] == " "){
+				person.name = person.name.substring(1,length(person.name) - 1)
+				nameChecked = false
+			}
+			// remove whitespace at the end of the name
+			if(person.name[length(name) -1 ] == " "){
+				person.name = person.name.substring(0,length(person.name) - 2)
+				nameChecked = false
+			}
+		}
+
 		for (let j in person.events) {
 			const evt = person.events[j];
 			const meetEvent = getEvent(evt.index);
@@ -137,8 +154,8 @@ function createUNIP(meetData) {
 				"",
 				"",
 				"",
-				"",
 				"K",
+				"",
 				"",
 				""
 			];
@@ -411,7 +428,6 @@ function appendParticipant(person) {
 
 	if (translator) translator.Translate();
 }
-
 window.addEventListener("load", function() {
 	document.getElementById("participantList").lastChild.lastElementChild.addEventListener("click", function () {appendParticipant(); });
 	document.getElementById("teamList").lastChild.lastElementChild.addEventListener("click", function() { appendTeam() });
@@ -419,7 +435,7 @@ window.addEventListener("load", function() {
 		const unip = createUNIP(meetData);
 		download(club + " uni_p.txt", unip);
 	});
-	document.getElementById("importFile").addEventListener("change", function(e) {
+	document.getElementById("importFile-meetSetup").addEventListener("change", function(e) {
 		const file = e.target.files[0];
 		if (!file) return;
 		const reader = new FileReader();
@@ -430,6 +446,7 @@ window.addEventListener("load", function() {
 		reader.readAsText(file);
 
 	});
+
 	document.getElementById("activeClub").addEventListener("change", function() {
 		club = document.getElementById("activeClub").value;
 		updateClubSelection(club);
