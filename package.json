@@ -1,0 +1,13 @@
+{
+	"name": "dot-slash-victoria",
+	"scripts": {
+		"test:e2e": "jest --config __tests__/jest.e2e.config.js --verbose",
+		"test:unit": "jest --config __tests__/jest.unit.config.js"
+	},
+	"devDependencies": {
+		"jest": "^24.8.0",
+		"jest-puppeteer": "^4.4.0",
+		"puppeteer": "^1.17.0",
+		"serve": "^11.3.0"
+	}
+}

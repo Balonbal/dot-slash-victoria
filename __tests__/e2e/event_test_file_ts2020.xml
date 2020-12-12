@@ -1,0 +1,1756 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<MeetSetUp>
+<NsfVersion>MEETSETUP 1.0</NsfVersion>
+<Creator>JechSoft Victoria 2003-1</Creator>
+<NSFMeetId>0000032498</NSFMeetId>
+<MeetName>Trøndersvøm 2020</MeetName>
+<MeetDate>17-19. januar 2020</MeetDate>
+<MeetPlace>Pirbadet -  Trondheim</MeetPlace>
+<PoolCategory>METERS</PoolCategory>
+<PoolLength>25</PoolLength>
+<Lanes> 8</Lanes>
+<IndividualPrice> 100</IndividualPrice>
+<TeamPrice> 200</TeamPrice>
+<IndividualPrice2> 200</IndividualPrice2>
+<TeamPrice2> 400</TeamPrice2>
+<OnePriceAll> 100</OnePriceAll>
+<OnePriceAllClasses/>
+<AustralianModel>TRUE</AustralianModel>
+<AustralianRank>PERCENT</AustralianRank>
+<AustralianWorldRecord>SHORTCOURSE</AustralianWorldRecord>
+<HCSingleAgeGroup>TRUE</HCSingleAgeGroup>
+<WomenSenior> 2002</WomenSenior>
+<MenSenior> 2001</MenSenior>
+<WomenJunior> 2009</WomenJunior>
+<MenJunior> 2009</MenJunior>
+<WomenJunior2> 2003</WomenJunior2>
+<MenJunior2> 2003</MenJunior2>
+<WomenYoungestFinal> 2009</WomenYoungestFinal>
+<MenYoungestFinal> 2009</MenYoungestFinal>
+<PrimaryMasters>FALSE</PrimaryMasters>
+<FinalEntryDate>20200109</FinalEntryDate>
+<FirstEntryDate>20190110</FirstEntryDate>
+<LastEntryDate>20200109</LastEntryDate>
+<NoQualHC>FALSE</NoQualHC>
+<StartDate>20200117</StartDate>
+<EndDate>20200119</EndDate>
+<HostClub>Trondhjem SLK</HostClub>
+<HostClubOrganizationNo>GR16010095450</HostClubOrganizationNo>
+<CompetitionTypeId> 4</CompetitionTypeId>
+<CompetitionType>Nasjonalt stevne m/internasjonal deltagelse</CompetitionType>
+<Community>Trondheim</Community>
+<Homepage>https://www.tslk.no</Homepage>
+<ResultWebaddress>livetiming.no</ResultWebaddress>
+<EntryMail>pamelding@tslk.no</EntryMail>
+<GeneralSenior>TRUE</GeneralSenior>
+<GeneralJunior>TRUE</GeneralJunior>
+<GeneralHC>TRUE</GeneralHC>
+<GeneralMasters>TRUE</GeneralMasters>
+<NoPool>FALSE</NoPool>
+<Cancelled>FALSE</Cancelled>
+<Info>Lagledermøte fredag 17. januar klokken 16:00 i andre etasje i Pirbadet.
+
+Innsvømming fredag: 14:30
+Innsvømming lørdag: 07:45 og 15:30
+Innsvømming søndag: 07:30 og 12:00</Info>
+<WriteCountry>FALSE</WriteCountry>
+<RecordsInHeatlist>TRUE</RecordsInHeatlist>
+<PageNumberInHeatlist>FALSE</PageNumberInHeatlist>
+<WriteFirstStage>TRUE</WriteFirstStage>
+<UseGroupText>FALSE</UseGroupText>
+<ShowTimeSchedule>TRUE</ShowTimeSchedule>
+<ShowTimeOnlyHeatOne>FALSE</ShowTimeOnlyHeatOne>
+<ShowHeatText>TRUE</ShowHeatText>
+<Touchpads>ONE SET</Touchpads>
+<WriteOtherPrices>FALSE</WriteOtherPrices>
+<Unofficial>FALSE</Unofficial>
+<WriteDateTime>TRUE</WriteDateTime>
+<Header>Trøndersvøm 2020</Header>
+<Footer>Trondhjems Svømme- &amp; Livredningsklub</Footer>
+<Prizes> 3</Prizes>
+<StartOnMinute>FALSE</StartOnMinute>
+<TimeBetween>0030</TimeBetween>
+<ExtraTime>0000</ExtraTime>
+<Sessions>
+<Session>
+<SessionId>1</SessionId>
+<SessionName>Økt 1</SessionName>
+<SessionDate>20200117</SessionDate>
+<SessionStartTime>1600</SessionStartTime>
+</Session>
+<Session>
+<SessionId>2</SessionId>
+<SessionName>Økt 2</SessionName>
+<SessionDate>20200118</SessionDate>
+<SessionStartTime>0900</SessionStartTime>
+</Session>
+<Session>
+<SessionId>3</SessionId>
+<SessionName>Økt 3</SessionName>
+<SessionDate>20200118</SessionDate>
+<SessionStartTime>1630</SessionStartTime>
+</Session>
+<Session>
+<SessionId>4</SessionId>
+<SessionName>Økt 4</SessionName>
+<SessionDate>20200119</SessionDate>
+<SessionStartTime>0830</SessionStartTime>
+</Session>
+<Session>
+<SessionId>5</SessionId>
+<SessionName>Økt 5</SessionName>
+<SessionDate>20200119</SessionDate>
+<SessionStartTime>1300</SessionStartTime>
+</Session>
+</Sessions>
+<EntryManager>
+<LastName>Skipenes</LastName>
+<FirstName>Pavel</FirstName>
+<Sex>MALE</Sex>
+<Birthdate>1994</Birthdate>
+<Club>NTNUI-Svømming</Club>
+<OrganizationNo>GR16010050450</OrganizationNo>
+</EntryManager>
+<CompetitionManager>
+<LastName>Larsen</LastName>
+<FirstName>Rune</FirstName>
+<Sex>MALE</Sex>
+<Birthdate>1963</Birthdate>
+<Club>Trondhjem SLK</Club>
+<OrganizationNo>GR16010095450</OrganizationNo>
+</CompetitionManager>
+<DefinedAgeGroups>
+<AgeGroup>
+<AgeGroupName>Klasse 02</AgeGroupName>
+<Year> 2002</Year>
+</AgeGroup>
+<AgeGroup>
+<AgeGroupName>Klasse 03-04</AgeGroupName>
+<Year> 2003</Year>
+<Year> 2004</Year>
+</AgeGroup>
+<AgeGroup>
+<AgeGroupName>Klasse 05-06</AgeGroupName>
+<Year> 2005</Year>
+<Year> 2006</Year>
+</AgeGroup>
+<AgeGroup>
+<AgeGroupName>Klasse 07-08</AgeGroupName>
+<Year> 2007</Year>
+<Year> 2008</Year>
+</AgeGroup>
+<AgeGroup>
+<AgeGroupName>Klasse 09</AgeGroupName>
+<Year> 2009</Year>
+</AgeGroup>
+</DefinedAgeGroups>
+<Events>
+<Event ID="1">
+<EventNumber>1</EventNumber>
+<EventDescription>Øvelse 1. 400m fri, herrer</EventDescription>
+<EventLength>400</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>TRUE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>10</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>3</SesId>
+<AltEventId>1</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>1</LenexEventId>
+<LenexEventNo>1</LenexEventNo>
+<LenexEventOrder>1</LenexEventOrder>
+</Event>
+<Event ID="2">
+<EventNumber>2</EventNumber>
+<EventDescription>Øvelse 2. 400m fri, damer</EventDescription>
+<EventLength>400</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>TRUE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>10</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>3</SesId>
+<AltEventId>2</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>2</LenexEventId>
+<LenexEventNo>2</LenexEventNo>
+<LenexEventOrder>2</LenexEventOrder>
+</Event>
+<Event ID="3">
+<EventNumber>3</EventNumber>
+<EventDescription>Øvelse 3. 50m rygg, herrer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>BACKSTROKE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>1</SesId>
+<AltEventId>3</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>17</LenexEventId>
+<LenexEventNo>17</LenexEventNo>
+<LenexEventOrder>17</LenexEventOrder>
+</Event>
+<Event ID="4">
+<EventNumber>4</EventNumber>
+<EventDescription>Øvelse 4. 50m rygg, damer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>BACKSTROKE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>1</SesId>
+<AltEventId>4</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>4</LenexEventId>
+<LenexEventNo>4</LenexEventNo>
+<LenexEventOrder>4</LenexEventOrder>
+</Event>
+<Event ID="5">
+<EventNumber>5</EventNumber>
+<EventDescription>Øvelse 5. 100m bryst, herrer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>BREASTSTROKE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>1</SesId>
+<AltEventId>5</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>5</LenexEventId>
+<LenexEventNo>5</LenexEventNo>
+<LenexEventOrder>5</LenexEventOrder>
+</Event>
+<Event ID="6">
+<EventNumber>6</EventNumber>
+<EventDescription>Øvelse 6. 100m bryst, damer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>BREASTSTROKE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>1</SesId>
+<AltEventId>6</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>6</LenexEventId>
+<LenexEventNo>6</LenexEventNo>
+<LenexEventOrder>6</LenexEventOrder>
+</Event>
+<Event ID="7">
+<EventNumber>7</EventNumber>
+<EventDescription>Øvelse 7. 100m butterfly, herrer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>BUTTERFLY</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>1</SesId>
+<AltEventId>7</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>7</LenexEventId>
+<LenexEventNo>7</LenexEventNo>
+<LenexEventOrder>7</LenexEventOrder>
+</Event>
+<Event ID="8">
+<EventNumber>8</EventNumber>
+<EventDescription>Øvelse 8. 100m butterfly, damer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>BUTTERFLY</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200117</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>1</SesId>
+<AltEventId>8</AltEventId>
+<AltSesId>1</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>8</LenexEventId>
+<LenexEventNo>8</LenexEventNo>
+<LenexEventOrder>8</LenexEventOrder>
+</Event>
+<Event ID="9">
+<EventNumber>9</EventNumber>
+<EventDescription>Øvelse 9. 100m rygg, damer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>BACKSTROKE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>2</SesId>
+<AltEventId>9</AltEventId>
+<AltSesId>2</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>9</LenexEventId>
+<LenexEventNo>9</LenexEventNo>
+<LenexEventOrder>9</LenexEventOrder>
+</Event>
+<Event ID="10">
+<EventNumber>10</EventNumber>
+<EventDescription>Øvelse 10. 100m rygg, herrer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>BACKSTROKE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>2</SesId>
+<AltEventId>10</AltEventId>
+<AltSesId>2</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>10</LenexEventId>
+<LenexEventNo>10</LenexEventNo>
+<LenexEventOrder>10</LenexEventOrder>
+</Event>
+<Event ID="11">
+<EventNumber>11</EventNumber>
+<EventDescription>Øvelse 11. 50m bryst, damer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>BREASTSTROKE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0100</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>2</SesId>
+<AltEventId>11</AltEventId>
+<AltSesId>2</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>11</LenexEventId>
+<LenexEventNo>11</LenexEventNo>
+<LenexEventOrder>11</LenexEventOrder>
+</Event>
+<Event ID="12">
+<EventNumber>12</EventNumber>
+<EventDescription>Øvelse 12. 50m bryst, herrer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>BREASTSTROKE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>2</SesId>
+<AltEventId>12</AltEventId>
+<AltSesId>2</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>12</LenexEventId>
+<LenexEventNo>12</LenexEventNo>
+<LenexEventOrder>12</LenexEventOrder>
+</Event>
+<Event ID="13">
+<EventNumber>13</EventNumber>
+<EventDescription>Øvelse 13. 200m individuell medley, damer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>INDIVIDUALMEDLEY</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>2</SesId>
+<AltEventId>13</AltEventId>
+<AltSesId>2</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>13</LenexEventId>
+<LenexEventNo>13</LenexEventNo>
+<LenexEventOrder>13</LenexEventOrder>
+</Event>
+<Event ID="14">
+<EventNumber>14</EventNumber>
+<EventDescription>Øvelse 14. 200m individuell medley, herrer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>INDIVIDUALMEDLEY</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>2</SesId>
+<AltEventId>14</AltEventId>
+<AltSesId>2</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>14</LenexEventId>
+<LenexEventNo>14</LenexEventNo>
+<LenexEventOrder>14</LenexEventOrder>
+</Event>
+<Event ID="15">
+<EventNumber>15</EventNumber>
+<EventDescription>Øvelse 15. 1500m fri, damer</EventDescription>
+<EventLength>1500</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>2</SesId>
+<AltEventId>15</AltEventId>
+<AltSesId>2</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>15</LenexEventId>
+<LenexEventNo>15</LenexEventNo>
+<LenexEventOrder>15</LenexEventOrder>
+</Event>
+<Event ID="16">
+<EventNumber>16</EventNumber>
+<EventDescription>Øvelse 16. 4*50m fri, mixed</EventDescription>
+<EventLength>4*50</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>MIXED</Sex>
+<Senior>TRUE</Senior>
+<Junior>TRUE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>TRUE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0600</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>3</SesId>
+<AltEventId>16</AltEventId>
+<AltSesId>3</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>16</LenexEventId>
+<LenexEventNo>16</LenexEventNo>
+<LenexEventOrder>16</LenexEventOrder>
+</Event>
+<Event ID="17">
+<EventNumber>17</EventNumber>
+<EventDescription>Øvelse 17. 4*50m lag medley, damer</EventDescription>
+<EventLength>4*50</EventLength>
+<Eventart>MEDLEYRELAY</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>TRUE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>3</SesId>
+<AltEventId>17</AltEventId>
+<AltSesId>3</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>17</LenexEventId>
+<LenexEventNo>17</LenexEventNo>
+<LenexEventOrder>17</LenexEventOrder>
+</Event>
+<Event ID="18">
+<EventNumber>18</EventNumber>
+<EventDescription>Øvelse 18. 4*50m lag medley, herrer</EventDescription>
+<EventLength>4*50</EventLength>
+<Eventart>MEDLEYRELAY</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>TRUE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>TRUE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>1200</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>4</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>3</SesId>
+<AltEventId>18</AltEventId>
+<AltSesId>3</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>18</LenexEventId>
+<LenexEventNo>18</LenexEventNo>
+<LenexEventOrder>18</LenexEventOrder>
+</Event>
+<Event ID="19">
+<EventNumber>19</EventNumber>
+<EventDescription>Øvelse 19. 4*100m fri, damer</EventDescription>
+<EventLength>4*100</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>TRUE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>3</SesId>
+<AltEventId>19</AltEventId>
+<AltSesId>3</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>19</LenexEventId>
+<LenexEventNo>19</LenexEventNo>
+<LenexEventOrder>19</LenexEventOrder>
+</Event>
+<Event ID="20">
+<EventNumber>20</EventNumber>
+<EventDescription>Øvelse 20. 4*100m fri, herrer</EventDescription>
+<EventLength>4*100</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>TRUE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200118</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes> 3</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>TRUE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>1200</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>3</SesId>
+<AltEventId>20</AltEventId>
+<AltSesId>3</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>20</LenexEventId>
+<LenexEventNo>20</LenexEventNo>
+<LenexEventOrder>20</LenexEventOrder>
+</Event>
+<Event ID="21">
+<EventNumber>21</EventNumber>
+<EventDescription>Øvelse 21. 100m fri, herrer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes> 3</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>4</SesId>
+<AltEventId>21</AltEventId>
+<AltSesId>4</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>21</LenexEventId>
+<LenexEventNo>21</LenexEventNo>
+<LenexEventOrder>21</LenexEventOrder>
+</Event>
+<Event ID="22">
+<EventNumber>22</EventNumber>
+<EventDescription>Øvelse 22. 100m fri, damer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes> 3</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>4</SesId>
+<AltEventId>22</AltEventId>
+<AltSesId>4</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>22</LenexEventId>
+<LenexEventNo>22</LenexEventNo>
+<LenexEventOrder>22</LenexEventOrder>
+</Event>
+<Event ID="23">
+<EventNumber>23</EventNumber>
+<EventDescription>Øvelse 23. 200m rygg, herrer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>BACKSTROKE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes> 3</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText/>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>4</SesId>
+<AltEventId>23</AltEventId>
+<AltSesId>4</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>23</LenexEventId>
+<LenexEventNo>23</LenexEventNo>
+<LenexEventOrder>23</LenexEventOrder>
+</Event>
+<Event ID="24">
+<EventNumber>24</EventNumber>
+<EventDescription>Øvelse 24. 200m rygg, damer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>BACKSTROKE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText/>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>4</SesId>
+<AltEventId>24</AltEventId>
+<AltSesId>4</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>24</LenexEventId>
+<LenexEventNo>24</LenexEventNo>
+<LenexEventOrder>24</LenexEventOrder>
+</Event>
+<Event ID="25">
+<EventNumber>25</EventNumber>
+<EventDescription>Øvelse 25. 100m individuell medley, herrer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>INDIVIDUALMEDLEY</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>4</SesId>
+<AltEventId>25</AltEventId>
+<AltSesId>4</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>25</LenexEventId>
+<LenexEventNo>25</LenexEventNo>
+<LenexEventOrder>25</LenexEventOrder>
+</Event>
+<Event ID="26">
+<EventNumber>26</EventNumber>
+<EventDescription>Øvelse 26. 100m individuell medley, damer</EventDescription>
+<EventLength>100</EventLength>
+<Eventart>INDIVIDUALMEDLEY</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>4</SesId>
+<AltEventId>26</AltEventId>
+<AltSesId>4</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>26</LenexEventId>
+<LenexEventNo>26</LenexEventNo>
+<LenexEventOrder>26</LenexEventOrder>
+</Event>
+<Event ID="27">
+<EventNumber>27</EventNumber>
+<EventDescription>Øvelse 27. 1500m fri, herrer</EventDescription>
+<EventLength>1500</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>4</SesId>
+<AltEventId>27</AltEventId>
+<AltSesId>4</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>27</LenexEventId>
+<LenexEventNo>27</LenexEventNo>
+<LenexEventOrder>27</LenexEventOrder>
+</Event>
+<Event ID="28">
+<EventNumber>28</EventNumber>
+<EventDescription>Øvelse 28. 50m butterfly, damer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>BUTTERFLY</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>28</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>28</LenexEventId>
+<LenexEventNo>28</LenexEventNo>
+<LenexEventOrder>28</LenexEventOrder>
+</Event>
+<Event ID="29">
+<EventNumber>29</EventNumber>
+<EventDescription>Øvelse 29. 50m butterfly, herrer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>BUTTERFLY</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>29</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>29</LenexEventId>
+<LenexEventNo>29</LenexEventNo>
+<LenexEventOrder>29</LenexEventOrder>
+</Event>
+<Event ID="30">
+<EventNumber>30</EventNumber>
+<EventDescription>Øvelse 30. 200m bryst, damer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>BREASTSTROKE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>30</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>30</LenexEventId>
+<LenexEventNo>30</LenexEventNo>
+<LenexEventOrder>30</LenexEventOrder>
+</Event>
+<Event ID="31">
+<EventNumber>31</EventNumber>
+<EventDescription>Øvelse 31. 200m bryst, herrer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>BREASTSTROKE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>31</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>31</LenexEventId>
+<LenexEventNo>31</LenexEventNo>
+<LenexEventOrder>31</LenexEventOrder>
+</Event>
+<Event ID="32">
+<EventNumber>32</EventNumber>
+<EventDescription>Øvelse 32. 50m fri, damer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>32</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>32</LenexEventId>
+<LenexEventNo>32</LenexEventNo>
+<LenexEventOrder>32</LenexEventOrder>
+</Event>
+<Event ID="33">
+<EventNumber>33</EventNumber>
+<EventDescription>Øvelse 33. 50m fri, herrer</EventDescription>
+<EventLength>50</EventLength>
+<Eventart>FREESTYLE</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>33</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>33</LenexEventId>
+<LenexEventNo>33</LenexEventNo>
+<LenexEventOrder>33</LenexEventOrder>
+</Event>
+<Event ID="34">
+<EventNumber>34</EventNumber>
+<EventDescription>Øvelse 34. 200m butterfly, damer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>BUTTERFLY</Eventart>
+<Sex>FEMALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>34</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>34</LenexEventId>
+<LenexEventNo>34</LenexEventNo>
+<LenexEventOrder>34</LenexEventOrder>
+</Event>
+<Event ID="35">
+<EventNumber>35</EventNumber>
+<EventDescription>Øvelse 35. 200m butterfly, herrer</EventDescription>
+<EventLength>200</EventLength>
+<Eventart>BUTTERFLY</Eventart>
+<Sex>MALE</Sex>
+<Senior>TRUE</Senior>
+<Junior>FALSE</Junior>
+<JuniorOlder>FALSE</JuniorOlder>
+<JuniorYounger>FALSE</JuniorYounger>
+<Youngest> 2009</Youngest>
+<Oldest> 2001</Oldest>
+<AgeGroupUsed>Klasse 02</AgeGroupUsed>
+<AgeGroupUsed>Klasse 03-04</AgeGroupUsed>
+<AgeGroupUsed>Klasse 05-06</AgeGroupUsed>
+<AgeGroupUsed>Klasse 07-08</AgeGroupUsed>
+<AgeGroupUsed>Klasse 09</AgeGroupUsed>
+<EventPoolLength>25</EventPoolLength>
+<Date>20200119</Date>
+<Sorting>FINAL</Sorting>
+<NoQualHcEvent>FALSE</NoQualHcEvent>
+<Webheat>TRUE</Webheat>
+<SRJRCOMBI>FALSE</SRJRCOMBI>
+<Free>FALSE</Free>
+<DontShowAgeGroup>FALSE</DontShowAgeGroup>
+<ShowEntryTimes>TRUE</ShowEntryTimes>
+<Prizes>DEFAULT</Prizes>
+<Round>DIRECTFINAL</Round>
+<PresentationLastHeat>TRUE</PresentationLastHeat>
+<Break>FALSE</Break>
+<PrizeCeremony>FALSE</PrizeCeremony>
+<PostponeHeat>FALSE</PostponeHeat>
+<StartAfterBreak>FALSE</StartAfterBreak>
+<PresentationTime>0130</PresentationTime>
+<BreakTime>03000</BreakTime>
+<PrizeCeremonyTime>0300</PrizeCeremonyTime>
+<PrizeCeremonyText>Premieutdeling</PrizeCeremonyText>
+<PostponeHeatNumber>0</PostponeHeatNumber>
+<StartAfterBreakMin>15</StartAfterBreakMin>
+<SesId>5</SesId>
+<AltEventId>35</AltEventId>
+<AltSesId>5</AltSesId>
+<AltClassName>FALSE</AltClassName>
+<BreakAlt>FALSE</BreakAlt>
+<PrizeCeremonyAlt>FALSE</PrizeCeremonyAlt>
+<LenexEventId>35</LenexEventId>
+<LenexEventNo>35</LenexEventNo>
+<LenexEventOrder>35</LenexEventOrder>
+</Event>
+</Events>
+</MeetSetUp>
