@@ -35,6 +35,9 @@ describe("Mainpage", () => {
 		let defaultStyle;
 		beforeAll(async() => {
 			themeButton = await page.waitForSelector("button[data-testid='themeButton']");
+			await themeButton.click();
+			themes = await page.$$("div[data-testid='themeList'] > a");
+			await themes[0].click();
 			defaultStyle = await page.$eval("body", (body) => getComputedStyle(body).cssText);
 		});
 
@@ -47,6 +50,7 @@ describe("Mainpage", () => {
 			// Expect multiple themes to be present
 			await themeButton.click();
 			await themes[1].click();
+			await page.waitFor(100);
 			const newStyle = await page.$eval("body", (body) => getComputedStyle(body).cssText);
 			expect(newStyle).not.toBe(defaultStyle);
 		});
@@ -54,7 +58,6 @@ describe("Mainpage", () => {
 		test("selecting first theme resets to default style", async () => {
 			await themeButton.click();
 			await themes[0].click();
-
 			const newStyle = await page.$eval("body", (body) => getComputedStyle(body).cssText);
 			expect(newStyle).toBe(defaultStyle);
 		});

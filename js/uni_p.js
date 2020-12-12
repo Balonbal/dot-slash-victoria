@@ -4,6 +4,14 @@ const SEX_MALE = "MALE",
       CLASS_JUNIOR = "JR",
       CLASS_SENIOR = "SR";
 
+function sex_short(sex) {
+	switch(sex) {
+	case SEX_MALE: return "M";
+	case SEX_FEMALE: return "K";
+	default: return sex;
+	}
+}
+
 function ParticipantEvent(evt) {
 	Event.call(this, evt.index, evt.distance, evt.style, evt.sex);
 	this.time = { minutes: 0, seconds: 0, hundreths: 0 };
@@ -189,7 +197,7 @@ function Participant(name, team = false, sex = SEX_MALE, birth) {
 			console.log(this);
 			const firstname = this.team ? this.name : this.name.substring(this.name.lastIndexOf(" ") + 1); // Team name or first name
 			const lastname = this.team ? "" : this.name.substring(0, this.name.lastIndexOf(" ")); // Last name. Teams have no last name
-			const classString = this.sex + (this.team ? this.birthYear : ("" + this.birthYear).substring(2)); // Sex + class for teams, sex + birth year for individuals
+			const classString = sex_short(this.sex) + (this.team ? this.birthYear : ("" + this.birthYear).substring(2)); // Sex + class for teams, sex + birth year for individuals
 			const line = [
 				evt.index, // Event index
 				evt.distance, // Event distance

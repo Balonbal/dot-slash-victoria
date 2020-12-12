@@ -12,67 +12,6 @@ const getResource = function (type, name) {
 }
 const getImg = function(name) { return getResource("img", name); }
 
-// --- Themes ---
-function ThemeManager() {
-	this.theme = "default";
-	this.makeThemeList = function() {
-		this.addThemeToList("default");
-		//Check all included stylesheets
-		const sheets = $("link");
-		for (let i = 0; i < sheets.length; i++) {	
-			const sheet = sheets[i];
-			if (sheet.relList.contains("alternate")) this.addThemeToList(sheet.title);
-		}
-	}
-	this.addThemeToList = function(name) {
-		const img = $("<img>", {
-			src: getImg(name == "default" ? "light.png" : name + ".png"),
-			style: "height: 1em",
-			alt: name,
-		});
-		const themeText = $("<span>", {
-			classList: ["t"],
-			text: "theme_" + name,
-		});
-
-		$("<a>")
-			.attr("href", "javascript:void(0)")
-			.addClass("dropdown-item")
-			.append(img)
-			.append(themeText)
-			.on("click", () => this.set(name))
-			.appendTo($(".themeList"));
-	}
-	
-
-	this.set = function(name) {
-		const styleSheets = $("link");
-		for (let i = 0; i < styleSheets.length; i++) {
-			const sheet = styleSheets[i];
-			sheet.disabled = sheet.relList.contains("alternate") && sheet.title != name;
-		}
-		$(".themeText").text(name);
-		this.theme = name;
-		this.save();
-	}
-
-	this.save = function() {
-		window.localStorage.setItem("theme", this.theme);
-	}
-
-	this.load = function() {
-		let theme = window.localStorage.getItem("theme");
-		theme = theme || "default";
-		this.set(theme);
-	}
-	//Try load on creation, without explicit calling
-	this.makeThemeList();
-	this.load();
-}
-
-
-
-
 // --- Translations ---
 function addLanguage(language) {
 	let text;
@@ -193,6 +132,7 @@ function addClickToEdit(element, display, field) {
 }
 
 let tabBarManager, themeManager;
+
 function onLoad() {
 	tabBarManager = new TabBarManager();
 	themeManager = new ThemeManager();
