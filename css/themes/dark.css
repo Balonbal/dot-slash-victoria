@@ -58,6 +58,9 @@ a{
 .modal-content{
     background-color: #333333;
 }
+.modal-body p{
+    color:white;
+}
 div#confirmationBody{
     color: white;
 }

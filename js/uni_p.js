@@ -207,7 +207,6 @@ function Participant(name, team = false, sex = SEX_MALE, birth) {
 				"K", // Short (K) / Long (?) Lane
 				"", // IDK FIXME
 				"", // IDK FIXME
-
 			];
 			string += line.join(",") + "\n";
 		});
@@ -438,7 +437,6 @@ function ParticipantAddForm(editor, nameField, birthField, sexField, submitButto
 		const sex = this.sex.val();
 		participant = new Participant(name, this.team, sex, birth);
 		this.editor.addParticipant(participant);
-
 	});
 	this.setNameSuggester = function(fct) {
 		this.nameSuggester = fct;
@@ -487,7 +485,7 @@ $(() => {
 		editor.reset();
 		editor.setEvents(meet.events);
 	});
-	document.getElementById("importFile").addEventListener("change", function(e) {
+	document.getElementById("importFile-meetSetup").addEventListener("change", function(e) {
 		const file = e.target.files[0];
 		if (!file) return;
 		const reader = new FileReader();
@@ -499,6 +497,7 @@ $(() => {
 		reader.readAsText(file);
 
 	});
+
 	clubManager.attachSelector($("#clubList"));
 	clubManager.attachNewClubInput($("#clubName"));
 	clubManager.attachListener("clubSelected", (club) => {
@@ -513,5 +512,8 @@ $(() => {
 	document.getElementById("makeUnip").addEventListener("click", function() {
 		const unip = clubManager.selectedClub.serialize();
 		download("uni_p-" + meetManager.activeMeet.name + "_" + clubManager.selectedClub.name + ".txt", unip);
+	});
+	$(window).on("beforeunload", () => {
+		return "Are you sure you want to navigate away";
 	});
 });
