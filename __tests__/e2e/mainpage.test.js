@@ -46,7 +46,7 @@ describe("Mainpage", () => {
 			expect(themes.length).toBeGreaterThan(1);
 		})
 
-		test("selecting second theme changes style", async() => {
+		test.skip("selecting second theme changes style", async() => {
 			// Expect multiple themes to be present
 			await themeButton.click();
 			await themes[1].click();
@@ -55,7 +55,7 @@ describe("Mainpage", () => {
 			expect(newStyle).not.toBe(defaultStyle);
 		});
 
-		test("selecting first theme resets to default style", async () => {
+		test.skip("selecting first theme resets to default style", async () => {
 			await themeButton.click();
 			await themes[0].click();
 			const newStyle = await page.$eval("body", (body) => getComputedStyle(body).cssText);
