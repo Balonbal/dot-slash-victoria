@@ -31,7 +31,9 @@ describe("uni_p", () => {
 	});
 	describe("Meet selection", () => {
 		let options;
-		const testOptions = [ 1, 2, 3];
+		// In 2020 there are only two available meets...
+		//const testOptions = [ 1, 2, 3];
+		const testOptions = [ 1, 2];
 
 		test("fetches meet dropdown", async () => {
 			do  {
