@@ -1,35 +1,60 @@
- function Styler() {
-  this.SetTheme = function(theme) {
-    this.theme = theme;
-    window.localStorage.setItem("theme", theme);
-
-    if(theme == "dark"){
-      $(".darkStyleSheet").removeAttr("disabled")
-    }else{
-      $(".darkStyleSheet").attr("disabled", "disabled")
-    }
-  }
-}
-
- function addTheme(theme) {
-	let text;
-	switch (theme) {
-		case "light": text = "Light"; break;
-		case "dark": text = "Dark"; break;
+// --- Themes ---
+function ThemeManager() {
+	this.theme = "default";
+	this.makeThemeList = function() {
+		this.addThemeToList("default");
+		//Check all included stylesheets
+		const sheets = $("link");
+		for (let i = 0; i < sheets.length; i++) {	
+			const sheet = sheets[i];
+			if (sheet.relList.contains("alternate")) {
+				this.addThemeToList(sheet.title);
+				sheet.disabled = true;
+			}
+		}
 	}
-	$("<a href='javascript:void(0)'></a>")
-		.addClass("dropdown-item")
-		.append($("<span>").addClass("t").text("theme_" + theme))
-		.on("click", () => {
-			if (!styler) return;
-			styler.SetTheme(theme);
-		}).appendTo($(".themeList"));
-}
+	this.addThemeToList = function(name) {
+		const img = $("<img>", {
+			src: getImg(name == "default" ? "light.png" : name + ".png"),
+			style: "height: 1em",
+			alt: name,
+		});
+		const themeText = $("<span>", {
+			classList: ["t"],
+			text: name,
+		});
 
-styler = new Styler();
-window.addEventListener("load", function() {
-  addTheme("light");
-  addTheme("dark");
-	let theme = window.localStorage.getItem("theme");
-	styler.SetTheme(theme || "light");
-});
+		$("<a>")
+			.attr("href", "javascript:void(0)")
+			.addClass("dropdown-item")
+			.append(img)
+			.append(themeText)
+			.on("click", () => this.set(name))
+			.appendTo($(".themeList"));
+	}
+	
+
+	this.set = function(name) {
+		console.log(name)
+		const styleSheets = $("link");
+		for (let i = 0; i < styleSheets.length; i++) {
+			const sheet = styleSheets[i];
+			sheet.disabled = sheet.relList.contains("alternate") && sheet.title != name;
+		}
+		$(".themeText").text(name);
+		this.theme = name;
+		this.save();
+	}
+
+	this.save = function() {
+		window.localStorage.setItem("theme", this.theme);
+	}
+
+	this.load = function() {
+		let theme = window.localStorage.getItem("theme");
+		if (theme != null) this.set(theme);
+		else this.set("default");
+	}
+	this.makeThemeList();
+	this.load();
+}

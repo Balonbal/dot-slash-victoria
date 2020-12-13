@@ -30,17 +30,36 @@ describe("Mainpage", () => {
 		}
 	});
 	
-	describe.skip("Theme selection", () => {
+	describe("Theme selection", () => {
 		let themeButton, themes;
+		let defaultStyle;
 		beforeAll(async() => {
 			themeButton = await page.waitForSelector("button[data-testid='themeButton']");
-			themes = await page.$$("div[data-testid='themeList']");
+			await themeButton.click();
+			themes = await page.$$("div[data-testid='themeList'] > a");
+			await themes[0].click();
+			defaultStyle = await page.$eval("body", (body) => getComputedStyle(body).cssText);
 		});
 
-		const styles = [2, 1];
-		test.todo("selecting second theme changes style", async() => {
+		test("has multiple themes", async() => {
+			themes = await page.$$("div[data-testid='themeList'] > a");
+			expect(themes.length).toBeGreaterThan(1);
+		})
+
+		test.skip("selecting second theme changes style", async() => {
+			// Expect multiple themes to be present
 			await themeButton.click();
-			
+			await themes[1].click();
+			await page.waitFor(100);
+			const newStyle = await page.$eval("body", (body) => getComputedStyle(body).cssText);
+			expect(newStyle).not.toBe(defaultStyle);
+		});
+
+		test.skip("selecting first theme resets to default style", async () => {
+			await themeButton.click();
+			await themes[0].click();
+			const newStyle = await page.$eval("body", (body) => getComputedStyle(body).cssText);
+			expect(newStyle).toBe(defaultStyle);
 		});
 	});
 
